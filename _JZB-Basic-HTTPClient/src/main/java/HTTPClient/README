@@ -1,0 +1,40 @@
+
+This is a set of patches for the HTTPClient V0.3-3 to enable https
+using any SSL package which implements the javax.net.ssl interface
+defined by Sun. One implementation of this interface can be found
+in the ssl.jar and x509v1.jar classes supplied with HotJava 1.1.5
+(if you get the SSL-enabled version), and in the JavaWebServer.
+
+This package contains the modified sources and the resulting class
+files. Save a copy of the original files in the HTTPClient distribution,
+and then copy these files into there. When running your application
+make sure to include the neccessary jar file(s) in your CLASSPATH.
+
+If you are running this with HotJava's classes then include
+<hotjava-home>/lib/ssl.jar and <hotjava-home>/lib/x509v1.jar in
+your CLASSPATH. Also, you must make sure the shared-library/dll is
+in the search paths. For solaris/sparc this means that
+<hotjava-home>/lib/sparc/ssl/ must be in your LD_LIBRARY_PATH (it needs
+to find libjsafe.so); for NT this means that <hotjava-home>/bin/ must
+be in either your PATH or PWD (it needs to find jsafe.dll). For other
+platforms you'll have to figure out the equivalent setup. Note that
+the HotJava libs only work under JDK 1.1.x, not JDK 1.2.
+
+If you are using the classes from the JavaWebServer then the setup is
+similar, except that you need to point the paths (CLASSPATH and
+LD_LIBRARY_PATH, PATH, or PWD) to <jws-install>/lib/ (which contains
+both the jar files and the shared library).
+
+
+Comments:
+---------
+
+Mail suggestions, comments, bugs, enhancement-requests to:
+
+ronald@innovation.ch
+
+
+  Have fun,
+
+  Ronald
+
