@@ -1,0 +1,93 @@
+// Block definition (there may be more than one block per file)
+FUNCTION_BLOCK duplicated
+
+// Define input variables
+VAR_INPUT
+    name : REAL;
+    distance : REAL;
+END_VAR
+
+// Define output variable
+VAR_OUTPUT
+    duplicated : REAL;
+END_VAR
+
+// Fuzzify input variable 'name'
+FUZZIFY name
+    TERM VerySimilar   := (0, 1) (25, 0) ; 
+    TERM Similar       := (0, 0) (25, 1) (50, 0) ; 
+    TERM Regular       := (25, 0) (50, 1) (75, 0) ; 
+    TERM Different     := (50, 0) (75, 1) (100, 0) ; 
+    TERM VeryDifferent := (75, 0) (100, 1) ; 
+END_FUZZIFY
+
+// Fuzzify input variable 'distance'
+FUZZIFY distance
+    TERM AreEqual := (0, 1) (1, 1) (2, 0) ;
+    TERM VeryNear := (0, 0) (1, 0) (2, 1) (50, 0) ; 
+    TERM Near     := (25, 0) (200, 1) (375, 0) ; 
+    TERM Regular  := (290, 0) (1000,1) (1710, 0) ; 
+    TERM Far      := (1350, 0) (2000, 1) (2650, 0) ; 
+    TERM VeryFar  := (2320, 0) (3000, 1) (5000, 1) ; 
+END_FUZZIFY
+
+// Defzzzify output variable 'duplicated'
+DEFUZZIFY duplicated
+    TERM VeryProbable   := (0, 1) (25, 0) ; 
+    TERM Probable       := (0, 0) (25, 1) (50, 0) ; 
+    TERM Regular        := (25, 0) (50, 1) (75, 0) ; 
+    TERM Improbable     := (50, 0) (75, 1) (100, 0) ; 
+    TERM VeryImprobable := (75, 0) (100, 1) ; 
+    
+    // Use 'Center Of Gravity' defuzzification method
+    METHOD : COG;
+    // Default value is 0 (if no rule activates defuzzifier)
+    DEFAULT := 0;
+END_DEFUZZIFY
+
+RULEBLOCK No1
+    // Use 'min' for 'and' (also implicit use 'max'
+    // for 'or' to fulfill DeMorgan's Law)
+    AND : MIN;
+    // Use 'min' activation method
+    ACT : MIN;
+    // Use 'max' accumulation method
+    ACCU : MAX;
+
+
+    RULE 01 : IF distance IS AreEqual THEN duplicated IS VeryProbable;
+    
+    RULE 11 : IF name IS  VerySimilar AND distance IS VeryNear THEN duplicated IS VeryProbable;
+    RULE 11 : IF name IS  VerySimilar AND distance IS Near     THEN duplicated IS VeryProbable;
+    RULE 12 : IF name IS  VerySimilar AND distance IS Regular  THEN duplicated IS VeryProbable;
+    RULE 13 : IF name IS  VerySimilar AND distance IS Far      THEN duplicated IS Improbable;
+    RULE 14 : IF name IS  VerySimilar AND distance IS VeryFar  THEN duplicated IS VeryImprobable;
+
+
+    RULE 21 : IF name IS      Similar AND distance IS VeryNear THEN duplicated IS VeryProbable;
+    RULE 22 : IF name IS      Similar AND distance IS Near     THEN duplicated IS Probable;
+    RULE 23 : IF name IS      Similar AND distance IS Regular  THEN duplicated IS Regular;
+    RULE 24 : IF name IS      Similar AND distance IS Far      THEN duplicated IS Improbable;
+    RULE 25 : IF name IS      Similar AND distance IS VeryFar  THEN duplicated IS VeryImprobable;
+
+    RULE 31 : IF name IS      Regular AND distance IS VeryNear THEN duplicated IS VeryProbable;
+    RULE 32 : IF name IS      Regular AND distance IS Near     THEN duplicated IS Regular;
+    RULE 33 : IF name IS      Regular AND distance IS Regular  THEN duplicated IS Improbable;
+    RULE 34 : IF name IS      Regular AND distance IS Far      THEN duplicated IS VeryImprobable;
+    RULE 35 : IF name IS      Regular AND distance IS VeryFar  THEN duplicated IS VeryImprobable;
+
+    RULE 41 : IF name IS    Different AND distance IS VeryNear THEN duplicated IS VeryProbable;
+    RULE 42 : IF name IS    Different AND distance IS Near     THEN duplicated IS Improbable;
+    RULE 43 : IF name IS    Different AND distance IS Regular  THEN duplicated IS Improbable;
+    RULE 44 : IF name IS    Different AND distance IS Far      THEN duplicated IS VeryImprobable;
+    RULE 45 : IF name IS    Different AND distance IS VeryFar  THEN duplicated IS VeryImprobable;
+
+    RULE 51 : IF name IS VeryDifferent AND distance IS VeryNear THEN duplicated IS Probable;
+    RULE 52 : IF name IS VeryDifferent AND distance IS Near     THEN duplicated IS Improbable;
+    RULE 53 : IF name IS VeryDifferent AND distance IS Regular  THEN duplicated IS VeryImprobable;
+    RULE 54 : IF name IS VeryDifferent AND distance IS Far      THEN duplicated IS VeryImprobable;
+    RULE 55 : IF name IS VeryDifferent AND distance IS VeryFar  THEN duplicated IS VeryImprobable;
+
+END_RULEBLOCK
+
+END_FUNCTION_BLOCK
