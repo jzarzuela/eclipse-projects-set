@@ -46,7 +46,7 @@ public class TPOIData implements Comparable<TPOIData> {
 
     /**
      * @param maxDistance
-     *            en metros para indicar qué se considera "cercano"
+     *            en metros para indicar quï¿½ se considera "cercano"
      * 
      * @return 0 - Exactamente iguales 1 - Nombre igual y cercano 2 - Nombre igual y lejano 3 - Nombre diferente y cercano 4 - Completamente distintos
      */

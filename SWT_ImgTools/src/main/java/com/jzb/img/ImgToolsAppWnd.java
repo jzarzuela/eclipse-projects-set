@@ -89,7 +89,7 @@ public class ImgToolsAppWnd implements ITaskWnd {
      */
     public static void main(String[] args) {
         try {
-            // En SWT hay que ajustar el tama–o de los fonts en Mac OS
+            // En SWT hay que ajustar el tamaï¿½o de los fonts en Mac OS
             String OS_Name = System.getProperty("os.name");
             if (OS_Name != null && OS_Name.toLowerCase().contains("mac os")) {
                 System.setProperty("org.eclipse.swt.internal.carbon.smallFonts", "true");
