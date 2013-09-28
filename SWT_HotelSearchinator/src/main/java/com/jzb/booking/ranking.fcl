@@ -1,0 +1,92 @@
+// Block definition (there may be more than one block per file)
+FUNCTION_BLOCK ranking
+
+// Define input variables
+VAR_INPUT
+    price : REAL;
+    rating : REAL;
+END_VAR
+
+// Define output variable
+VAR_OUTPUT
+    ranking : REAL;
+END_VAR
+
+
+// ------------------------------------------------------------------------
+// Fuzzify input variable 'rating'
+FUZZIFY rating
+    TERM bad      := gbell 5.0  5.5  0.0; 
+    TERM average  := gbell 1.0  1.5  6.0; 
+    TERM good     := gbell 0.5  1.0  7.5; 
+    TERM excelent := gbell 2.0  2.5  10;
+END_FUZZIFY
+
+// ------------------------------------------------------------------------
+// Fuzzify input variable 'price'
+FUZZIFY price
+    TERM bargain   := gbell 60  65    0; 
+    TERM cheap     := gbell 20  25   80;
+    TERM adecuate  := gbell 15  20  115; 
+    TERM expensive := gbell 70  75  200; 
+END_FUZZIFY
+
+
+// ------------------------------------------------------------------------
+// Defzzzify output variable 'ranking'
+DEFUZZIFY ranking
+    TERM Stars0  := 0 ; 
+    TERM Stars1  := 1 ; 
+    TERM Stars2  := 2 ; 
+    TERM Stars3  := 3 ; 
+    TERM Stars4  := 4 ; 
+    TERM Stars5  := 5 ; 
+    
+    // Use 'Center Of Gravity' defuzzification method
+    METHOD : COGS;
+    // Default value is 0 (if no rule activates defuzzifier)
+    DEFAULT := 0;
+END_DEFUZZIFY
+
+
+// ------------------------------------------------------------------------
+RULEBLOCK No1
+    // Use 'min' for 'and' (also implicit use 'max'
+    // for 'or' to fulfill DeMorgan's Law)
+    AND : MIN;
+    // Use 'min' activation method
+    ACT : MIN;
+    // Use 'max' accumulation method
+    ACCU : MAX;
+
+
+    RULE 00 : IF (price IS cheap AND rating IS bad) THEN ranking IS Stars0;
+    RULE 01 : IF (price IS adecuate AND rating IS bad) THEN ranking IS Stars0;
+    RULE 02 : IF (price IS expensive AND rating IS bad) THEN ranking IS Stars0;
+    RULE 03 : IF (price IS expensive AND rating IS average) THEN ranking IS Stars0;
+
+
+    RULE 10 : IF (price IS bargain AND rating IS bad) THEN ranking IS Stars1;
+    RULE 11 : IF (price IS adecuate AND rating IS average) THEN ranking IS Stars1;
+
+
+    RULE 20 : IF (price IS cheap AND rating IS average) THEN ranking IS Stars2;
+    RULE 21 : IF (price IS expensive AND rating IS good) THEN ranking IS Stars2;
+    RULE 22 : IF (price IS expensive AND rating IS excelent) THEN ranking IS Stars2;
+
+
+    RULE 30 : IF (price IS adecuate AND rating IS good) THEN ranking IS Stars3;
+
+          
+    RULE 40 : IF (price IS bargain AND rating IS average) THEN ranking IS Stars4;
+    RULE 41 : IF (price IS cheap AND rating IS good) THEN ranking IS Stars4;
+    RULE 42 : IF (price IS adecuate AND rating IS excelent) THEN ranking IS Stars4;
+
+              
+    RULE 50 : IF (price IS bargain AND rating IS good) THEN ranking IS Stars5;
+    RULE 51 : IF (price IS bargain AND rating IS excelent) THEN ranking IS Stars5;
+    RULE 52 : IF (price IS cheap AND rating IS excelent) THEN ranking IS Stars5;
+
+END_RULEBLOCK
+
+END_FUNCTION_BLOCK

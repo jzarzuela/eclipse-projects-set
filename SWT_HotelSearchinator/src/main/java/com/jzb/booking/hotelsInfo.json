@@ -1,0 +1,998 @@
+[
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/altstadt-potsdam.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=6446106_80068010_0_1_1_0_0,6446106_80068010_0_1_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X19",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "Altstadt Hotel",
+    "votes": 107,
+    "avgRating": 8.2,
+    "rooms": [{
+      "calculatedPrice": 210,
+      "price": 210,
+      "capacity": 1,
+      "cancelable": true,
+      "type": "Double Room (1 Adult)",
+      "withBreakfast": true,
+      "ranking": 0,
+      "availability": 5
+    }]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/pp-pension-potsdam-gmbh.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=6855101_80164831_1_41_1_0_0,6855101_80164831_1_41_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X16",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "PP Pension Potsdam",
+    "votes": 215,
+    "avgRating": 8,
+    "rooms": [{
+      "calculatedPrice": 176.715,
+      "price": 148.5,
+      "capacity": 1,
+      "cancelable": false,
+      "type": "Classic Double Room",
+      "withBreakfast": true,
+      "ranking": 0,
+      "availability": 9
+    }]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/jugendga-stewohnung-dortu-65.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=57067701_82591796_0_0_1_0_0,57067701_82591796_0_0_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X41",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "Jugendgästewohnung Dortu 65",
+    "votes": 33,
+    "avgRating": 8.9,
+    "rooms": [{
+      "calculatedPrice": 120,
+      "price": 45,
+      "capacity": 1,
+      "cancelable": true,
+      "type": "Single Bed in 6-Bed Dormitory Room",
+      "withBreakfast": false,
+      "ranking": 0,
+      "availability": 2
+    }]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/berlin-potsdam.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=6442121_80175996_1_42_1_0_0,6442121_80175996_1_42_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X10",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "Dorint Sanssouci Berlin/Potsdam",
+    "votes": 173,
+    "avgRating": 8.3,
+    "rooms": [{
+      "calculatedPrice": 398.68,
+      "price": 272,
+      "capacity": 1,
+      "cancelable": false,
+      "type": "Comfort Double or Twin Room",
+      "withBreakfast": false,
+      "ranking": 0,
+      "availability": 9
+    }]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/kunsthaus-kurgan.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=55734202_82908999_2_0_1_0_0,55734203_82908999_2_0_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X20",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "Kunsthaus Kurgan",
+    "votes": 0,
+    "avgRating": 0,
+    "rooms": [
+      {
+        "calculatedPrice": 315,
+        "price": 225,
+        "capacity": 2,
+        "cancelable": true,
+        "type": "Apartment (3 Adults)",
+        "withBreakfast": false,
+        "ranking": 0,
+        "availability": 1
+      },
+      {
+        "calculatedPrice": 315,
+        "price": 255,
+        "capacity": 2,
+        "cancelable": true,
+        "type": "Deluxe Two-Bedroom Apartment",
+        "withBreakfast": false,
+        "ranking": 0,
+        "availability": 1
+      }
+    ]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/steigenberger-sanssouci.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=6436402_80163411_0_2_1_0_0,6436402_80163411_0_2_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X6",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "Steigenberger Hotel Sanssouci",
+    "votes": 329,
+    "avgRating": 8.1,
+    "rooms": [{
+      "calculatedPrice": 297,
+      "price": 297,
+      "capacity": 1,
+      "cancelable": true,
+      "type": "Superior Double Room",
+      "withBreakfast": true,
+      "ranking": 0,
+      "availability": 9
+    }]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/schiffspension-luise.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=7375101_80205979_0_42_1_0_0,7375102_80205979_0_42_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X37",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "Schiffspension Luise",
+    "votes": 73,
+    "avgRating": 7.5,
+    "rooms": [
+      {
+        "calculatedPrice": 267,
+        "price": 147,
+        "capacity": 1,
+        "cancelable": true,
+        "type": "Single Cabin",
+        "withBreakfast": false,
+        "ranking": 0,
+        "availability": 1
+      },
+      {
+        "calculatedPrice": 267,
+        "price": 237,
+        "capacity": 2,
+        "cancelable": true,
+        "type": "Double Cabin",
+        "withBreakfast": false,
+        "ranking": 0,
+        "availability": 4
+      }
+    ]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/potsdamer-hostel.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=58534901_82792781_0_0_1_0_0,58534901_82792781_0_0_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X29",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "Potsdamer Hostel",
+    "votes": 13,
+    "avgRating": 7.3,
+    "rooms": [{
+      "calculatedPrice": 240,
+      "price": 165,
+      "capacity": 2,
+      "cancelable": true,
+      "type": "Twin Room with Shared Bathroom",
+      "withBreakfast": false,
+      "ranking": 0,
+      "availability": 2
+    }]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/art-otel-potsdam.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=6268901_80162321_1_42_1_0_0,6268901_80162321_1_42_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X39",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 4,
+    "name": "arcona Hotel am Havelufer",
+    "votes": 89,
+    "avgRating": 7.1,
+    "rooms": [{
+      "calculatedPrice": 323.82899999999995,
+      "price": 209.1,
+      "capacity": 1,
+      "cancelable": false,
+      "type": "Standard Double Room",
+      "withBreakfast": false,
+      "ranking": 0,
+      "availability": 9
+    }]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/apartmentpension-am-stadtschloss.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=66812901_82929804_2_0_1_0_0,66812901_82929804_2_0_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X18",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "Apartmentpension am Stadtschloss",
+    "votes": 0,
+    "avgRating": 0,
+    "rooms": [{
+      "calculatedPrice": 225,
+      "price": 150,
+      "capacity": 2,
+      "cancelable": true,
+      "type": "Studio Apartment",
+      "withBreakfast": false,
+      "ranking": 0,
+      "availability": 2
+    }]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/relexa-schlosshotel-cecilienhof.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=6382711_80163041_0_42_1_0_0,6382711_80163041_0_42_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X40",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "relexa Schlosshotel Cecilienhof",
+    "votes": 60,
+    "avgRating": 8.5,
+    "rooms": [{
+      "calculatedPrice": 494.2965,
+      "price": 352.35,
+      "capacity": 1,
+      "cancelable": false,
+      "type": "Comfort Single Room",
+      "withBreakfast": false,
+      "ranking": 0,
+      "availability": 3
+    }]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/pension-zeitlos.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=6613701_81207552_0_42_1_0_0,6613701_81207552_0_42_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X28",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "Pension Zeitlos",
+    "votes": 55,
+    "avgRating": 8.5,
+    "rooms": [{
+      "calculatedPrice": 256.5,
+      "price": 181.5,
+      "capacity": 1,
+      "cancelable": true,
+      "type": "Single Room",
+      "withBreakfast": false,
+      "ranking": 0,
+      "availability": 2
+    }]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/appartments-fewos-pension-unicat-potsdam.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=6618101_81909699_0_42_1_0_0,6618101_81909699_0_42_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X33",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "Pension Unicat",
+    "votes": 144,
+    "avgRating": 6.8,
+    "rooms": [{
+      "calculatedPrice": 228,
+      "price": 153,
+      "capacity": 1,
+      "cancelable": true,
+      "type": "Single Room",
+      "withBreakfast": false,
+      "ranking": 0,
+      "availability": 2
+    }]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/apartment-und-zimmervermietung-am-park.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=7489801_82125815_1_0_1_0_0,7489801_82125815_1_0_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X23",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "Apartment- und Zimmervermietung am Park",
+    "votes": 56,
+    "avgRating": 6.7,
+    "rooms": [{
+      "calculatedPrice": 210,
+      "price": 135,
+      "capacity": 1,
+      "cancelable": true,
+      "type": "2-Bed Apartment",
+      "withBreakfast": false,
+      "ranking": 0,
+      "availability": 2
+    }]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/schlossgarten-am-park-von-sanssouci.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=6271702_82061990_0_41_1_0_0,6271702_82061990_0_41_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X13",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "Schlossgarten Hotel am Park von Sanssouci",
+    "votes": 183,
+    "avgRating": 8,
+    "rooms": [{
+      "calculatedPrice": 195,
+      "price": 195,
+      "capacity": 1,
+      "cancelable": true,
+      "type": "Single Room",
+      "withBreakfast": true,
+      "ranking": 0,
+      "availability": 5
+    }]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/anno-1900-babelsberg.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=6439901_81603443_0_41_1_0_0,6439902_81603443_0_41_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X34",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "Anno 1900 Hotel Babelsberg",
+    "votes": 147,
+    "avgRating": 8.2,
+    "rooms": [
+      {
+        "calculatedPrice": 177,
+        "price": 150,
+        "capacity": 1,
+        "cancelable": true,
+        "type": "Single Room with Shared Bathroom",
+        "withBreakfast": true,
+        "ranking": 0,
+        "availability": 1
+      },
+      {
+        "calculatedPrice": 177,
+        "price": 204,
+        "capacity": 1,
+        "cancelable": true,
+        "type": "Single Room",
+        "withBreakfast": true,
+        "ranking": 0,
+        "availability": 1
+      }
+    ]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/walhalla.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=18116502_81153405_0_41_1_0_0,18116502_81153405_0_41_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X24",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "Walhalla Hotel",
+    "votes": 85,
+    "avgRating": 7.9,
+    "rooms": [{
+      "calculatedPrice": 301.8435,
+      "price": 253.65,
+      "capacity": 2,
+      "cancelable": false,
+      "type": "Double Room",
+      "withBreakfast": true,
+      "ranking": 0,
+      "availability": 2
+    }]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/kongresshotel-am-templiner-see.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=6633801_81954352_0_42_1_0_0,6633801_81954352_0_42_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X7",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "Kongresshotel Potsdam am Templiner See",
+    "votes": 393,
+    "avgRating": 8,
+    "rooms": [{
+      "calculatedPrice": 309.42999999999995,
+      "price": 197,
+      "capacity": 1,
+      "cancelable": false,
+      "type": "Single Room",
+      "withBreakfast": false,
+      "ranking": 0,
+      "availability": 9
+    }]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/albrechtshof-potsdam-ot-gross-glienicke.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=31548401_80796001_0_42_1_0_0,31548402_80796001_1_42_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X44",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "Albrechtshof",
+    "votes": 34,
+    "avgRating": 7.6,
+    "rooms": [
+      {
+        "calculatedPrice": 216,
+        "price": 135,
+        "capacity": 1,
+        "cancelable": true,
+        "type": "Single Room",
+        "withBreakfast": false,
+        "ranking": 0,
+        "availability": 1
+      },
+      {
+        "calculatedPrice": 216,
+        "price": 147,
+        "capacity": 1,
+        "cancelable": true,
+        "type": "Double Room",
+        "withBreakfast": false,
+        "ranking": 0,
+        "availability": 1
+      }
+    ]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/am-grossen-waisenhaus.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=26606406_80633209_0_41_1_0_0,26606406_80633209_0_41_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X4",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "Hotel Am Großen Waisenhaus",
+    "votes": 642,
+    "avgRating": 9.1,
+    "rooms": [{
+      "calculatedPrice": 225,
+      "price": 225,
+      "capacity": 1,
+      "cancelable": true,
+      "type": "Single Room",
+      "withBreakfast": true,
+      "ranking": 0,
+      "availability": 2
+    }]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/das-kleine-apartmenthotel-hollanderhaus.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=2861703_80062935_0_42_1_0_0,2861706_80062935_0_42_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X25",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "Apartmenthotel Holländerhaus",
+    "votes": 27,
+    "avgRating": 9.1,
+    "rooms": [
+      {
+        "calculatedPrice": 405,
+        "price": 300,
+        "capacity": 2,
+        "cancelable": true,
+        "type": "Apartment (2 Adults)",
+        "withBreakfast": false,
+        "ranking": 0,
+        "availability": 1
+      },
+      {
+        "calculatedPrice": 405,
+        "price": 360,
+        "capacity": 2,
+        "cancelable": true,
+        "type": "Studio Apartment with Courtyard View",
+        "withBreakfast": false,
+        "ranking": 0,
+        "availability": 1
+      }
+    ]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/brandenburger-tor-potsdam.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=25713101_80318770_0_1_1_0_0,25713101_80318770_0_1_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X1",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "Hotel Brandenburger Tor Potsdam",
+    "votes": 232,
+    "avgRating": 9.2,
+    "rooms": [{
+      "calculatedPrice": 294,
+      "price": 294,
+      "capacity": 1,
+      "cancelable": true,
+      "type": "Standard Double Room",
+      "withBreakfast": true,
+      "ranking": 0,
+      "availability": 9
+    }]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/best-western-parkhotel-potsdam.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=6402501_80508170_0_1_1_0_0,6402501_80508170_0_1_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X17",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "Best Western Grand City Parkhotel Potsdam",
+    "votes": 463,
+    "avgRating": 8.1,
+    "rooms": [{
+      "calculatedPrice": 246.21099999999998,
+      "price": 206.9,
+      "capacity": 1,
+      "cancelable": false,
+      "type": "Standard Single Room",
+      "withBreakfast": true,
+      "ranking": 0,
+      "availability": 9
+    }]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/garni-kranich.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=30395201_81643069_0_41_1_0_0,30395201_81643069_0_41_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X27",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "Garni-Hotel Kranich",
+    "votes": 67,
+    "avgRating": 8,
+    "rooms": [{
+      "calculatedPrice": 195,
+      "price": 195,
+      "capacity": 1,
+      "cancelable": true,
+      "type": "Single Room",
+      "withBreakfast": true,
+      "ranking": 0,
+      "availability": 2
+    }]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/apart-pension-babelsberg.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=6447002_80388670_1_1_1_0_0,6447002_80388670_1_1_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X38",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "Apart PENSION BABELSBERG",
+    "votes": 17,
+    "avgRating": 8.6,
+    "rooms": [{
+      "calculatedPrice": 237,
+      "price": 237,
+      "capacity": 1,
+      "cancelable": true,
+      "type": "Double Room",
+      "withBreakfast": true,
+      "ranking": 0,
+      "availability": 2
+    }]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/havelmeer.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=44451701_82640688_0_1_1_0_0,44451702_82640688_1_1_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X36",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "Pension Havelmeer",
+    "votes": 101,
+    "avgRating": 7.3,
+    "rooms": [{
+      "calculatedPrice": 144.58499999999998,
+      "price": 121.5,
+      "capacity": 1,
+      "cancelable": false,
+      "type": "Twin Room with Shared Bathroom",
+      "withBreakfast": true,
+      "ranking": 0,
+      "availability": 2
+    }]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/pension-am-tiefensee.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=6883109_80388671_0_42_1_0_0,6883109_80388671_0_42_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X42",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "Pension am Tiefen See",
+    "votes": 61,
+    "avgRating": 7.5,
+    "rooms": [{
+      "calculatedPrice": 312,
+      "price": 237,
+      "capacity": 2,
+      "cancelable": true,
+      "type": "Double Room",
+      "withBreakfast": false,
+      "ranking": 0,
+      "availability": 4
+    }]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/inselhotelpotsdam.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=6621201_80388666_1_42_1_0_0,6621201_80388666_1_42_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X26",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "INSELHOTEL Potsdam",
+    "votes": 70,
+    "avgRating": 8.6,
+    "rooms": [{
+      "calculatedPrice": 402,
+      "price": 327,
+      "capacity": 1,
+      "cancelable": true,
+      "type": "Standard Double Room",
+      "withBreakfast": false,
+      "ranking": 0,
+      "availability": 3
+    }]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/landhotelpotsdambr.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=6138401_81024115_0_41_1_0_0,6138401_81024115_0_41_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X35",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "Landhotel Potsdam",
+    "votes": 89,
+    "avgRating": 7.5,
+    "rooms": [{
+      "calculatedPrice": 222,
+      "price": 222,
+      "capacity": 1,
+      "cancelable": true,
+      "type": "Standard Single Room",
+      "withBreakfast": true,
+      "ranking": 0,
+      "availability": 9
+    }]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/altstadt-pension-im-hollanderviertel.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=7460001_82125852_1_0_1_0_0,7460001_82125852_1_0_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X30",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "Altstadt-Pension-Potsdam",
+    "votes": 47,
+    "avgRating": 6.9,
+    "rooms": [{
+      "calculatedPrice": 195,
+      "price": 120,
+      "capacity": 1,
+      "cancelable": true,
+      "type": "Double Room",
+      "withBreakfast": false,
+      "ranking": 0,
+      "availability": 3
+    }]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/hotelamgriebnitzsee.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=6090203_82561536_1_41_1_0_0,6090203_82561536_1_41_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X11",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "avendi Hotel am Griebnitzsee",
+    "votes": 104,
+    "avgRating": 8.4,
+    "rooms": [{
+      "calculatedPrice": 288,
+      "price": 288,
+      "capacity": 1,
+      "cancelable": true,
+      "type": "Double Room",
+      "withBreakfast": true,
+      "ranking": 0,
+      "availability": 4
+    }]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/apartmenthaus-potsdam-quartett.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=31407205_80961426_0_2_1_0_0,31407206_80961426_0_2_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X31",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "Apartmenthaus Potsdam-Quartett",
+    "votes": 36,
+    "avgRating": 9,
+    "rooms": [
+      {
+        "calculatedPrice": 440.92499999999995,
+        "price": 285,
+        "capacity": 2,
+        "cancelable": false,
+        "type": "Apartment (1-2 Adults)",
+        "withBreakfast": false,
+        "ranking": 0,
+        "availability": 1
+      },
+      {
+        "calculatedPrice": 440.92499999999995,
+        "price": 330,
+        "capacity": 2,
+        "cancelable": false,
+        "type": "Cottage (1-2 Adults) with Terrace and Garden",
+        "withBreakfast": false,
+        "ranking": 0,
+        "availability": 1
+      }
+    ]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/gaumenschmauss.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=44479101_82015968_1_2_1_0_0,44479102_82015968_1_2_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X21",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "Hotel Gaumenschmaus",
+    "votes": 84,
+    "avgRating": 8.6,
+    "rooms": [
+      {
+        "calculatedPrice": 285,
+        "price": 195,
+        "capacity": 1,
+        "cancelable": true,
+        "type": "Double Room",
+        "withBreakfast": false,
+        "ranking": 0,
+        "availability": 1
+      },
+      {
+        "calculatedPrice": 285,
+        "price": 225,
+        "capacity": 1,
+        "cancelable": true,
+        "type": "Comfort Double Room",
+        "withBreakfast": false,
+        "ranking": 0,
+        "availability": 2
+      }
+    ]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/aparthotel-vivaldi.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=6422801_81458669_0_1_1_0_0,6422801_81458669_0_1_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X22",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "Apart HOTEL VIVALDI",
+    "votes": 84,
+    "avgRating": 7.9,
+    "rooms": [{
+      "calculatedPrice": 317.72999999999996,
+      "price": 267,
+      "capacity": 1,
+      "cancelable": false,
+      "type": "Single Room",
+      "withBreakfast": true,
+      "ranking": 0,
+      "availability": 3
+    }]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/travelcharmehotelamjagertor.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=6223401_82206688_0_41_1_0_0,6223401_82206688_0_41_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X8",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "Romantik Hotel Am Jägertor",
+    "votes": 223,
+    "avgRating": 8.7,
+    "rooms": [{
+      "calculatedPrice": 285,
+      "price": 285,
+      "capacity": 1,
+      "cancelable": true,
+      "type": "Single Room",
+      "withBreakfast": true,
+      "ranking": 0,
+      "availability": 3
+    }]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/seminarisseehotel.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=6046801_80160369_0_41_1_0_0,6046801_80160369_0_41_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X45",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "Seminaris SeeHotel Potsdam",
+    "votes": 57,
+    "avgRating": 7.8,
+    "rooms": [{
+      "calculatedPrice": 285.59999999999997,
+      "price": 240,
+      "capacity": 1,
+      "cancelable": false,
+      "type": "Single Room",
+      "withBreakfast": true,
+      "ranking": 0,
+      "availability": 9
+    }]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/villa-monte-vino.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=6878202_82039525_0_1_1_0_0,6878202_82039525_0_1_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X14",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "Hotel Villa Monte Vino",
+    "votes": 202,
+    "avgRating": 9.4,
+    "rooms": [{
+      "calculatedPrice": 297,
+      "price": 297,
+      "capacity": 1,
+      "cancelable": true,
+      "type": "Superior Single Room",
+      "withBreakfast": true,
+      "ranking": 0,
+      "availability": 4
+    }]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/filmhotel-lili-marleen.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=6446001_80163528_0_1_1_0_0,6446001_80163528_0_1_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X3",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "Filmhotel Lili Marleen",
+    "votes": 202,
+    "avgRating": 7.7,
+    "rooms": [{
+      "calculatedPrice": 176.001,
+      "price": 147.9,
+      "capacity": 1,
+      "cancelable": false,
+      "type": "Single Room",
+      "withBreakfast": true,
+      "ranking": 0,
+      "availability": 9
+    }]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/hotelstadtpalaisamluisenplatz.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=6241909_80976364_0_41_1_0_0,6241909_80976364_0_41_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X5",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "Hotel am Luisenplatz",
+    "votes": 186,
+    "avgRating": 8.4,
+    "rooms": [{
+      "calculatedPrice": 235.02499999999998,
+      "price": 197.5,
+      "capacity": 1,
+      "cancelable": false,
+      "type": "Economy Single Room",
+      "withBreakfast": true,
+      "ranking": 0,
+      "availability": 2
+    }]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/zum-hofmaler.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=6662701_80482155_0_42_1_0_0,6662702_80482155_0_42_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X43",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "Hotel zum Hofmaler",
+    "votes": 34,
+    "avgRating": 9,
+    "rooms": [
+      {
+        "calculatedPrice": 382.5,
+        "price": 285,
+        "capacity": 2,
+        "cancelable": true,
+        "type": "Standard Double Room",
+        "withBreakfast": false,
+        "ranking": 0,
+        "availability": 1
+      },
+      {
+        "calculatedPrice": 382.5,
+        "price": 330,
+        "capacity": 2,
+        "cancelable": true,
+        "type": "Comfort Double Room",
+        "withBreakfast": false,
+        "ranking": 0,
+        "availability": 1
+      }
+    ]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/nh-voltaire-potsdam.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=6310203_80162623_0_42_1_0_0,6310203_80162623_0_42_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X2",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "NH Voltaire Potsdam",
+    "votes": 644,
+    "avgRating": 8.4,
+    "rooms": [{
+      "calculatedPrice": 283.815,
+      "price": 238.5,
+      "capacity": 1,
+      "cancelable": false,
+      "type": "Standard Double or Twin Room",
+      "withBreakfast": true,
+      "ranking": 0,
+      "availability": 5
+    }]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/mercureblnpo.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=6135315_80161228_1_42_1_0_0,6135315_80161228_1_42_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X9",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "Mercure Hotel Potsdam City",
+    "votes": 350,
+    "avgRating": 7.9,
+    "rooms": [{
+      "calculatedPrice": 255.8919,
+      "price": 152.01,
+      "capacity": 1,
+      "cancelable": false,
+      "type": "Standard Double Room",
+      "withBreakfast": false,
+      "ranking": 0,
+      "availability": 9
+    }]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/ascotbristolpotsdam.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=6181002_82950031_1_42_1_0_0,6181002_82950031_1_42_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X32",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "Hotel Ascot Bristol",
+    "votes": 74,
+    "avgRating": 8.3,
+    "rooms": [{
+      "calculatedPrice": 192,
+      "price": 117,
+      "capacity": 1,
+      "cancelable": true,
+      "type": "Double Room",
+      "withBreakfast": false,
+      "ranking": 0,
+      "availability": 9
+    }]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/apartmenthotel-kaiser-friedrich.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=6468601_81056143_0_1_1_0_0,6468601_81056143_0_1_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X15",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "Apartmenthotel Kaiser Friedrich",
+    "votes": 199,
+    "avgRating": 7.9,
+    "rooms": [{
+      "calculatedPrice": 225,
+      "price": 225,
+      "capacity": 1,
+      "cancelable": true,
+      "type": "Single Room",
+      "withBreakfast": true,
+      "ranking": 0,
+      "availability": 5
+    }]
+  },
+  {
+    "distance": 0,
+    "dataLink": "http://www.booking.com/hotel/de/ambassador-babelsberg.en-gb.html?sid=e0dbe9e50a44229399482f4be188877b;dcid=1;checkin=2013-10-28;checkout=2013-10-31;group_adults=1;group_children=0;group_adults=1;group_children=0;group_rooms=6737701_82875353_0_41_1_0_0,6737701_82875353_0_41_1_0_0;srfid=89463bc5e0892fb3201c906fbb3eb154fc0b8dd4X12",
+    "address": "Potsdam",
+    "numDays": 3,
+    "stars": 0,
+    "name": "Hotel Ambassador Potsdam",
+    "votes": 154,
+    "avgRating": 8.3,
+    "rooms": [{
+      "calculatedPrice": 238.94009999999997,
+      "price": 200.79,
+      "capacity": 1,
+      "cancelable": false,
+      "type": "Single Room",
+      "withBreakfast": true,
+      "ranking": 0,
+      "availability": 2
+    }]
+  }
+]

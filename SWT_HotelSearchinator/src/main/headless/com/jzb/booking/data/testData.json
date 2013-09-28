@@ -1,0 +1,19 @@
+[{
+  "distance": 0,
+  "dataLink": "",
+  "numDays": 0,
+  "stars": 0,
+  "name": "",
+  "votes": 0,
+  "avgRating": 0,
+  "rooms": [{
+    "calculatedPrice": 0,
+    "price": 0,
+    "capacity": 0,
+    "cancelable": false,
+    "type": "",
+    "withBreakfast": false,
+    "ranking": 0,
+    "availability": 0
+  }]
+}]
