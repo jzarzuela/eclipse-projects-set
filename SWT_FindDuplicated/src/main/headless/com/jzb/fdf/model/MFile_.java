@@ -4,7 +4,7 @@ import javax.annotation.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="Dali", date="2013-09-11T11:07:40.087+0200")
+@Generated(value="Dali", date="2013-09-28T20:11:54.882+0200")
 @StaticMetamodel(MFile.class)
 public class MFile_ {
 	public static volatile SingularAttribute<MFile, MFolder> folder;

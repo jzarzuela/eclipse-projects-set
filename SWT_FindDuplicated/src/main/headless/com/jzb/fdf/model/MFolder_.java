@@ -5,7 +5,7 @@ import javax.persistence.metamodel.MapAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="Dali", date="2013-09-11T11:07:40.092+0200")
+@Generated(value="Dali", date="2013-09-28T20:11:54.888+0200")
 @StaticMetamodel(MFolder.class)
 public class MFolder_ {
 	public static volatile SingularAttribute<MFolder, Integer> duplicatedFilesCount;
