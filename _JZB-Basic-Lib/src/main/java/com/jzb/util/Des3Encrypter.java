@@ -41,7 +41,7 @@ public class Des3Encrypter {
 
     public static String encryptStr(String toEncrypt) throws Exception {
 
-        byte b[] = encrypt(toEncrypt.getBytes());
+        byte b[] = encrypt(toEncrypt.getBytes("utf-8"));
         return new String(Base64.encode(b));
     }
 

@@ -16,6 +16,8 @@ import javax.crypto.spec.SecretKeySpec;
  */
 public class AESCypher {
 
+    private static final String s_defaultSecretPassword = "#u2r3o$cb4m&p7dk@fj8d9k3l&4x5cc";
+
     /**
      * Static Main starting method
      * 
@@ -50,16 +52,20 @@ public class AESCypher {
     public void doIt(String[] args) throws Exception {
 
         String val;
-        
-        val = encryptStr("cosa","pwd");
+
+        val = encryptStr("cosa", "pwd");
         System.out.println(val);
-        
-        val = decryptStr(val,"pwd");
+
+        val = decryptStr(val, "pwd");
         System.out.println(val);
-        
+
         val = "otra cosa cifrada";
-        val = decryptStr(val,"mega password");
+        val = decryptStr(val, "mega password");
         System.out.println(val);
+    }
+
+    public static String encryptStr(String toEncrypt) throws Exception {
+        return encryptStr(toEncrypt, s_defaultSecretPassword);
     }
 
     public static String encryptStr(String toEncrypt, String pwd) throws Exception {
@@ -68,15 +74,19 @@ public class AESCypher {
         return new String(Base64.encode(b));
     }
 
+    public static byte[] encrypt(byte[] toEncrypt) throws Exception {
+        return encrypt(toEncrypt, s_defaultSecretPassword);
+    }
+    
     public static byte[] encrypt(byte[] toEncrypt, String key) throws Exception {
 
         MessageDigest digester = MessageDigest.getInstance("MD5");
         char[] password = key.toCharArray();
         for (int i = 0; i < password.length; i++) {
-        digester.update((byte) password[i]);
+            digester.update((byte) password[i]);
         }
         byte[] passwordData = digester.digest();
-        Key secretkey = new SecretKeySpec(passwordData, "AES");        
+        Key secretkey = new SecretKeySpec(passwordData, "AES");
         Cipher aesCipher = Cipher.getInstance("AES");
         aesCipher.init(Cipher.ENCRYPT_MODE, secretkey);
 
@@ -87,21 +97,29 @@ public class AESCypher {
 
     }
 
+    public static String decryptStr(String toDecrypt) throws Exception {
+        return decryptStr(toDecrypt, s_defaultSecretPassword);
+    }
+
     public static String decryptStr(String toDecrypt, String pwd) throws Exception {
         byte b[] = Base64.decode(toDecrypt);
         byte b2[] = decrypt(b, pwd);
         return new String(b2);
     }
 
+    public static byte[] decrypt(byte[] toDecrypt) throws Exception {
+        return decrypt(toDecrypt, s_defaultSecretPassword);
+    }
+    
     public static byte[] decrypt(byte[] toDecrypt, String key) throws Exception {
 
         MessageDigest digester = MessageDigest.getInstance("MD5");
         char[] password = key.toCharArray();
         for (int i = 0; i < password.length; i++) {
-        digester.update((byte) password[i]);
+            digester.update((byte) password[i]);
         }
         byte[] passwordData = digester.digest();
-        Key secretkey = new SecretKeySpec(passwordData, "AES");        
+        Key secretkey = new SecretKeySpec(passwordData, "AES");
         Cipher aesCipher = Cipher.getInstance("AES");
         aesCipher.init(Cipher.DECRYPT_MODE, secretkey);
 
