@@ -4,18 +4,13 @@
 package com.jzb.italia;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 
-import com.jzb.ttpoi.data.TPOIData;
 import com.jzb.ttpoi.data.TPOIFileData;
 import com.jzb.ttpoi.util.FileTransform;
 import com.jzb.ttpoi.util.KMLDownload;
 import com.jzb.ttpoi.wl.ConversionUtil;
 import com.jzb.ttpoi.wl.KMLFileLoader;
-import com.jzb.ttpoi.wl.KMLFileWriter;
 
 /**
  * @author jzarzuela
@@ -81,7 +76,7 @@ public class Italia {
             }
         }
 
-        // A–ade los puntos "no principales" a la sublista del principal MAS CERCANO
+        // Aï¿½ade los puntos "no principales" a la sublista del principal MAS CERCANO
         for (TPOIData subpoi : points) {
 
             TPOIData rootpoi = null;
@@ -131,7 +126,7 @@ public class Italia {
         // Ordena los puntos "principales"
         Collections.sort(rootPoints, catComp);
 
-        // A–ade los puntos "principales" en el orden anterior y, detras de cada uno,
+        // Aï¿½ade los puntos "principales" en el orden anterior y, detras de cada uno,
         // los "cercanos" tambien ordenados
         ArrayList<TPOIData> allPoints = new ArrayList<TPOIData>();
         for (TPOIData poi : rootPoints) {

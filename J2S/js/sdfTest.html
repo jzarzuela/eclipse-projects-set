@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <title>Test</title>
+        <script src="SimpleDateFormat.js"></script>
+        <script>
+        try{
+            var s=new SimpleDateFormat("dd-MM-yyyy");
+            var d = new Date();
+            
+            alert(s.format(d));
+        } catch(e) {
+            alert("Error: "+e.message);
+        }
+        </script>
+    </head>
+<body>
+    hello
+    
+</body>
+</html>

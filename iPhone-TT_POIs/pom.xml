@@ -41,7 +41,7 @@
 		</dependency>
         <dependency>
             <groupId>JZB-EXT-JARs</groupId>
-            <artifactId>jFuzzyLogic</artifactId>
+            <artifactId>ext.jar.jFuzzyLogic</artifactId>
             <version>3.0</version>
         </dependency>
 	</dependencies>

@@ -40,8 +40,8 @@
 			<version>1.0.0</version>
 		</dependency>
 		<dependency>
-			<groupId>jzb-maven</groupId>
-			<artifactId>jzb.basic.httpclient</artifactId>
+			<groupId>JZB-EXT-JARs</groupId>
+			<artifactId>ext.jar.httpclient</artifactId>
 			<version>0.3.3</version>
 		</dependency>
 	</dependencies>

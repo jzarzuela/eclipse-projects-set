@@ -3,16 +3,6 @@
  */
 package com.jzb.ttpoi;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.TreeSet;
-
-import com.jzb.ttpoi.data.TPOIData;
-import com.jzb.ttpoi.data.TPOIFileData;
-import com.jzb.ttpoi.wl.KMLFileLoader;
-import com.jzb.ttpoi.wl.KMLFileWriter;
 
 /**
  * @author n63636

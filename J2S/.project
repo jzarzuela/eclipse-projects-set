@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>J2S</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>net.sf.j2s.core.java2scriptbuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>kk/js</name>
+			<type>2</type>
+			<location>/Applications/eclipse/eclipse-java/Eclipse-java.app/Contents/MacOS/C::/WKSPs/Consolidado/J2S/bin/com/jzb/j2s</location>
+		</link>
+	</linkedResources>
+</projectDescription>

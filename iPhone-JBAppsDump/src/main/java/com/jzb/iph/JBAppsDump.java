@@ -125,6 +125,7 @@ public class JBAppsDump {
                 bi.playlistName, bi.type, bi.bundleVersion, bi.price, bi.lastBundleVersion, bi.isCracked() ? "SI" : "NO");
 
         String line = fmt.toString();
+        fmt.close();
         Tracer._debug("    " + line);
         m_psOut.println(line);
     }

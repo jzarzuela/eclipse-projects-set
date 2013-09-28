@@ -1,0 +1,21 @@
+<script src="./js/log4js.js" type="text/javascript"></script>
+<script>
+           var ajaxLog = new Log4js.getLogger("ajaxTest");
+           ajaxLog.setLevel(Log4js.Level.ALL);
+           var ajaxAppender = new Log4js.AjaxAppender(ajaxLog, "./log4j.jsp");
+           ajaxAppender.setThreshold(5);
+           ajaxLog.addAppender(ajaxAppender);
+           
+           var myLogger = ajaxLog;
+           myLogger = log4jsLogger;
+           
+           function _TRACE_DEBUG_(msg) {
+                try {
+                    myLogger.debug(msg);
+                } 
+                catch(e) {
+                    myLogger.error("@ERROR: "+msg);
+                }
+           }
+            
+</script>

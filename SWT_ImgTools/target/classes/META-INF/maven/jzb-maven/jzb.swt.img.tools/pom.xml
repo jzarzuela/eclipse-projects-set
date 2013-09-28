@@ -9,7 +9,7 @@
 	</parent>
 
 	<groupId>jzb-maven</groupId>
-	<artifactId>jzb.swt.hotel.searchinator</artifactId>
+	<artifactId>jzb.swt.img.tools</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 

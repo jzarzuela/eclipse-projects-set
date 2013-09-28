@@ -6,11 +6,8 @@ package com.jzb.ttpoi;
 import java.io.File;
 import java.util.HashMap;
 
-import com.jzb.ttpoi.data.TPOIFileData;
 import com.jzb.ttpoi.util.FileTransform;
-import com.jzb.ttpoi.util.KMLDownload;
 import com.jzb.ttpoi.wl.ConversionUtil;
-import com.jzb.ttpoi.wl.KMLFileLoader;
 
 /**
  * @author n63636
