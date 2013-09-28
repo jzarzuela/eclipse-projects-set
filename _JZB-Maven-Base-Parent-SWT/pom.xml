@@ -36,8 +36,7 @@
 						</goals>
 						<configuration>
 							<sources>
-								<source>src/headless/java</source>
-                                <source>src/headless/java</source>
+								<source>src/main/headless</source>
 							</sources>
 						</configuration>
 					</execution>
