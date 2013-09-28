@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/292/trunk/JSAT/test/jsat/distributions
+END
+RayleighTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/274/trunk/JSAT/test/jsat/distributions/RayleighTest.java
+END
+ExponentialTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/274/trunk/JSAT/test/jsat/distributions/ExponentialTest.java
+END
+ChiSquaredTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/140/trunk/JSAT/test/jsat/distributions/ChiSquaredTest.java
+END
+NormalTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/140/trunk/JSAT/test/jsat/distributions/NormalTest.java
+END
+FisherSendorTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/274/trunk/JSAT/test/jsat/distributions/FisherSendorTest.java
+END
+BetaTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/274/trunk/JSAT/test/jsat/distributions/BetaTest.java
+END
+CauchyTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/274/trunk/JSAT/test/jsat/distributions/CauchyTest.java
+END
+MaxwellBoltzmannTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/274/trunk/JSAT/test/jsat/distributions/MaxwellBoltzmannTest.java
+END

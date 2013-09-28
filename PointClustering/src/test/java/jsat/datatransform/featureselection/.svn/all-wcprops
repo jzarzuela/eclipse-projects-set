@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/522/trunk/JSAT/test/jsat/datatransform/featureselection
+END
+LRSTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/463/trunk/JSAT/test/jsat/datatransform/featureselection/LRSTest.java
+END
+SBSTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/463/trunk/JSAT/test/jsat/datatransform/featureselection/SBSTest.java
+END
+BDSTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/463/trunk/JSAT/test/jsat/datatransform/featureselection/BDSTest.java
+END
+SFSTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/463/trunk/JSAT/test/jsat/datatransform/featureselection/SFSTest.java
+END
+MutualInfoFSTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/522/trunk/JSAT/test/jsat/datatransform/featureselection/MutualInfoFSTest.java
+END

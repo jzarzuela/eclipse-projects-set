@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/!svn/ver/685/trunk/JSAT/src/jsat/text
+END
+GreekLetters.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/55/trunk/JSAT/src/jsat/text/GreekLetters.java
+END
+ClassificationTextDataLoader.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/591/trunk/JSAT/src/jsat/text/ClassificationTextDataLoader.java
+END
+HashedTextDataLoader.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/600/trunk/JSAT/src/jsat/text/HashedTextDataLoader.java
+END
+HashedTextVectorCreator.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/600/trunk/JSAT/src/jsat/text/HashedTextVectorCreator.java
+END
+TextDataLoader.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/607/trunk/JSAT/src/jsat/text/TextDataLoader.java
+END
+TextVectorCreator.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/600/trunk/JSAT/src/jsat/text/TextVectorCreator.java
+END
+BasicTextVectorCreator.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/600/trunk/JSAT/src/jsat/text/BasicTextVectorCreator.java
+END
+ClassificationHashedTextDataLoader.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/591/trunk/JSAT/src/jsat/text/ClassificationHashedTextDataLoader.java
+END

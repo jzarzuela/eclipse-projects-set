@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/596/trunk/JSAT/src/jsat/utils/random
+END
+XOR128.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/596/trunk/JSAT/src/jsat/utils/random/XOR128.java
+END
+XORWOW.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/596/trunk/JSAT/src/jsat/utils/random/XORWOW.java
+END
+XOR96.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/596/trunk/JSAT/src/jsat/utils/random/XOR96.java
+END
+CMWC4096.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/593/trunk/JSAT/src/jsat/utils/random/CMWC4096.java
+END

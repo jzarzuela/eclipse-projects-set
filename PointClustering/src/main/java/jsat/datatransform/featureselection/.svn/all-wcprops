@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/689/trunk/JSAT/src/jsat/datatransform/featureselection
+END
+LRS.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/463/trunk/JSAT/src/jsat/datatransform/featureselection/LRS.java
+END
+SBS.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/463/trunk/JSAT/src/jsat/datatransform/featureselection/SBS.java
+END
+BDS.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/463/trunk/JSAT/src/jsat/datatransform/featureselection/BDS.java
+END
+SFS.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/463/trunk/JSAT/src/jsat/datatransform/featureselection/SFS.java
+END
+ReliefF.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/689/trunk/JSAT/src/jsat/datatransform/featureselection/ReliefF.java
+END
+MutualInfoFS.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/683/trunk/JSAT/src/jsat/datatransform/featureselection/MutualInfoFS.java
+END

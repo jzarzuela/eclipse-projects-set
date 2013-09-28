@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/678/trunk/JSAT/test/jsat/clustering
+END
+HamerlyKMeansTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/664/trunk/JSAT/test/jsat/clustering/HamerlyKMeansTest.java
+END
+NaiveKMeansTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/664/trunk/JSAT/test/jsat/clustering/NaiveKMeansTest.java
+END
+DBSCANTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/438/trunk/JSAT/test/jsat/clustering/DBSCANTest.java
+END
+PAMTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/178/trunk/JSAT/test/jsat/clustering/PAMTest.java
+END
+MiniBatchKMeansTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/664/trunk/JSAT/test/jsat/clustering/MiniBatchKMeansTest.java
+END
+KMeansTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/678/trunk/JSAT/test/jsat/clustering/KMeansTest.java
+END
+MeanShiftTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/372/trunk/JSAT/test/jsat/clustering/MeanShiftTest.java
+END

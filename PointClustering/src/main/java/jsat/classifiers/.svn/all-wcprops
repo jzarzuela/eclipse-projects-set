@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/694/trunk/JSAT/src/jsat/classifiers
+END
+DataPointPair.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/514/trunk/JSAT/src/jsat/classifiers/DataPointPair.java
+END
+DDAG.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/353/trunk/JSAT/src/jsat/classifiers/DDAG.java
+END
+CategoricalResults.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/625/trunk/JSAT/src/jsat/classifiers/CategoricalResults.java
+END
+PriorClassifier.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/547/trunk/JSAT/src/jsat/classifiers/PriorClassifier.java
+END
+ClassificationDataSet.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/681/trunk/JSAT/src/jsat/classifiers/ClassificationDataSet.java
+END
+ClassificationModelEvaluation.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/615/trunk/JSAT/src/jsat/classifiers/ClassificationModelEvaluation.java
+END
+BaseUpdateableClassifier.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/654/trunk/JSAT/src/jsat/classifiers/BaseUpdateableClassifier.java
+END
+CategoricalData.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/514/trunk/JSAT/src/jsat/classifiers/CategoricalData.java
+END
+UpdateableClassifier.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/458/trunk/JSAT/src/jsat/classifiers/UpdateableClassifier.java
+END
+OneVSAll.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/352/trunk/JSAT/src/jsat/classifiers/OneVSAll.java
+END
+DataPoint.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/514/trunk/JSAT/src/jsat/classifiers/DataPoint.java
+END
+Classifier.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/514/trunk/JSAT/src/jsat/classifiers/Classifier.java
+END
+Rocchio.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/511/trunk/JSAT/src/jsat/classifiers/Rocchio.java
+END
+MultinomialLogisticRegression.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/263/trunk/JSAT/src/jsat/classifiers/MultinomialLogisticRegression.java
+END
+OneVSOne.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/353/trunk/JSAT/src/jsat/classifiers/OneVSOne.java
+END
+MajorityVote.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/375/trunk/JSAT/src/jsat/classifiers/MajorityVote.java
+END

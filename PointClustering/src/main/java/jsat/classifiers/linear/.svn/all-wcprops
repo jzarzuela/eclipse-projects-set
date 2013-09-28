@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/694/trunk/JSAT/src/jsat/classifiers/linear
+END
+SMIDAS.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/614/trunk/JSAT/src/jsat/classifiers/linear/SMIDAS.java
+END
+NHERD.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/694/trunk/JSAT/src/jsat/classifiers/linear/NHERD.java
+END
+LinearL1SCD.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/614/trunk/JSAT/src/jsat/classifiers/linear/LinearL1SCD.java
+END
+StochasticSTLinearL1.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/614/trunk/JSAT/src/jsat/classifiers/linear/StochasticSTLinearL1.java
+END
+SPA.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/658/trunk/JSAT/src/jsat/classifiers/linear/SPA.java
+END
+AROW.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/694/trunk/JSAT/src/jsat/classifiers/linear/AROW.java
+END
+PassiveAggressive.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/653/trunk/JSAT/src/jsat/classifiers/linear/PassiveAggressive.java
+END
+ROMMA.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/692/trunk/JSAT/src/jsat/classifiers/linear/ROMMA.java
+END
+ALMA2.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/692/trunk/JSAT/src/jsat/classifiers/linear/ALMA2.java
+END
+SCW.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/694/trunk/JSAT/src/jsat/classifiers/linear/SCW.java
+END
+StochasticMultinomialLogisticRegression.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/643/trunk/JSAT/src/jsat/classifiers/linear/StochasticMultinomialLogisticRegression.java
+END

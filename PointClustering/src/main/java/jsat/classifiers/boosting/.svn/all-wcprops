@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/575/trunk/JSAT/src/jsat/classifiers/boosting
+END
+ArcX4.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/549/trunk/JSAT/src/jsat/classifiers/boosting/ArcX4.java
+END
+LogitBoostPL.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/273/trunk/JSAT/src/jsat/classifiers/boosting/LogitBoostPL.java
+END
+SAMME.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/293/trunk/JSAT/src/jsat/classifiers/boosting/SAMME.java
+END
+Wagging.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/535/trunk/JSAT/src/jsat/classifiers/boosting/Wagging.java
+END
+LogitBoost.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/273/trunk/JSAT/src/jsat/classifiers/boosting/LogitBoost.java
+END
+AdaBoostM1PL.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/406/trunk/JSAT/src/jsat/classifiers/boosting/AdaBoostM1PL.java
+END
+AdaBoostM1.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/405/trunk/JSAT/src/jsat/classifiers/boosting/AdaBoostM1.java
+END
+WaggingNormal.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/535/trunk/JSAT/src/jsat/classifiers/boosting/WaggingNormal.java
+END
+Bagging.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/575/trunk/JSAT/src/jsat/classifiers/boosting/Bagging.java
+END

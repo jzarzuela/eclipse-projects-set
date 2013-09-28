@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/514/trunk/JSAT/src/jsat/distributions/empirical/kernelfunc
+END
+UniformKF.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/374/trunk/JSAT/src/jsat/distributions/empirical/kernelfunc/UniformKF.java
+END
+BiweightKF.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/374/trunk/JSAT/src/jsat/distributions/empirical/kernelfunc/BiweightKF.java
+END
+GaussKF.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/374/trunk/JSAT/src/jsat/distributions/empirical/kernelfunc/GaussKF.java
+END
+KernelFunction.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/514/trunk/JSAT/src/jsat/distributions/empirical/kernelfunc/KernelFunction.java
+END
+TriweightKF.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/374/trunk/JSAT/src/jsat/distributions/empirical/kernelfunc/TriweightKF.java
+END
+EpanechnikovKF.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/374/trunk/JSAT/src/jsat/distributions/empirical/kernelfunc/EpanechnikovKF.java
+END

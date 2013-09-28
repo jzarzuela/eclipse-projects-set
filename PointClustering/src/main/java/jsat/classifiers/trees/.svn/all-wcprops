@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/583/trunk/JSAT/src/jsat/classifiers/trees
+END
+ID3.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/199/trunk/JSAT/src/jsat/classifiers/trees/ID3.java
+END
+ExtraTree.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/533/trunk/JSAT/src/jsat/classifiers/trees/ExtraTree.java
+END
+RandomForest.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/575/trunk/JSAT/src/jsat/classifiers/trees/RandomForest.java
+END
+TreeNodeVisitor.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/582/trunk/JSAT/src/jsat/classifiers/trees/TreeNodeVisitor.java
+END
+DecisionStump.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/531/trunk/JSAT/src/jsat/classifiers/trees/DecisionStump.java
+END
+TreeLearner.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/528/trunk/JSAT/src/jsat/classifiers/trees/TreeLearner.java
+END
+ERTrees.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/533/trunk/JSAT/src/jsat/classifiers/trees/ERTrees.java
+END
+TreePruner.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/582/trunk/JSAT/src/jsat/classifiers/trees/TreePruner.java
+END
+DecisionTree.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/583/trunk/JSAT/src/jsat/classifiers/trees/DecisionTree.java
+END
+ImpurityScore.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/530/trunk/JSAT/src/jsat/classifiers/trees/ImpurityScore.java
+END

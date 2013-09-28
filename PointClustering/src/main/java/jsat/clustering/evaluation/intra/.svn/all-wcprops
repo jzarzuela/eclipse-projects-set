@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/555/trunk/JSAT/src/jsat/clustering/evaluation/intra
+END
+MaxDistance.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/380/trunk/JSAT/src/jsat/clustering/evaluation/intra/MaxDistance.java
+END
+MeanCentroidDistance.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/388/trunk/JSAT/src/jsat/clustering/evaluation/intra/MeanCentroidDistance.java
+END
+IntraClusterEvaluation.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/380/trunk/JSAT/src/jsat/clustering/evaluation/intra/IntraClusterEvaluation.java
+END
+SoSCentroidDistance.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/555/trunk/JSAT/src/jsat/clustering/evaluation/intra/SoSCentroidDistance.java
+END
+MeanDistance.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/380/trunk/JSAT/src/jsat/clustering/evaluation/intra/MeanDistance.java
+END

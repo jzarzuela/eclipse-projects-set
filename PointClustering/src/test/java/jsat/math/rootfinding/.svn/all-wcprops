@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/156/trunk/JSAT/test/jsat/math/rootfinding
+END
+BisectionTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/156/trunk/JSAT/test/jsat/math/rootfinding/BisectionTest.java
+END
+ZeroinTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/156/trunk/JSAT/test/jsat/math/rootfinding/ZeroinTest.java
+END
+RiddersMethodTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/156/trunk/JSAT/test/jsat/math/rootfinding/RiddersMethodTest.java
+END
+SecantTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/156/trunk/JSAT/test/jsat/math/rootfinding/SecantTest.java
+END

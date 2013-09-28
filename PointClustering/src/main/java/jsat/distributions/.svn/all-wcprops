@@ -1,0 +1,125 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/689/trunk/JSAT/src/jsat/distributions
+END
+Laplace.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/274/trunk/JSAT/src/jsat/distributions/Laplace.java
+END
+Weibull.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/274/trunk/JSAT/src/jsat/distributions/Weibull.java
+END
+Rayleigh.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/274/trunk/JSAT/src/jsat/distributions/Rayleigh.java
+END
+DistributionSearch.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/498/trunk/JSAT/src/jsat/distributions/DistributionSearch.java
+END
+StudentT.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/457/trunk/JSAT/src/jsat/distributions/StudentT.java
+END
+Beta.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/274/trunk/JSAT/src/jsat/distributions/Beta.java
+END
+Cauchy.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/274/trunk/JSAT/src/jsat/distributions/Cauchy.java
+END
+Logistic.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/274/trunk/JSAT/src/jsat/distributions/Logistic.java
+END
+Levy.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/636/trunk/JSAT/src/jsat/distributions/Levy.java
+END
+Uniform.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/274/trunk/JSAT/src/jsat/distributions/Uniform.java
+END
+Distribution.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/514/trunk/JSAT/src/jsat/distributions/Distribution.java
+END
+Gamma.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/274/trunk/JSAT/src/jsat/distributions/Gamma.java
+END
+Exponential.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/274/trunk/JSAT/src/jsat/distributions/Exponential.java
+END
+Normal.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/460/trunk/JSAT/src/jsat/distributions/Normal.java
+END
+ChiSquared.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/274/trunk/JSAT/src/jsat/distributions/ChiSquared.java
+END
+LogNormal.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/457/trunk/JSAT/src/jsat/distributions/LogNormal.java
+END
+Pareto.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/274/trunk/JSAT/src/jsat/distributions/Pareto.java
+END
+FisherSendor.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/274/trunk/JSAT/src/jsat/distributions/FisherSendor.java
+END
+Kolmogorov.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/274/trunk/JSAT/src/jsat/distributions/Kolmogorov.java
+END
+MaxwellBoltzmann.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/274/trunk/JSAT/src/jsat/distributions/MaxwellBoltzmann.java
+END

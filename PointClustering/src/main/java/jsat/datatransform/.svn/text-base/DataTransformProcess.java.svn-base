@@ -1,0 +1,131 @@
+package jsat.datatransform;
+
+import java.util.ArrayList;
+import java.util.List;
+import jsat.DataSet;
+import jsat.SimpleDataSet;
+import jsat.classifiers.DataPoint;
+
+/**
+ * Performing a transform on the whole data set before training a classifier can
+ * add bias to the results. For proper evaluation, the transforms must be 
+ * learned from the training set and not contain any knowledge from the testing 
+ * set. A DataTransformProcess aids in this by providing a mechanism to contain 
+ * several different transforms to learn and then apply. 
+ * 
+ * @author Edward Raff
+ */
+public class DataTransformProcess implements DataTransform
+{
+    private List<DataTransformFactory> transformSource;
+    private List<DataTransform> learnedTransforms;
+    
+
+    /**
+     * Creates a new transform process that is empty. Transform factories must 
+     * be added using 
+     * {@link #addTransform(jsat.datatransform.DataTransformFactory) }.
+     */
+    public DataTransformProcess()
+    {
+        transformSource = new ArrayList<DataTransformFactory>();
+        learnedTransforms = new ArrayList<DataTransform>();   
+    }
+    
+    /**
+     * Adds a transform to the list of transforms. Transforms are learned and 
+     * applied in the order in which they are added. 
+     * @param transform the factory for the transform to add
+     */
+    public void addTransform(DataTransformFactory transform)
+    {
+        transformSource.add(transform);
+    }
+    
+    /**
+     * Consolidates transformation objects when possible. Currently only works with {@link RemoveAttributeTransform}
+     */
+    private void consolidateTransforms()
+    {
+        for(int i = 0; i < learnedTransforms.size()-1; i++)
+        {
+            DataTransform t1 = learnedTransforms.get(i);
+            DataTransform t2 = learnedTransforms.get(i+1);
+            if(!(t1 instanceof RemoveAttributeTransform && t2 instanceof RemoveAttributeTransform))
+                continue;//They are not both RATs
+            RemoveAttributeTransform r1 = (RemoveAttributeTransform) t1;
+            RemoveAttributeTransform r2 = (RemoveAttributeTransform) t2;
+            
+            r2.consolidate(r1);
+            learnedTransforms.remove(i);
+            i--;
+        }
+    }
+    
+    
+    /**
+     * Learns the transforms for the given data set. The data set will not be 
+     * altered. Once finished, <tt>this</tt> DataTransformProcess can be applied
+     * to the dataSet to get the transformed data set. 
+     * 
+     * @param dataSet the data set to learn a series of transforms from
+     */
+    public void leanTransforms(DataSet dataSet)
+    {
+        dataSet = dataSet.shallowClone();
+        learnedTransforms.clear();
+        for(DataTransformFactory dtf : transformSource)
+        {
+            DataTransform transform = dtf.getTransform(dataSet);
+            dataSet.applyTransform(transform);
+            learnedTransforms.add(transform);
+        }
+        consolidateTransforms();
+    }
+    
+    /**
+     * Learns the transforms for the given data set. The data set is then 
+     * altered after each transform is learned so the next transform can be 
+     * learned as well. <br> The results are equivalent to calling 
+     * {@link #learnApplyTransforms(jsat.DataSet) } on the data set and then 
+     * calling {@link DataSet#applyTransform(jsat.datatransform.DataTransform) }
+     * with this DataTransformProces. 
+     * 
+     * @param dataSet the data set to learn a series of transforms from and 
+     * alter into the final transformed form
+     */
+    public void learnApplyTransforms(DataSet dataSet)
+    {
+        learnedTransforms.clear();
+        for(DataTransformFactory dtf : transformSource)
+        {
+            DataTransform transform = dtf.getTransform(dataSet);
+            dataSet.applyTransform(transform);
+            learnedTransforms.add(transform);
+        }
+        consolidateTransforms();
+    }
+
+    @Override
+    public DataPoint transform(DataPoint dp)
+    {
+        for(DataTransform dt : learnedTransforms)
+            dp = dt.transform(dp);
+        return dp;
+    }
+
+    @Override
+    public DataTransformProcess clone()
+    {
+        DataTransformProcess clone = new DataTransformProcess();
+        
+        for(DataTransformFactory dtf : this.transformSource)
+            clone.transformSource.add(dtf);
+        
+        for(DataTransform dt : this.learnedTransforms)
+            clone.learnedTransforms.add(dt.clone());
+        
+        return clone;
+    }
+    
+}

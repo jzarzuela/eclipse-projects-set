@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/505/trunk/JSAT/src/jsat/graphing
+END
+ReachabilityPlot.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/386/trunk/JSAT/src/jsat/graphing/ReachabilityPlot.java
+END
+QQPlotDistribution.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/342/trunk/JSAT/src/jsat/graphing/QQPlotDistribution.java
+END
+ROCPlot.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/505/trunk/JSAT/src/jsat/graphing/ROCPlot.java
+END
+ProgressPanel.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/350/trunk/JSAT/src/jsat/graphing/ProgressPanel.java
+END
+ScatterPlot.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/342/trunk/JSAT/src/jsat/graphing/ScatterPlot.java
+END
+ProgressPanel.form
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/350/trunk/JSAT/src/jsat/graphing/ProgressPanel.form
+END
+ParallelCoordinatesPlot.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/343/trunk/JSAT/src/jsat/graphing/ParallelCoordinatesPlot.java
+END
+Graph2D.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/487/trunk/JSAT/src/jsat/graphing/Graph2D.java
+END
+ScatterplotMatrix.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/342/trunk/JSAT/src/jsat/graphing/ScatterplotMatrix.java
+END
+QQPlotData.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/342/trunk/JSAT/src/jsat/graphing/QQPlotData.java
+END
+ClassificationPlot.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/342/trunk/JSAT/src/jsat/graphing/ClassificationPlot.java
+END
+CategoryPlot.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/487/trunk/JSAT/src/jsat/graphing/CategoryPlot.java
+END
+Histogram.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/5/trunk/JSAT/src/jsat/graphing/Histogram.java
+END

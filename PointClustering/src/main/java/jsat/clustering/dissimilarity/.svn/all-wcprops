@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/379/trunk/JSAT/src/jsat/clustering/dissimilarity
+END
+AverageLinkDissimilarity.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/379/trunk/JSAT/src/jsat/clustering/dissimilarity/AverageLinkDissimilarity.java
+END
+DistanceMetricDissimilarity.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/334/trunk/JSAT/src/jsat/clustering/dissimilarity/DistanceMetricDissimilarity.java
+END
+SingleLinkDissimilarity.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/379/trunk/JSAT/src/jsat/clustering/dissimilarity/SingleLinkDissimilarity.java
+END
+WardsDissimilarity.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/334/trunk/JSAT/src/jsat/clustering/dissimilarity/WardsDissimilarity.java
+END
+ClusterDissimilarity.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/332/trunk/JSAT/src/jsat/clustering/dissimilarity/ClusterDissimilarity.java
+END
+UpdatableClusterDissimilarity.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/334/trunk/JSAT/src/jsat/clustering/dissimilarity/UpdatableClusterDissimilarity.java
+END
+LanceWilliamsDissimilarity.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/334/trunk/JSAT/src/jsat/clustering/dissimilarity/LanceWilliamsDissimilarity.java
+END
+AbstractClusterDissimilarity.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/334/trunk/JSAT/src/jsat/clustering/dissimilarity/AbstractClusterDissimilarity.java
+END
+CompleteLinkDissimilarity.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/379/trunk/JSAT/src/jsat/clustering/dissimilarity/CompleteLinkDissimilarity.java
+END
+CentroidDissimilarity.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/379/trunk/JSAT/src/jsat/clustering/dissimilarity/CentroidDissimilarity.java
+END

@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/555/trunk/JSAT/src/jsat/clustering/evaluation
+END
+DaviesBouldinIndex.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/388/trunk/JSAT/src/jsat/clustering/evaluation/DaviesBouldinIndex.java
+END
+NormalizedMutualInformation.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/488/trunk/JSAT/src/jsat/clustering/evaluation/NormalizedMutualInformation.java
+END
+ClusterEvaluationBase.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/380/trunk/JSAT/src/jsat/clustering/evaluation/ClusterEvaluationBase.java
+END
+ClusterEvaluation.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/380/trunk/JSAT/src/jsat/clustering/evaluation/ClusterEvaluation.java
+END
+DunnIndex.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/380/trunk/JSAT/src/jsat/clustering/evaluation/DunnIndex.java
+END
+IntraClusterSumEvaluation.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/555/trunk/JSAT/src/jsat/clustering/evaluation/IntraClusterSumEvaluation.java
+END

@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/602/trunk/JSAT/src/jsat/text/wordweighting
+END
+BinaryWordPresent.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/601/trunk/JSAT/src/jsat/text/wordweighting/BinaryWordPresent.java
+END
+WordWeighting.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/491/trunk/JSAT/src/jsat/text/wordweighting/WordWeighting.java
+END
+OkapiBM25.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/602/trunk/JSAT/src/jsat/text/wordweighting/OkapiBM25.java
+END
+TfIdf.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/512/trunk/JSAT/src/jsat/text/wordweighting/TfIdf.java
+END

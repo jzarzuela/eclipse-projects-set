@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/660/trunk/JSAT/src/jsat/parameters
+END
+Parameter.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/660/trunk/JSAT/src/jsat/parameters/Parameter.java
+END
+BooleanParameter.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/407/trunk/JSAT/src/jsat/parameters/BooleanParameter.java
+END
+DecayRateParameter.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/631/trunk/JSAT/src/jsat/parameters/DecayRateParameter.java
+END
+MetricParameter.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/407/trunk/JSAT/src/jsat/parameters/MetricParameter.java
+END
+ObjectParameter.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/407/trunk/JSAT/src/jsat/parameters/ObjectParameter.java
+END
+KernelFunctionParameter.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/376/trunk/JSAT/src/jsat/parameters/KernelFunctionParameter.java
+END
+DoubleParameter.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/407/trunk/JSAT/src/jsat/parameters/DoubleParameter.java
+END
+GridSearch.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/413/trunk/JSAT/src/jsat/parameters/GridSearch.java
+END
+IntParameter.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/407/trunk/JSAT/src/jsat/parameters/IntParameter.java
+END
+Parameterized.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/359/trunk/JSAT/src/jsat/parameters/Parameterized.java
+END

@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/!svn/ver/673/trunk/JSAT/src/jsat/math
+END
+OnLineStatistics.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/514/trunk/JSAT/src/jsat/math/OnLineStatistics.java
+END
+TrigMath.java
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/86/trunk/JSAT/src/jsat/math/TrigMath.java
+END
+FunctionBase.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/398/trunk/JSAT/src/jsat/math/FunctionBase.java
+END
+Function.java
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/514/trunk/JSAT/src/jsat/math/Function.java
+END
+SimpleLinearRegression.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/40/trunk/JSAT/src/jsat/math/SimpleLinearRegression.java
+END
+Complex.java
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/437/trunk/JSAT/src/jsat/math/Complex.java
+END
+MathTricks.java
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/673/trunk/JSAT/src/jsat/math/MathTricks.java
+END
+SpecialMath.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/290/trunk/JSAT/src/jsat/math/SpecialMath.java
+END
+DescriptiveStatistics.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/40/trunk/JSAT/src/jsat/math/DescriptiveStatistics.java
+END
+IndexFunction.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/157/trunk/JSAT/src/jsat/math/IndexFunction.java
+END
+ContinuedFraction.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/399/trunk/JSAT/src/jsat/math/ContinuedFraction.java
+END

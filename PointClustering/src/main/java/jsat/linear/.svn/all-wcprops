@@ -1,0 +1,131 @@
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/691/trunk/JSAT/src/jsat/linear
+END
+VecOps.java
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/576/trunk/JSAT/src/jsat/linear/VecOps.java
+END
+GenericMatrix.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/255/trunk/JSAT/src/jsat/linear/GenericMatrix.java
+END
+VecPaired.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/619/trunk/JSAT/src/jsat/linear/VecPaired.java
+END
+IndexValue.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/250/trunk/JSAT/src/jsat/linear/IndexValue.java
+END
+Matrix.java
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/638/trunk/JSAT/src/jsat/linear/Matrix.java
+END
+RowColumnOps.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/441/trunk/JSAT/src/jsat/linear/RowColumnOps.java
+END
+TransposeView.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/257/trunk/JSAT/src/jsat/linear/TransposeView.java
+END
+HessenbergForm.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/514/trunk/JSAT/src/jsat/linear/HessenbergForm.java
+END
+Vec.java
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/635/trunk/JSAT/src/jsat/linear/Vec.java
+END
+ScaledVector.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/686/trunk/JSAT/src/jsat/linear/ScaledVector.java
+END
+CholeskyDecomposition.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/649/trunk/JSAT/src/jsat/linear/CholeskyDecomposition.java
+END
+SingularValueDecomposition.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/597/trunk/JSAT/src/jsat/linear/SingularValueDecomposition.java
+END
+SubMatrix.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/218/trunk/JSAT/src/jsat/linear/SubMatrix.java
+END
+QRDecomposition.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/514/trunk/JSAT/src/jsat/linear/QRDecomposition.java
+END
+MatrixStatistics.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/677/trunk/JSAT/src/jsat/linear/MatrixStatistics.java
+END
+SparseVector.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/635/trunk/JSAT/src/jsat/linear/SparseVector.java
+END
+DenseVector.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/687/trunk/JSAT/src/jsat/linear/DenseVector.java
+END
+EigenValueDecomposition.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/514/trunk/JSAT/src/jsat/linear/EigenValueDecomposition.java
+END
+DenseMatrix.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/255/trunk/JSAT/src/jsat/linear/DenseMatrix.java
+END
+VecPairedComparable.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/430/trunk/JSAT/src/jsat/linear/VecPairedComparable.java
+END
+LUPDecomposition.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/514/trunk/JSAT/src/jsat/linear/LUPDecomposition.java
+END

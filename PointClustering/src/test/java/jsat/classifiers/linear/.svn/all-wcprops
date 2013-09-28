@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/694/trunk/JSAT/test/jsat/classifiers/linear
+END
+SMIDASTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/652/trunk/JSAT/test/jsat/classifiers/linear/SMIDASTest.java
+END
+NHERDTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/694/trunk/JSAT/test/jsat/classifiers/linear/NHERDTest.java
+END
+LinearL1SCDTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/652/trunk/JSAT/test/jsat/classifiers/linear/LinearL1SCDTest.java
+END
+AROWTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/694/trunk/JSAT/test/jsat/classifiers/linear/AROWTest.java
+END
+PassiveAggressiveTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/653/trunk/JSAT/test/jsat/classifiers/linear/PassiveAggressiveTest.java
+END
+ROMMATest.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/692/trunk/JSAT/test/jsat/classifiers/linear/ROMMATest.java
+END
+SCWTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/694/trunk/JSAT/test/jsat/classifiers/linear/SCWTest.java
+END
+ALMA2Test.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/692/trunk/JSAT/test/jsat/classifiers/linear/ALMA2Test.java
+END
+StochasticMultinomialLogisticRegressionTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/!svn/ver/633/trunk/JSAT/test/jsat/classifiers/linear/StochasticMultinomialLogisticRegressionTest.java
+END

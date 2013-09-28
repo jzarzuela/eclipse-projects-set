@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/630/trunk/JSAT/src/jsat/math/decayrates
+END
+LinearDecay.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/454/trunk/JSAT/src/jsat/math/decayrates/LinearDecay.java
+END
+DecayRate.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/514/trunk/JSAT/src/jsat/math/decayrates/DecayRate.java
+END
+InverseDecay.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/630/trunk/JSAT/src/jsat/math/decayrates/InverseDecay.java
+END
+NoDecay.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/454/trunk/JSAT/src/jsat/math/decayrates/NoDecay.java
+END
+ExponetialDecay.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/627/trunk/JSAT/src/jsat/math/decayrates/ExponetialDecay.java
+END

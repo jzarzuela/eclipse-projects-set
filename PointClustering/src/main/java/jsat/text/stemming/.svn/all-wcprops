@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/599/trunk/JSAT/src/jsat/text/stemming
+END
+LovinsStemmer.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/152/trunk/JSAT/src/jsat/text/stemming/LovinsStemmer.java
+END
+PorterStemmer.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/152/trunk/JSAT/src/jsat/text/stemming/PorterStemmer.java
+END
+PaiceHuskStemmer.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/525/trunk/JSAT/src/jsat/text/stemming/PaiceHuskStemmer.java
+END
+Stemmer.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/599/trunk/JSAT/src/jsat/text/stemming/Stemmer.java
+END
+VoidStemmer.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/152/trunk/JSAT/src/jsat/text/stemming/VoidStemmer.java
+END

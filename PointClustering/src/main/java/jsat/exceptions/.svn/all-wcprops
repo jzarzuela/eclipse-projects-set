@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/246/trunk/JSAT/src/jsat/exceptions
+END
+ModelMismatchException.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/240/trunk/JSAT/src/jsat/exceptions/ModelMismatchException.java
+END
+UntrainedModelException.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/240/trunk/JSAT/src/jsat/exceptions/UntrainedModelException.java
+END
+FailedToFitException.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/246/trunk/JSAT/src/jsat/exceptions/FailedToFitException.java
+END

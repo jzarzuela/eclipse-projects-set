@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/380/trunk/JSAT/test/jsat/clustering/hierarchical
+END
+SimpleHACTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/333/trunk/JSAT/test/jsat/clustering/hierarchical/SimpleHACTest.java
+END
+DivisiveLocalClustererTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/380/trunk/JSAT/test/jsat/clustering/hierarchical/DivisiveLocalClustererTest.java
+END
+DivisiveGlobalClustererTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/380/trunk/JSAT/test/jsat/clustering/hierarchical/DivisiveGlobalClustererTest.java
+END
+PriorityHACTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/334/trunk/JSAT/test/jsat/clustering/hierarchical/PriorityHACTest.java
+END

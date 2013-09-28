@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/380/trunk/JSAT/src/jsat/clustering/hierarchical
+END
+SimpleHAC.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/332/trunk/JSAT/src/jsat/clustering/hierarchical/SimpleHAC.java
+END
+DivisiveLocalClusterer.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/380/trunk/JSAT/src/jsat/clustering/hierarchical/DivisiveLocalClusterer.java
+END
+DivisiveGlobalClusterer.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/380/trunk/JSAT/src/jsat/clustering/hierarchical/DivisiveGlobalClusterer.java
+END
+PriorityHAC.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/335/trunk/JSAT/src/jsat/clustering/hierarchical/PriorityHAC.java
+END

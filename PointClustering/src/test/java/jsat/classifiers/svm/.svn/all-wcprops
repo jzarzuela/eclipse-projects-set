@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/569/trunk/JSAT/test/jsat/classifiers/svm
+END
+PegasosTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/566/trunk/JSAT/test/jsat/classifiers/svm/PegasosTest.java
+END
+DCDTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/569/trunk/JSAT/test/jsat/classifiers/svm/DCDTest.java
+END
+DCDsTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/566/trunk/JSAT/test/jsat/classifiers/svm/DCDsTest.java
+END

@@ -1,0 +1,125 @@
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/659/trunk/JSAT/src/jsat/utils
+END
+ArrayUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/387/trunk/JSAT/src/jsat/utils/ArrayUtils.java
+END
+SystemInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/233/trunk/JSAT/src/jsat/utils/SystemInfo.java
+END
+IntPriorityQueue.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/514/trunk/JSAT/src/jsat/utils/IntPriorityQueue.java
+END
+PairedReturn.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/188/trunk/JSAT/src/jsat/utils/PairedReturn.java
+END
+DoubleList.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/579/trunk/JSAT/src/jsat/utils/DoubleList.java
+END
+IntSet.java
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/514/trunk/JSAT/src/jsat/utils/IntSet.java
+END
+ModifiableCountDownLatch.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/183/trunk/JSAT/src/jsat/utils/ModifiableCountDownLatch.java
+END
+BoundedSortedSet.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/364/trunk/JSAT/src/jsat/utils/BoundedSortedSet.java
+END
+IndexTable.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/656/trunk/JSAT/src/jsat/utils/IndexTable.java
+END
+IntSetFixedSize.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/659/trunk/JSAT/src/jsat/utils/IntSetFixedSize.java
+END
+RunnableConsumer.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/337/trunk/JSAT/src/jsat/utils/RunnableConsumer.java
+END
+SimpleList.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/514/trunk/JSAT/src/jsat/utils/SimpleList.java
+END
+FakeExecutor.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/63/trunk/JSAT/src/jsat/utils/FakeExecutor.java
+END
+IntList.java
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/589/trunk/JSAT/src/jsat/utils/IntList.java
+END
+GridDataGenerator.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/274/trunk/JSAT/src/jsat/utils/GridDataGenerator.java
+END
+ProbailityMatch.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/514/trunk/JSAT/src/jsat/utils/ProbailityMatch.java
+END
+SortedArrayList.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/514/trunk/JSAT/src/jsat/utils/SortedArrayList.java
+END
+ListUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/551/trunk/JSAT/src/jsat/utils/ListUtils.java
+END
+BoundedSortedList.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/514/trunk/JSAT/src/jsat/utils/BoundedSortedList.java
+END
+PoisonRunnable.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/337/trunk/JSAT/src/jsat/utils/PoisonRunnable.java
+END

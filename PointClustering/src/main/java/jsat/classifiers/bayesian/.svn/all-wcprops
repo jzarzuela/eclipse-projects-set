@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/665/trunk/JSAT/src/jsat/classifiers/bayesian
+END
+MultinomialNaiveBayes.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/665/trunk/JSAT/src/jsat/classifiers/bayesian/MultinomialNaiveBayes.java
+END
+MultivariateNormals.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/303/trunk/JSAT/src/jsat/classifiers/bayesian/MultivariateNormals.java
+END
+BestClassDistribution.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/452/trunk/JSAT/src/jsat/classifiers/bayesian/BestClassDistribution.java
+END
+NaiveBayes.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/500/trunk/JSAT/src/jsat/classifiers/bayesian/NaiveBayes.java
+END
+ODE.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/468/trunk/JSAT/src/jsat/classifiers/bayesian/ODE.java
+END
+AODE.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/468/trunk/JSAT/src/jsat/classifiers/bayesian/AODE.java
+END
+ConditionalProbabilityTable.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/298/trunk/JSAT/src/jsat/classifiers/bayesian/ConditionalProbabilityTable.java
+END
+NaiveBayesUpdateable.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/494/trunk/JSAT/src/jsat/classifiers/bayesian/NaiveBayesUpdateable.java
+END

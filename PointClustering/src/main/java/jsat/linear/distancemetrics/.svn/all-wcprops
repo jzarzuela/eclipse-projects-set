@@ -1,0 +1,95 @@
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/674/trunk/JSAT/src/jsat/linear/distancemetrics
+END
+EuclideanDistance.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/509/trunk/JSAT/src/jsat/linear/distancemetrics/EuclideanDistance.java
+END
+DenseSparseMetric.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/509/trunk/JSAT/src/jsat/linear/distancemetrics/DenseSparseMetric.java
+END
+CosineDistanceNormalized.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/509/trunk/JSAT/src/jsat/linear/distancemetrics/CosineDistanceNormalized.java
+END
+TrainableDistanceMetric.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/537/trunk/JSAT/src/jsat/linear/distancemetrics/TrainableDistanceMetric.java
+END
+PearsonDistance.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/674/trunk/JSAT/src/jsat/linear/distancemetrics/PearsonDistance.java
+END
+WeightedEuclideanDistance.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/624/trunk/JSAT/src/jsat/linear/distancemetrics/WeightedEuclideanDistance.java
+END
+ManhattanDistance.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/509/trunk/JSAT/src/jsat/linear/distancemetrics/ManhattanDistance.java
+END
+MinkowskiDistance.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/509/trunk/JSAT/src/jsat/linear/distancemetrics/MinkowskiDistance.java
+END
+SquaredEuclideanDistance.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/371/trunk/JSAT/src/jsat/linear/distancemetrics/SquaredEuclideanDistance.java
+END
+NormalizedEuclideanDistance.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/670/trunk/JSAT/src/jsat/linear/distancemetrics/NormalizedEuclideanDistance.java
+END
+MahalanobisDistance.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/562/trunk/JSAT/src/jsat/linear/distancemetrics/MahalanobisDistance.java
+END
+CosineDistance.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/508/trunk/JSAT/src/jsat/linear/distancemetrics/CosineDistance.java
+END
+ChebyshevDistance.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/358/trunk/JSAT/src/jsat/linear/distancemetrics/ChebyshevDistance.java
+END
+KernelDistance.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/358/trunk/JSAT/src/jsat/linear/distancemetrics/KernelDistance.java
+END
+DistanceMetric.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/514/trunk/JSAT/src/jsat/linear/distancemetrics/DistanceMetric.java
+END

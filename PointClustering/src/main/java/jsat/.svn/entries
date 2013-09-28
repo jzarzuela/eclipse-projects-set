@@ -1,0 +1,175 @@
+10
+
+dir
+694
+http://java-statistical-analysis-tool.googlecode.com/svn/trunk/JSAT/src/jsat
+http://java-statistical-analysis-tool.googlecode.com/svn
+
+
+
+2013-05-15T23:47:02.596158Z
+694
+eraff23@gmail.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+c8979423-a768-6f17-17f2-fb57d64bf5d2
+
+clustering
+dir
+
+SimpleDataSet.java
+file
+
+
+
+
+2013-05-16T08:53:24.000000Z
+5a537e6847a2662ef43a568d1a6eb65a
+2013-03-20T22:09:52.231271Z
+655
+eraff23@gmail.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2597
+
+regression
+dir
+
+exceptions
+dir
+
+guitool
+dir
+
+text
+dir
+
+ARFFLoader.java
+file
+
+
+
+
+2013-05-16T08:53:24.000000Z
+c04c2724ad9e945595217bd6206fdb2e
+2012-02-24T04:46:13.832354Z
+275
+eraff23@gmail.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+7404
+
+math
+dir
+
+graphing
+dir
+
+utils
+dir
+
+distributions
+dir
+
+parameters
+dir
+
+datatransform
+dir
+
+DataSet.java
+file
+
+
+
+
+2013-05-16T08:53:24.000000Z
+60a781c6eddbdd771fe2e9cffeb340eb
+2013-04-01T17:38:49.460236Z
+667
+eraff23@gmail.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+14110
+
+io
+dir
+
+classifiers
+dir
+
+linear
+dir
+
+testing
+dir
+

@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/674/trunk/JSAT/test/jsat/linear
+END
+QRDecompositionTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/222/trunk/JSAT/test/jsat/linear/QRDecompositionTest.java
+END
+EigenvalueDecompositionTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/439/trunk/JSAT/test/jsat/linear/EigenvalueDecompositionTest.java
+END
+GenericMatrixTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/371/trunk/JSAT/test/jsat/linear/GenericMatrixTest.java
+END
+DenseMatrixTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/371/trunk/JSAT/test/jsat/linear/DenseMatrixTest.java
+END
+HessenbergFormTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/222/trunk/JSAT/test/jsat/linear/HessenbergFormTest.java
+END
+LUPDecompositionTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/222/trunk/JSAT/test/jsat/linear/LUPDecompositionTest.java
+END
+SingularValueDecompositionTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/597/trunk/JSAT/test/jsat/linear/SingularValueDecompositionTest.java
+END
+CholeskyDecompositionTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/256/trunk/JSAT/test/jsat/linear/CholeskyDecompositionTest.java
+END

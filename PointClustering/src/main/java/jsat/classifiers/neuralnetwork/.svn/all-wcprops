@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/689/trunk/JSAT/src/jsat/classifiers/neuralnetwork
+END
+Perceptron.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/637/trunk/JSAT/src/jsat/classifiers/neuralnetwork/Perceptron.java
+END
+LVQ.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/631/trunk/JSAT/src/jsat/classifiers/neuralnetwork/LVQ.java
+END
+BackPropagationNet.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/668/trunk/JSAT/src/jsat/classifiers/neuralnetwork/BackPropagationNet.java
+END
+LVQLLC.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/689/trunk/JSAT/src/jsat/classifiers/neuralnetwork/LVQLLC.java
+END
+SOM.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/660/trunk/JSAT/src/jsat/classifiers/neuralnetwork/SOM.java
+END

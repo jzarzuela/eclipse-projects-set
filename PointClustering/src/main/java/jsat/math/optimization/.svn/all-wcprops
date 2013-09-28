@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/514/trunk/JSAT/src/jsat/math/optimization
+END
+NelderMead.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/254/trunk/JSAT/src/jsat/math/optimization/NelderMead.java
+END
+Optimizer.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/514/trunk/JSAT/src/jsat/math/optimization/Optimizer.java
+END
+IterativelyReweightedLeastSquares.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/247/trunk/JSAT/src/jsat/math/optimization/IterativelyReweightedLeastSquares.java
+END
+RosenbrockFunction.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/254/trunk/JSAT/src/jsat/math/optimization/RosenbrockFunction.java
+END
