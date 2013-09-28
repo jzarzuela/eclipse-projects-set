@@ -2,7 +2,7 @@
  * @(#)Handler.java					0.3-3 18/06/1999
  *
  *  This file is part of the HTTPClient.http package 
- *  Copyright (C) 1996-1999  Ronald Tschalär
+ *  Copyright (C) 1996-1999  Ronald Tschalor
  *
  *  This library is free software; you can redistribute it and/or
  *  modify it under the terms of the GNU Lesser General Public
@@ -42,7 +42,7 @@ import HTTPClient.ProtocolNotSuppException;
  * To do so define the property java.protocol.handler.pkgs=HTTPClient .
  *
  * @version	0.3-3  18/06/1999
- * @author	Ronald Tschalär
+ * @author	Ronald Tschalï¿½r
  */
 public class Handler extends URLStreamHandler
 {

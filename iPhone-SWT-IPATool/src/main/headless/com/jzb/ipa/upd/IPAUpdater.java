@@ -233,7 +233,7 @@ public class IPAUpdater {
                 } else if (lfname.endsWith(".jpg") && lfname.contains("_pk[")) {
 
                     // Apuntamos el JPG como un IPA "fantasma" para poder recolocar el nuevo
-                    // Si sólo queda el JPG en la carpeta
+                    // Si sÃ³lo queda el JPG en la carpeta
                     File ipaFile = new File(f.getParentFile(), fname.substring(0, fname.length() - 3) + "ipa");
                     if (!ipaFile.exists()) {
 
