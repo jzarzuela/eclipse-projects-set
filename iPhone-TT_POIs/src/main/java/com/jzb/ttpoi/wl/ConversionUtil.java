@@ -9,7 +9,9 @@ import java.nio.CharBuffer;
 import java.nio.charset.CharacterCodingException;
 import java.nio.charset.CharsetEncoder;
 import java.nio.charset.CodingErrorAction;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
 
@@ -24,6 +26,10 @@ public class ConversionUtil {
     private static CharsetEncoder s_chEncoder = new MyCharSet().newEncoder().onMalformedInput(CodingErrorAction.REPORT).onUnmappableCharacter(CodingErrorAction.REPORT);
     private static HashMap<String, String> s_styleCatMap = null;
 
+    public static void resetDefaultCategpries() {
+        s_styleCatMap = null;
+    }
+    
     public static String getCategoryFromStyle(String style) {
 
         // Se intenta quedar con el nombre dentro de la URL del icono de GMaps
@@ -79,7 +85,7 @@ public class ConversionUtil {
 
     }
 
-    public static HashMap<String, String> getDefaultParseCategories() {
+    public static Map<String, String> getDefaultParseCategories() {
 
         if (s_styleCatMap == null) {
             s_styleCatMap = new HashMap<String, String>();
@@ -93,7 +99,9 @@ public class ConversionUtil {
                 System.err.println("Error (" + ex.getClass().getName() + ") reading values from 'DefaultCategories.properties': " + ex.getMessage());
             }
         }
-        return s_styleCatMap;
+        
+        
+        return Collections.unmodifiableMap(s_styleCatMap);
     }
 
     public static String getOV2Text(String text) {

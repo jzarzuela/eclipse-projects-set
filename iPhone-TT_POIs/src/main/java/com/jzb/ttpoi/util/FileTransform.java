@@ -151,11 +151,11 @@ public class FileTransform {
             }
         }
 
-        String iconName = "GMI_" + ConversionUtil.getCategoryFromStyle(iconStyle) + ".bmp";
+        String iconName = "GMI_" + ConversionUtil.getCategoryFromStyle(iconStyle) + ".png"; // "bmp"
         InputStream is = FileTransform.class.getClassLoader().getResourceAsStream(iconName);
         if (is == null) {
             System.out.println("  * Warning: There is no icon file for: '" + iconStyle + "'");
-            iconName = "GMI_DEFAULT.bmp";
+            iconName = "GMI_blue-dot.png"; // "bmp"
             is = FileTransform.class.getClassLoader().getResourceAsStream(iconName);
             if (is == null)
                 return;
@@ -187,7 +187,7 @@ public class FileTransform {
 
         TPOIFileData info = OV2FileLoader.loadFile(ov2File);
 
-        // ÀLimpieza del nomnbre que no recuerdo?
+        // Â¿Limpieza del nombre que no recuerdo?
         for (TPOIData poi : info.getAllPOIs()) {
             if (Character.isDigit(poi.getName().charAt(0))) {
                 int n = 0;

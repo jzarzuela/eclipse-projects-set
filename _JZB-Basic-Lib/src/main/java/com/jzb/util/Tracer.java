@@ -20,26 +20,26 @@ public abstract class Tracer {
         DEBUG, ERROR, INFO, WARN
     }
 
-    private static Tracer                       s_tracer       = new PStreamTracer();
+    private static Tracer                       s_tracer             = new PStreamTracer();
 
-    private volatile transient StringBuffer     m_sbDebug      = new StringBuffer();
-    private volatile transient StringBuffer     m_sbError      = new StringBuffer();
-    private volatile transient StringBuffer     m_sbInfo       = new StringBuffer();
-    private volatile transient StringBuffer     m_sbWarn       = new StringBuffer();
+    private volatile transient StringBuffer     m_sbDebug            = new StringBuffer();
+    private volatile transient StringBuffer     m_sbError            = new StringBuffer();
+    private volatile transient StringBuffer     m_sbInfo             = new StringBuffer();
+    private volatile transient StringBuffer     m_sbWarn             = new StringBuffer();
 
-    private volatile transient int              m_cntDebug     = 0;
-    private volatile transient int              m_cntError     = 0;
-    private volatile transient int              m_cntInfo      = 0;
-    private volatile transient int              m_cntWarn      = 0;
+    private volatile transient int              m_cntDebug           = 0;
+    private volatile transient int              m_cntError           = 0;
+    private volatile transient int              m_cntInfo            = 0;
+    private volatile transient int              m_cntWarn            = 0;
 
     private volatile transient Timer            m_flushTimer;
 
-    private volatile transient SimpleDateFormat m_sdf          = new SimpleDateFormat("dd/MM/yyyy - HH:mm:ss");
+    private volatile transient SimpleDateFormat m_sdf                = new SimpleDateFormat("dd/MM/yyyy - HH:mm:ss");
 
-    private volatile transient static boolean   s_debugEnabled = true;
-    private volatile transient static boolean   s_infoEnabled  = true;
-    private volatile transient static boolean   s_warnEnabled  = true;
-    private volatile transient static boolean   s_errorEnabled = true;
+    private volatile transient static boolean   s_debugEnabled       = true;
+    private volatile transient static boolean   s_infoEnabled        = true;
+    private volatile transient static boolean   s_warnEnabled        = true;
+    private volatile transient static boolean   s_errorEnabled       = true;
 
     private volatile transient boolean          m_buffered;
 

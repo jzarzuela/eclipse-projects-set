@@ -1,0 +1,22 @@
+La versión 7 de Java da problemas en Mac con el acceso a ficheros debido a una mala utilización de los encodings en los nombres (File list[] = file.listFiles() retorna elementos que luego no se pueden acceder). Mac usa un MacRoman y Java UTF-8.
+
+Para que los nombres sean correctos y no falle JVM debe ser iniciada con la variable de entorno LANG a algo como es_ES.UTF-8.
+
+Adicionalmente, para que todo esto funcione en Eclipse (run as Java). La JVM de Eclipse debe iniciar así (porque las otras heredan) o hay que poner esa variable en todas las configuraciones de ejecución (que es un coñazo).
+
+Para forzar el establecimiento de la variable en eclipse se puede editar el fichero info.plist de la aplicación y añadirlo ahí:
+
+
+<dict>
+    <key>LSEnvironment</key>
+        <dict>
+            <key>LANG</key>
+            <string>es_ES.UTF-8</string>
+        </dict>
+
+
+Adicionalmente, los textos por la consola de Eclipse seguirán saliendo mal porque hereda el encoding del proyecto (por defecto ISO-15??). Luego, si molesta mucho ver "chinos" por consola en los nombres de los ficheros, se debe cambiar el encoding del proyecto (en sus propiedades) a UTF-8 (ojo que puede romper algún fuente). También se puede establecer una preferencia en la configuración del RunAs (otro coñazo).
+
+Despues del cambio, y antes de reiniciar eclipse, es necesario que mac recarge el plist con:
+    touch /Applications/eclipse/Kepler-eclipse-Tuned/Eclipse.app
+

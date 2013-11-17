@@ -7,6 +7,7 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,8 +15,8 @@ import java.util.Map;
 import com.google.gdata.client.maps.MapsService;
 import com.google.gdata.data.maps.MapEntry;
 import com.google.gdata.data.maps.MapFeed;
+import com.jzb.util.AESCypher;
 import com.jzb.util.DefaultHttpProxy;
-import com.jzb.util.Des3Encrypter;
 
 /**
  * @author n63636
@@ -39,7 +40,7 @@ public class KMLDownload {
     public static File downloadMap(File baseFolder, String mapName) throws Exception {
 
         File kmlFile = null;
-        
+
         _checkProxy();
         baseFolder.mkdirs();
         HashMap<String, URL> mapList = _getMapLinks();
@@ -50,7 +51,7 @@ public class KMLDownload {
                 kmlFile = _downloadMap(baseFolder, name, link);
             }
         }
-        
+
         return kmlFile;
 
     }
@@ -61,9 +62,10 @@ public class KMLDownload {
         System.out.println();
         System.out.println("Downloading map '" + mapName + "' from '" + link + "'");
 
+        
         byte buffer[] = new byte[65536];
         BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(kmlFile));
-        BufferedInputStream bis = new BufferedInputStream(link.openStream());
+        InputStream bis = new BufferedInputStream(link.openStream());
         for (;;) {
             int len = bis.read(buffer);
             if (len > 0) {
@@ -83,9 +85,8 @@ public class KMLDownload {
         HashMap<String, URL> mapList = new HashMap<String, URL>();
 
         MapsService myService = new MapsService("listAllMaps");
-        myService.setUserCredentials(Des3Encrypter.decryptStr("PjN1Jb0t6CYNTbO/xEgJIjCPPPfsmPez"), Des3Encrypter.decryptStr("8ivdMeBQiyQtSs1BFkf+mw=="));
-
-        final URL feedUrl = new URL("http://maps.google.com/maps/feeds/maps/default/full");
+        myService.setUserCredentials(AESCypher.decryptStr("RxBEDp/Xgp5/+Kd1BFtVcsWmFjL0aoTiQwjgdh4kz5w="),AESCypher.decryptStr("H/ptrrinfpFVV7f7in3LGw=="));
+        final URL feedUrl = new URL("https://maps.google.com/maps/feeds/maps/default/full");
 
         MapFeed resultFeed = myService.getFeed(feedUrl, MapFeed.class);
         for (int i = 0; i < resultFeed.getEntries().size(); i++) {
@@ -100,7 +101,7 @@ public class KMLDownload {
             String part1 = selfLink.substring(p1 + 6, p2);
             String part2 = selfLink.substring(p2 + 6);
 
-            String mapURL = "http://maps.google.es/maps/ms?hl=es&ie=UTF8&vps=3&jsv=304e&oe=UTF8&msa=0&msid=" + part1 + "." + part2 + "&output=kml";
+            String mapURL = "https://maps.google.es/maps/ms?hl=es&ie=UTF8&vps=3&jsv=304e&oe=UTF8&msa=0&msid=" + part1 + "." + part2 + "&output=kml";
 
             System.out.println(mapName + " => " + mapURL);
             mapList.put(mapName, new URL(mapURL));

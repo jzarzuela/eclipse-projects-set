@@ -4,6 +4,7 @@
 package com.jzb.ttpoi.data;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,14 +18,15 @@ import java.util.regex.Pattern;
  */
 public class TPOIFileData {
 
+    public static boolean                        warnIfDuplicated = true;
     /**
      * 
      */
-    private ArrayList<TPOIData>                  allPOIs         = new ArrayList<TPOIData>();
+    private ArrayList<TPOIData>                  allPOIs          = new ArrayList<TPOIData>();
     /**
      * 
      */
-    private TreeMap<String, ArrayList<TPOIData>> categorizedPOIs = new TreeMap<String, ArrayList<TPOIData>>();
+    private TreeMap<String, ArrayList<TPOIData>> categorizedPOIs  = new TreeMap<String, ArrayList<TPOIData>>();
     /**
      * 
      */
@@ -34,42 +36,45 @@ public class TPOIFileData {
      * 
      */
     private String                               fileName;
-    
+
     /**
      * 
      */
-    private Boolean                               wasKMLFile;
-    
-    
+    private Boolean                              wasKMLFile;
+
     /**
      * 
      */
     public TPOIFileData() {
     }
 
-    public void addAllPOIs(ArrayList<TPOIData> pois) {
-        for(TPOIData poi:pois) {
+    public void addAllPOIs(Collection<TPOIData> pois) {
+        for (TPOIData poi : pois) {
             addPOI(poi);
         }
     }
-    
+
     public void addPOI(TPOIData poi) {
-        TPOIData poi2 = _searchPOI(poi);
-        if (poi2 != null) {
-            System.out.println("** WARNING, duplicated POI name:");
-            System.out.println("      " + poi2);
-            System.out.println("      " + poi);
-            System.out.println("      distance(m) = " + poi.distance(poi2));
+        if (warnIfDuplicated) {
+            TPOIData poi2 = _searchPOI(poi);
+            if (poi2 != null) {
+                System.out.println("** WARNING, duplicated POI name:");
+                System.out.println("      " + poi2);
+                System.out.println("      " + poi);
+                System.out.println("      distance(m) = " + poi.distance(poi2));
+            }
         }
         getAllPOIs().add(poi);
         getCategory(poi.getCategory()).add(poi);
     }
 
     private TPOIData _searchPOI(TPOIData poi) {
+
         for (TPOIData poi2 : allPOIs) {
             if (poi.getName().equals(poi2.getName()))
                 return poi2;
         }
+
         return null;
     }
 
@@ -86,7 +91,7 @@ public class TPOIFileData {
     public ArrayList<TPOIData> getAllCategoryPOIs(String category) {
         return categorizedPOIs.get(category);
     }
-    
+
     /**
      * @return the catPOIs
      */
@@ -107,18 +112,18 @@ public class TPOIFileData {
     public boolean getWasKMLFile() {
         return wasKMLFile;
     }
-    
+
     /**
      * @return the fileName
      */
     public String getFileName() {
         return fileName;
     }
-    
+
     public Set<String> getCategories() {
         return categorizedPOIs.keySet();
     }
-    
+
     public void sort() {
         Collections.sort(this.allPOIs);
         for (ArrayList<TPOIData> td : this.categorizedPOIs.values()) {
@@ -157,7 +162,7 @@ public class TPOIFileData {
     public void setWasKMLFile(boolean wasKMLFile) {
         this.wasKMLFile = wasKMLFile;
     }
-    
+
     /**
      * @param fileName
      *            the fileName to set
@@ -165,7 +170,7 @@ public class TPOIFileData {
     public void setFileName(String fileName) {
         this.fileName = fileName;
     }
-    
+
     public void translateCategories(HashMap<String, String> transMap) {
 
         // La conversion es con expresiones regulares
@@ -216,6 +221,13 @@ public class TPOIFileData {
      */
     @Override
     public String toString() {
-        return "Name: " + name + "\nPOIs: " + allPOIs.toString();
+        String value = "Name: " + name + "\nPOIs:\n";
+        for (String catName : categorizedPOIs.keySet()) {
+            value += "  [" + catName + "]\n";
+            for (TPOIData poi : categorizedPOIs.get(catName)) {
+                value += "      " + poi + "\n";
+            }
+        }
+        return value;
     }
 }

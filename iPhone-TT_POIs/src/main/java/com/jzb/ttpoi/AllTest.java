@@ -7,6 +7,7 @@ import java.io.File;
 import java.util.HashMap;
 
 import com.jzb.ttpoi.util.FileTransform;
+import com.jzb.ttpoi.util.KMLDownload;
 import com.jzb.ttpoi.wl.ConversionUtil;
 
 /**
@@ -51,7 +52,7 @@ public class AllTest {
         File ov2Folder = new File("/Users/jzarzuela/Downloads/_tmp_/pois/_OV2s_");
         ov2Folder.mkdirs();
 
-        //KMLDownload.downloadAllMaps(kmlFolder);
+        KMLDownload.downloadAllMaps(kmlFolder);
         FileTransform.transformAllKMLtoOV2(kmlFolder, ov2Folder, true);
     }
 
@@ -66,7 +67,7 @@ public class AllTest {
         File kmlFile = new File(kmlFolder, "HT_Belgica_2013.kml");
 
         
-        HashMap<String, String> styleCatMap = ConversionUtil.getDefaultParseCategories();
+        HashMap<String, String> styleCatMap = new HashMap<String, String>(ConversionUtil.getDefaultParseCategories());
         styleCatMap.put("blue-dot", "Gante");
         styleCatMap.put("homegardenbusiness", "Gante");
         
@@ -112,7 +113,7 @@ public class AllTest {
         
         File kmlFile = new File(kmlFolder, "BT_Boston_2010_2013.kml");
 
-        HashMap<String, String> styleCatMap = ConversionUtil.getDefaultParseCategories();
+        HashMap<String, String> styleCatMap = new HashMap<String, String>(ConversionUtil.getDefaultParseCategories());
         styleCatMap.put("green-dot", "Hardvard");
         styleCatMap.put("red", "Salem");
         styleCatMap.put("red-dot", "Salem");

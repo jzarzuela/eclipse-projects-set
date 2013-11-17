@@ -123,14 +123,14 @@ public class WizardFolderSet extends Composite {
         folderSetName = folderSetName.trim();
         folderName = folderName.trim();
 
-        // Solo a�ade los elementos si son nuevos
+        // Solo añade los elementos si son nuevos
         for (TableItem ti : m_table.getItems()) {
             if (ti.getText(0).equalsIgnoreCase(folderSetName) && ti.getText(1).equalsIgnoreCase(folderName)) {
                 return;
             }
         }
 
-        // A�ade la infomacion
+        // Añade la infomacion
         TableItem ti = new TableItem(m_table, 0);
         ti.setText(new String[] { folderSetName, folderName });
     }

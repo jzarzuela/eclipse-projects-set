@@ -34,8 +34,8 @@ public class KMLFileLoader {
         TPOIFileData fileData = new TPOIFileData();
         fileData.setFileName(kmlFile.getAbsolutePath());
         fileData.setWasKMLFile(true);
-        
-        HashMap<String, String> styleCatMap = ConversionUtil.getDefaultParseCategories();
+
+        HashMap<String, String> styleCatMap = new HashMap<String, String>(ConversionUtil.getDefaultParseCategories());
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder docBuilder = factory.newDocumentBuilder();
         Document doc = docBuilder.parse(new InputSource(new InputStreamReader(new FileInputStream(kmlFile), "UTF8")));
@@ -57,6 +57,16 @@ public class KMLFileLoader {
 
             TPOIData poi = new TPOIData();
 
+            // ExtraInfo del punto
+            val = xpath.evaluate("comment()", node);
+            val = ConversionUtil.getOV2Text(val);
+            int p1 = val.indexOf("ExtraInfo:[[");
+            int p2 = p1 < 0 ? -1 : val.indexOf("]]", p1);
+            if (p1 >= 0 && p2 >= 0) {
+                val = val.substring(p1 + 12, p2);
+                poi.setExtraInfo(val);
+            }
+
             // Nombre del punto
             val = xpath.evaluate("name/text()", node);
             val = ConversionUtil.getOV2Text(val);
@@ -68,7 +78,7 @@ public class KMLFileLoader {
             poi.setDesc(val);
 
             // Coordenadas del punto. Puede no existir si es una Linea
-            // TODO: ¿Qué hacemos con las líneas? *****************************
+            // TODO: Â¿QuÃ© hacemos con las lÃ­neas? *****************************
             val = xpath.evaluate("Point/coordinates/text()", node);
             if (val == null || val.length() == 0)
                 continue;
@@ -82,7 +92,7 @@ public class KMLFileLoader {
                 if (val.charAt(0) == '#')
                     val = val.substring(1);
                 val = xpath.evaluate("/kml/Document/Style[@id=\"" + val + "\"]/IconStyle/Icon/href/text()", node);
-                if(val.trim().length()==0) {
+                if (val.trim().length() == 0) {
                     val = "http://maps.gstatic.com/mapfiles/ms2/micons/blue-dot.png";
                 }
                 poi.setIconStyle(val);
@@ -92,7 +102,7 @@ public class KMLFileLoader {
 
             if (poi.Is_TT_Cat_POI()) {
                 _parseCategories(styleCatMap, poi.getDesc());
-                //**** LO VOLVEMOS A AÑADIR ****
+                // **** LO VOLVEMOS A AÃ‘ADIR ****
                 fileData.addPOI(poi);
             } else {
                 fileData.addPOI(poi);
@@ -106,19 +116,20 @@ public class KMLFileLoader {
 
     private static String _cleanHTML(String txt) {
         txt = txt.replaceAll("\\<[^<>]*\\>", "");
-        txt = txt.replaceAll("&lt;","<");
-        txt = txt.replaceAll("&gt;",">");
-        txt = txt.replaceAll("&nbsp;"," ");
-        txt = txt.replaceAll("&amp;","&");
-        
+        txt = txt.replaceAll("&lt;", "<");
+        txt = txt.replaceAll("&gt;", ">");
+        txt = txt.replaceAll("&nbsp;", " ");
+        txt = txt.replaceAll("&amp;", "&");
+
         return txt;
     }
 
     private static void _parseCategories(HashMap<String, String> styleCatMap, String cats) {
 
         cats = _cleanHTML(cats);
-        if(cats.indexOf("<TTInfo>")>0) return;
-        
+        if (cats.indexOf("<TTInfo>") > 0)
+            return;
+
         StringTokenizer st1 = new StringTokenizer(cats, "#");
         while (st1.hasMoreTokens()) {
             String str = st1.nextToken();

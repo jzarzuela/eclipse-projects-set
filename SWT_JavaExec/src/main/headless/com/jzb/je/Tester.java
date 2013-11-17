@@ -65,26 +65,6 @@ public class Tester {
     }
 
     // ----------------------------------------------------------------------------------------------------
-    private File _projectNameToFile(String name) {
-
-        File baseFolders[] = { new File("/Users/jzarzuela/Documents/WKSP/Consolidado"), new File("/Users/jzarzuela/Documents/java-Campus") };
-
-        if (name.startsWith("/")) {
-            name = name.substring(1);
-        }
-
-        for (File baseFolder : baseFolders) {
-            File prjFolder = new File(baseFolder, name);
-            if (prjFolder.exists() && prjFolder.isDirectory()) {
-                return prjFolder;
-            }
-        }
-
-        // Ups!!!
-        return null;
-    }
-
-    // ----------------------------------------------------------------------------------------------------
     private void _parseClasspathFile(File projectFolder) {
 
         System.out.println("------- projectName: "+projectFolder);
@@ -122,6 +102,26 @@ public class Tester {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    // ----------------------------------------------------------------------------------------------------
+    private File _projectNameToFile(String name) {
+
+        File baseFolders[] = { new File("/Users/jzarzuela/Documents/Java/github-repos/eclipse-projects-set") };
+
+        if (name.startsWith("/")) {
+            name = name.substring(1);
+        }
+
+        for (File baseFolder : baseFolders) {
+            File prjFolder = new File(baseFolder, name);
+            if (prjFolder.exists() && prjFolder.isDirectory()) {
+                return prjFolder;
+            }
+        }
+
+        // Ups!!!
+        return null;
     }
 
 }

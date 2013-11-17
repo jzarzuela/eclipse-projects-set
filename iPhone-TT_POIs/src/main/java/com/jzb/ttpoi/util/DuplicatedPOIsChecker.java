@@ -35,7 +35,7 @@ public class DuplicatedPOIsChecker {
             if (set_duplicated.contains(poi1))
                 continue;
 
-            // Lo añade como nuevo y lo compara con el resto
+            // Lo aÃ±ade como nuevo y lo compara con el resto
             distinct.add(poi1);
 
             // Consigue el nombre y prefijo (si se dijo) del POI

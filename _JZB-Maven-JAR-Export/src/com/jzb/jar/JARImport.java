@@ -49,6 +49,12 @@ public class JARImport {
      */
     public void doIt(String[] args) throws Exception {
 
+        // _processFile();
+        _processSWTFolder(new File("/Users/jzarzuela/Downloads/_tmp_/_SWT_Jars/jars"));
+    }
+
+    // ----------------------------------------------------------------------------------------------------
+    private void _processFile() throws Exception {
 
         String groupID = "JZB-EXT-JARs";
         String artifactID = "ext.jar.jFuzzyLogic";
@@ -57,6 +63,40 @@ public class JARImport {
         File jarFile = new File("/Users/jzarzuela/Documents/jFuzzyLogic-3.0.jar");
 
         _printDeployJar(jarFile, groupID, artifactID, version);
+    }
+
+    // ----------------------------------------------------------------------------------------------------
+    private void _processSWTFolder(File folder) throws Exception {
+
+        // <groupId>SWT-4_3</groupId>
+        // <artifactId>org.eclipse.ui.workbench</artifactId>
+        // <version>3.105.0.v20130529-1406</version>
+
+        String groupID = "SWT-4_3";
+
+        for (File f : folder.listFiles()) {
+
+            String fname = f.getName();
+
+            if (!fname.endsWith(".jar"))
+                continue;
+
+            if (fname.contains(".source"))
+                continue;
+
+            // System.out.println("\nProcessing: " + fname);
+
+            int p1 = fname.lastIndexOf('_');
+            String artifactID = fname.substring(0, p1);
+            String version = fname.substring(p1 + 1, fname.length() - 4);
+
+            // System.out.println("artifactID = " + artifactID);
+            // System.out.println("version = " + version);
+            _printDeployJar(f, groupID, artifactID, version);
+
+            File sourceFile = new File(f.getParentFile(), artifactID + ".source_" + version + ".jar");
+            _printDeployJarSources(sourceFile, groupID, artifactID, version);
+        }
     }
 
     // ----------------------------------------------------------------------------------------------------
@@ -80,7 +120,19 @@ public class JARImport {
     // ----------------------------------------------------------------------------------------------------
     private void _printDeployJarSources(File jarFile, String groupID, String artifactID, String version) {
 
-        _printDeployJar(jarFile, groupID, artifactID, version);
+        if (!jarFile.exists()) {
+            System.out.println("JAR file doesn't exist: " + jarFile);
+            System.exit(0);
+        }
+
+        System.out.println();
+        System.out.println("mvn deploy:deploy-file -DgroupId=" + groupID + " \\");
+        System.out.println("        -DartifactId=" + artifactID + " \\");
+        System.out.println("        -Dversion=" + version + " \\");
+        System.out.println("        -Dpackaging=jar \\");
+        System.out.println("        -Dfile=" + jarFile + " \\");
+        System.out.println("        -DrepositoryId=my.mvn.github.repo \\");
+        System.out.println("        -Durl=" + mavenRepoFolderURL + "\\");
         System.out.println("        -Dclassifier=sources");
     }
 }

@@ -14,14 +14,16 @@ public class TPOIData implements Comparable<TPOIData> {
      * 
      */
     private String             m_category         = "";
+
     /**
      * 
      */
     private String             m_desc             = "";
+    private String             m_extraInfo        = "";
     /**
      * 
      */
-    private String             m_iconStyle        = null;
+    private String             m_iconStyle        = "";
 
     /**
      * 
@@ -46,7 +48,7 @@ public class TPOIData implements Comparable<TPOIData> {
 
     /**
      * @param maxDistance
-     *            en metros para indicar qu� se considera "cercano"
+     *            en metros para indicar qué se considera "cercano"
      * 
      * @return 0 - Exactamente iguales 1 - Nombre igual y cercano 2 - Nombre igual y lejano 3 - Nombre diferente y cercano 4 - Completamente distintos
      */
@@ -99,11 +101,33 @@ public class TPOIData implements Comparable<TPOIData> {
      */
     @Override
     public int compareTo(TPOIData poi) {
+
         int c = m_category.compareTo(poi.m_category);
         if (c != 0)
             return c;
-        else
-            return m_name.compareTo(poi.m_name);
+
+        c = m_name.compareTo(poi.m_name);
+        if (c != 0)
+            return c;
+        
+        c = m_desc.compareTo(poi.m_desc);
+        if (c != 0)
+            return c;
+        
+        c = m_iconStyle.compareTo(poi.m_iconStyle);
+        if (c != 0)
+            return c;
+        
+        c = m_extraInfo.compareTo(poi.m_extraInfo);
+        if (c != 0)
+            return c;
+        
+        c = Double.compare(m_lat, poi.m_lat);
+        if (c != 0)
+            return c;
+        
+        c = Double.compare(m_lng, poi.m_lng);
+        return c;
     }
 
     /**
@@ -133,13 +157,15 @@ public class TPOIData implements Comparable<TPOIData> {
      */
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof TPOIData)) return false;
-        
+        if (!(obj instanceof TPOIData))
+            return false;
+
         TPOIData poi2 = (TPOIData) obj;
-        return  m_name.equals(poi2.m_name) &&
-                m_desc.equals(poi2.m_desc) &&
-                m_lat == poi2.m_lat &&
-                m_lng == poi2.m_lng;
+        return m_name.equals(poi2.m_name) //
+                && m_desc.equals(poi2.m_desc) //
+                && m_lat == poi2.m_lat && m_lng == poi2.m_lng //
+                && m_extraInfo.equals(poi2.m_extraInfo) //
+                && m_iconStyle.equals(poi2.m_iconStyle);
     }
 
     /**
@@ -154,6 +180,13 @@ public class TPOIData implements Comparable<TPOIData> {
      */
     public String getDesc() {
         return m_desc;
+    }
+
+    /**
+     * @return the extraInfo
+     */
+    public String getExtraInfo() {
+        return m_extraInfo;
     }
 
     /**
@@ -184,6 +217,10 @@ public class TPOIData implements Comparable<TPOIData> {
         return m_name;
     }
 
+    public boolean Is_TT_Cat_POI() {
+        return m_name.toLowerCase().startsWith("@tt_cat") || m_name.toLowerCase().startsWith("@cat_tt");
+    }
+
     /**
      * @param categoty
      *            the categoty to set
@@ -202,7 +239,17 @@ public class TPOIData implements Comparable<TPOIData> {
     public void setDesc(String desc) {
         if (desc == null)
             desc = "";
-        m_desc = desc;
+        m_desc = desc.trim();
+    }
+
+    /**
+     * @param extraInfo
+     *            the extraInfo to set
+     */
+    public void setExtraInfo(String extraInfo) {
+        if (extraInfo == null)
+            extraInfo = "";
+        m_extraInfo = extraInfo.trim();
     }
 
     /**
@@ -210,7 +257,9 @@ public class TPOIData implements Comparable<TPOIData> {
      *            the iconStyle to set
      */
     public void setIconStyle(String iconStyle) {
-        m_iconStyle = iconStyle;
+        if (iconStyle == null)
+            iconStyle = "";
+        m_iconStyle = iconStyle.trim();
     }
 
     /**
@@ -240,14 +289,19 @@ public class TPOIData implements Comparable<TPOIData> {
     }
 
     /**
+     * @see java.lang.Object#hashCode()
+     */
+    @Override
+    public int hashCode() {
+        String key = this.toString();
+        return key.hashCode();
+    }
+
+    /**
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
-        return "TPOIData: '" + m_name + "', lat=" + m_lat + ", lng=" + m_lng + ", category=" + m_category + ", desc=" + m_desc + ", iconStyle = " + m_iconStyle;
-    }
-    
-    public boolean Is_TT_Cat_POI() {
-        return m_name.toLowerCase().startsWith("@tt_cat") || m_name.toLowerCase().startsWith("@cat_tt");
+        return "TPOIData: '" + m_name + "', lat=" + m_lat + ", lng=" + m_lng + ", category=" + m_category + ", desc=" + m_desc + ", iconStyle = " + m_iconStyle + ", extraInfo = " + m_extraInfo;
     }
 }

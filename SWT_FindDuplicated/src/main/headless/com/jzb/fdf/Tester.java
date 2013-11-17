@@ -60,7 +60,7 @@ public class Tester {
      * @throws Exception
      *             if something fails during the execution
      */
-    public void doIt2(String[] args) throws Exception {
+    public void doIt(String[] args) throws Exception {
 
         FolderProcessor._init();
         IModelSrvc.inst.init(false);
@@ -86,7 +86,7 @@ public class Tester {
      * @throws Exception
      *             if something fails during the execution
      */
-    public void doIt(String[] args) throws Exception {
+    public void doIt2(String[] args) throws Exception {
 
         // File folder = new File("/Users/jzarzuela/Downloads/_tmp_/_extracted_IPAs_");
         // File folder = new File("/Users/jzarzuela/Downloads/_tmp_/_extracted_IPAs_/_iconos_varios_/ios-iphone-tab-bar-icons/PNG30x30-black");
@@ -97,7 +97,6 @@ public class Tester {
         boolean useCopy = false;
         if (useCopy) {
             Files.copy(Paths.get("/Users/jzarzuela/ddbb/findDuplicates.h2.db.copy"), Paths.get("/Users/jzarzuela/ddbb/findDuplicates.h2.db"), StandardCopyOption.REPLACE_EXISTING);
-
             Files.copy(Paths.get("/Users/jzarzuela/ddbb/findDuplicates.trace.db.copy"), Paths.get("/Users/jzarzuela/ddbb/findDuplicates.trace.db"), StandardCopyOption.REPLACE_EXISTING);
         }
 

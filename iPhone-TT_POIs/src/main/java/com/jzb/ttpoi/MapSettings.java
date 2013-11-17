@@ -154,7 +154,7 @@ public class MapSettings {
             if (n < 34)
                 System.out.print("   ");
             else if (c < 32)
-                System.out.print(" · ");
+                System.out.print(" ? ");
             else
                 System.out.print(" " + (char) c + " ");
         }

@@ -211,7 +211,7 @@ class FileProcessor {
         m_byteBuffer.limit(m_byteBuffer.capacity());
         m_totalReadLength = 0;
 
-        // Asi como el numero de lecturas atendiendo al tama�o
+        // Asi como el numero de lecturas atendiendo al tamaño
         int totalReadingsCount;
         long skipPos;
         if (file.length() > NUM_CHUNKS * CHUNK_SIZE) {

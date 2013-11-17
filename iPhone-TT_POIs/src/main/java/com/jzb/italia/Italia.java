@@ -76,7 +76,7 @@ public class Italia {
             }
         }
 
-        // A�ade los puntos "no principales" a la sublista del principal MAS CERCANO
+        // Añade los puntos "no principales" a la sublista del principal MAS CERCANO
         for (TPOIData subpoi : points) {
 
             TPOIData rootpoi = null;
@@ -126,7 +126,7 @@ public class Italia {
         // Ordena los puntos "principales"
         Collections.sort(rootPoints, catComp);
 
-        // A�ade los puntos "principales" en el orden anterior y, detras de cada uno,
+        // Añade los puntos "principales" en el orden anterior y, detras de cada uno,
         // los "cercanos" tambien ordenados
         ArrayList<TPOIData> allPoints = new ArrayList<TPOIData>();
         for (TPOIData poi : rootPoints) {
@@ -169,7 +169,7 @@ public class Italia {
 
         _deleteFolderContent(ov2Folder);
 
-        HashMap<String, String> styleCatMap = ConversionUtil.getDefaultParseCategories();
+        HashMap<String, String> styleCatMap = new HashMap<String, String>(ConversionUtil.getDefaultParseCategories());
         styleCatMap.put("hospitals", "Iglesias");
         styleCatMap.put("red-dot", "Otros");
         styleCatMap.put("yellow-dot", "Roma");

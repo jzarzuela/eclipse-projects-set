@@ -212,7 +212,7 @@ public class IPadResize extends BaseTask {
 
         int width, height;
 
-        // Las imagenes peque�as se quedan como estan
+        // Las imagenes pequeñas se quedan como estan
         if (imgInfo.width < IPAD_WIDTH || imgInfo.height < IPAD_HEIGHT) {
             return;
         }
@@ -227,7 +227,7 @@ public class IPadResize extends BaseTask {
             if (ra >= 1.7f) {
                 height = IPAD_HEIGHT;
                 width = (int) Math.ceil(IPAD_HEIGHT * ra);
-                // Si estan a menos de 2pixels del tama�o del iPad lo ajusta a este, sino lo redondea a un numero par
+                // Si estan a menos de 2pixels del tamaño del iPad lo ajusta a este, sino lo redondea a un numero par
                 if (Math.abs(width - IPAD_WIDTH) <= 2) {
                     width = IPAD_WIDTH;
                 } else {
@@ -236,7 +236,7 @@ public class IPadResize extends BaseTask {
             } else {
                 width = IPAD_WIDTH;
                 height = (int) Math.ceil(IPAD_WIDTH / ra);
-                // Si estan a menos de 2pixels del tama�o del iPad lo ajusta a este, sino lo redondea a un numero par
+                // Si estan a menos de 2pixels del tamaño del iPad lo ajusta a este, sino lo redondea a un numero par
                 if (Math.abs(height - IPAD_HEIGHT) <= 2) {
                     height = IPAD_HEIGHT;
                 } else {
@@ -253,7 +253,7 @@ public class IPadResize extends BaseTask {
             if (ra >= 1.7f) {
                 width = IPAD_HEIGHT;
                 height = (int) Math.ceil(IPAD_HEIGHT * ra);
-                // Si estan a menos de 2pixels del tama�o del iPad lo ajusta a este, sino lo redondea a un numero par
+                // Si estan a menos de 2pixels del tamaño del iPad lo ajusta a este, sino lo redondea a un numero par
                 if (Math.abs(height - IPAD_WIDTH) <= 2) {
                     width = IPAD_WIDTH;
                 } else {
@@ -262,7 +262,7 @@ public class IPadResize extends BaseTask {
             } else {
                 height = IPAD_WIDTH;
                 width = (int) Math.ceil(IPAD_WIDTH / ra);
-                // Si estan a menos de 2pixels del tama�o del iPad lo ajusta a este o lo redondea a un numero par
+                // Si estan a menos de 2pixels del tamaño del iPad lo ajusta a este o lo redondea a un numero par
                 if (Math.abs(width - IPAD_HEIGHT) <= 2) {
                     width = IPAD_HEIGHT;
                 } else {

@@ -108,7 +108,7 @@ public class OV2FileLoader {
         byte buffer[] = new byte[len];
         fis.read(buffer);
         fis.read();
-        return new String(buffer);
+        return new String(buffer,"ISO-8859-1");
     }
 
 }
