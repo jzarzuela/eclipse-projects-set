@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.jzb.italia;
+package com.jzb.sorting;
 
 import java.io.File;
 import java.util.HashMap;

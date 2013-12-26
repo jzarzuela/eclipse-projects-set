@@ -27,6 +27,6 @@
 			<groupId>jzb-maven</groupId>
 			<artifactId>jzb.iphone.base.lib</artifactId>
 			<version>1.0.0</version>
-		</dependency>
+		</dependency>		
 	</dependencies>
 </project>

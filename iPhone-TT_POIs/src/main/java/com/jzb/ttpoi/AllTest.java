@@ -52,7 +52,7 @@ public class AllTest {
         File ov2Folder = new File("/Users/jzarzuela/Downloads/_tmp_/pois/_OV2s_");
         ov2Folder.mkdirs();
 
-        KMLDownload.downloadAllMaps(kmlFolder);
+        //KMLDownload.downloadAllMaps(kmlFolder);
         FileTransform.transformAllKMLtoOV2(kmlFolder, ov2Folder, true);
     }
 
