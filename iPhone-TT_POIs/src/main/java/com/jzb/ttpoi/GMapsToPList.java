@@ -131,7 +131,7 @@ public class GMapsToPList {
             _writePListMapPOI(ps, poi, index++);
         }
         ps.println("  </array>");
-        _writePListMapTagsSection(ps);
+        _writePListMapTagsSection(ps, mapInfo.getName());
         ps.println("</dict>");
         ps.println("</plist>");
     }
@@ -156,19 +156,72 @@ public class GMapsToPList {
     }
     
     // ----------------------------------------------------------------------------------------------------
-    private void _writePListMapTagsSection(PrintStream ps) throws Exception {
+    private void _writePListMapTagsSection(PrintStream ps, String map_name) throws Exception {
         
         ps.println("  <key>tags</key>");
         ps.println("  <array>");
+        
         ps.println("    <dict>");
+        ps.println("      <key>index</key>");
+        ps.println("      <integer>1</integer>");
         ps.println("      <key>name</key>");
-        ps.println("      <string>tag_1</string>");
+        ps.println("      <string>tag_1_"+map_name+"</string>");
         ps.println("      <key>poiIndexes</key>");
         ps.println("      <array>");
         ps.println("        <string>1</string>");
         ps.println("        <string>2-4</string>");
         ps.println("      </array>");
+        ps.println("      <key>tagIndexes</key>");
+        ps.println("      <array>");
+        ps.println("          <string>2</string>");
+        ps.println("          <string>4-5</string>");
+        ps.println("      </array>");
         ps.println("    </dict>");
+        
+        ps.println("    <dict>");
+        ps.println("      <key>index</key>");
+        ps.println("      <integer>2</integer>");
+        ps.println("      <key>name</key>");
+        ps.println("      <string>tag_2_"+map_name+"</string>");
+        ps.println("      <key>poiIndexes</key>");
+        ps.println("      <array>");
+        ps.println("        <string>5-7</string>");
+        ps.println("      </array>");
+        ps.println("    </dict>");
+        
+        ps.println("    <dict>");
+        ps.println("      <key>index</key>");
+        ps.println("      <integer>3</integer>");
+        ps.println("      <key>name</key>");
+        ps.println("      <string>tag_3_"+map_name+"</string>");
+        ps.println("      <key>poiIndexes</key>");
+        ps.println("      <array>");
+        ps.println("        <string>8-10</string>");
+        ps.println("      </array>");
+        ps.println("    </dict>");
+        
+        ps.println("    <dict>");
+        ps.println("      <key>index</key>");
+        ps.println("      <integer>4</integer>");
+        ps.println("      <key>name</key>");
+        ps.println("      <string>tag_4_"+map_name+"</string>");
+        ps.println("      <key>poiIndexes</key>");
+        ps.println("      <array>");
+        ps.println("        <string>11-13</string>");
+        ps.println("      </array>");
+        ps.println("    </dict>");
+        
+        ps.println("    <dict>");
+        ps.println("      <key>index</key>");
+        ps.println("      <integer>5</integer>");
+        ps.println("      <key>name</key>");
+        ps.println("      <string>tag_5_"+map_name+"</string>");
+        ps.println("      <key>poiIndexes</key>");
+        ps.println("      <array>");
+        ps.println("        <string>14-16</string>");
+        ps.println("      </array>");
+        ps.println("    </dict>");
+        
         ps.println("  </array>");
     }
 
