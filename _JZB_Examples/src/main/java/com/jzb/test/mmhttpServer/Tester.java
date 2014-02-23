@@ -44,9 +44,10 @@ public class Tester {
      */
     public void doIt(String[] args) throws Exception {
 
+        File baseResFolder0=new File("/Users/jzarzuela/Downloads/_extension_/");
         File baseResFolder1=new File("./src/main/java/com/jzb/test/mmhttpServer/files");
         File baseResFolder2=new File("./filesMore");
-        File baseResFolders[]= {baseResFolder1,baseResFolder2};
+        File baseResFolders[]= {baseResFolder0, baseResFolder1,baseResFolder2};
         
         Server server = new Server(8008);
         

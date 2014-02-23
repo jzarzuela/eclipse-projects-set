@@ -37,6 +37,7 @@ public class FileResponder implements Responder {
             InputStreamResponse isr = new InputStreamResponse();
             isr.setStatus(200);
             isr.setContentType(contenType);
+            isr.setMaxAge(36000);
             isr.setBody(resFile);
             System.out.println("Resource found: "+resFile);
             return isr;
