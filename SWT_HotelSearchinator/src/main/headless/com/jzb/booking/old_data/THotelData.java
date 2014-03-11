@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.jzb.booking.data;
+package com.jzb.booking.old_data;
 
 import java.io.File;
 import java.io.FileReader;
@@ -25,24 +25,14 @@ public class THotelData {
     public int                  stars;
     public int                  votes;
     public String               dataLink;
-    public double               lat, lng;
-
-    public boolean              cancelable;
-    public boolean              withBreakfast;
-    public int                  ranking;
-    public double               avgDayPrice;
-    public double               avgPrice;
-    public double               avgCalculatedPrice;
-    public double               ttlPrice;
-    
+    public int                  numDays;
 
     /**
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
-        String cad = "HotelData = { Name = '" + name + "', Stars = " + stars + ", Rating = " + avgRating + "/" + votes + ", Address = " + address + ", Distance = " + distance + ", Lat = " + lat
-                + ", lng = " + lng;
+        String cad = "HotelData = { Name = '" + name + "', Stars = " + stars + ", Rating = " + avgRating + "/" + votes + ", Address = " + address + ", Distance = " + distance;
         if (rooms != null)
             for (TRoomData room : rooms) {
                 cad += "\n  " + room.toString();
@@ -57,12 +47,11 @@ public class THotelData {
         jsonObj.put("avgRating", this.avgRating);
         jsonObj.put("distance", this.distance);
         jsonObj.put("address", this.address);
-        jsonObj.put("lat", this.lat);
-        jsonObj.put("lng", this.lng);
         jsonObj.put("name", this.name != null ? this.name : "");
         jsonObj.put("stars", this.stars);
         jsonObj.put("votes", this.votes);
         jsonObj.put("dataLink", this.dataLink != null ? this.dataLink : "");
+        jsonObj.put("numDays", this.numDays);
         JSONArray hRooms = new JSONArray();
         jsonObj.put("rooms", hRooms);
         if (this.rooms != null) {
@@ -70,14 +59,6 @@ public class THotelData {
                 hRooms.put(room.toJSON());
             }
         }
-
-        jsonObj.put("cancelable", this.cancelable);
-        jsonObj.put("withBreakfast", this.withBreakfast);
-        jsonObj.put("ranking", this.ranking);
-        jsonObj.put("avgDayPrice", this.avgDayPrice);
-        jsonObj.put("avgPrice", this.avgPrice);
-        jsonObj.put("avgCalculatedPrice", this.avgCalculatedPrice);
-
         return jsonObj;
     }
 
@@ -87,12 +68,11 @@ public class THotelData {
         hotel.avgRating = jsonObj.getDouble("avgRating");
         hotel.distance = jsonObj.getDouble("distance");
         hotel.address = jsonObj.getString("address");
-        hotel.lat = jsonObj.getDouble("lat");
-        hotel.lng = jsonObj.getDouble("lng");
         hotel.name = jsonObj.getString("name");
         hotel.stars = jsonObj.getInt("stars");
         hotel.votes = jsonObj.getInt("votes");
         hotel.dataLink = jsonObj.getString("dataLink");
+        hotel.numDays = jsonObj.getInt("numDays");
         JSONArray hRooms = jsonObj.getJSONArray("rooms");
         if (hRooms.length() > 0) {
             hotel.rooms = new ArrayList<TRoomData>();
@@ -101,13 +81,6 @@ public class THotelData {
                 hotel.rooms.add(room);
             }
         }
-
-        hotel.cancelable = jsonObj.getBoolean("cancelable");
-        hotel.withBreakfast = jsonObj.getBoolean("withBreakfast");
-        hotel.ranking = jsonObj.getInt("ranking");
-        hotel.avgDayPrice = jsonObj.getDouble("avgDayPrice");
-        hotel.avgPrice = jsonObj.getDouble("avgPrice");
-        hotel.avgCalculatedPrice = jsonObj.getDouble("avgCalculatedPrice");
 
         return hotel;
     }

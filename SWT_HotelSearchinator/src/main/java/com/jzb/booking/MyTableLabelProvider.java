@@ -7,7 +7,7 @@ import org.eclipse.jface.viewers.BaseLabelProvider;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.swt.graphics.Image;
 
-import com.jzb.booking.data.TRoomData;
+import com.jzb.booking.data.THotelData;
 
 /**
  * @author jzarzuela
@@ -30,36 +30,32 @@ public class MyTableLabelProvider extends BaseLabelProvider implements ITableLab
      */
     @Override
     public String getColumnText(Object element, int columnIndex) {
-        TRoomData room = (TRoomData) element;
+        THotelData hotel = (THotelData) element;
         switch (columnIndex) {
             case 0:
-                return "" + room.ranking;
+                return "" + hotel.ranking;
             case 1:
-                return "" + (int) (room.calculatedPrice / (double) room.ownerHotel.numDays);
+                return "" + (int) hotel.avgDayPrice;
             case 2:
-                return "" + (int) room.calculatedPrice;
+                return "" + (int) hotel.avgCalculatedPrice;
             case 3:
-                return "" + (int) room.price;
+                return "" + (int) hotel.avgPrice;
             case 4:
-                return room.ownerHotel.name;
+                return "" + (int) hotel.ttlPrice;
             case 5:
-                return "" + room.ownerHotel.avgRating;
+                return hotel.name;
             case 6:
-                return "" + room.ownerHotel.votes;
+                return "" + hotel.avgRating;
             case 7:
-                return "" + room.ownerHotel.stars;
+                return "" + hotel.votes;
             case 8:
-                return "" + room.ownerHotel.address;
+                return "" + hotel.stars;
             case 9:
-                return "" + room.ownerHotel.distance;
+                return "" + (int)hotel.distance;
             case 10:
-                return room.cancelable ? "Sí" : "";
+                return hotel.cancelable ? "Sí" : "";
             case 11:
-                return room.withBreakfast ? "Sí" : "";
-            case 12:
-                return room.type;
-            case 13:
-                return "" + room.availability;
+                return hotel.withBreakfast ? "Sí" : "";
             default:
                 return "????";
         }

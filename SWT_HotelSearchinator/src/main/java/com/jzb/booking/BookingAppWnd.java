@@ -6,7 +6,6 @@ package com.jzb.booking;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashSet;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
@@ -31,9 +30,9 @@ import org.eclipse.swt.widgets.ToolItem;
 
 import swing2swt.layout.BorderLayout;
 
+import com.jzb.booking.data.HotelDataFilter;
 import com.jzb.booking.data.ParserSettings;
 import com.jzb.booking.data.THotelData;
-import com.jzb.booking.data.TRoomData;
 import com.jzb.booking.worker.ParserWorker;
 import com.jzb.booking.worker.ParserWorkerStatus;
 import com.jzb.swt.util.IProgressMonitor;
@@ -79,19 +78,21 @@ public class BookingAppWnd {
 
     }
 
-    private static final String   APP_NAME                = "SWTBooking";
+    private static final String   APP_NAME           = "SWTBooking";
 
-    private static AppPreferences s_prefs                 = new AppPreferences(APP_NAME);
+    private static AppPreferences s_prefs            = new AppPreferences(APP_NAME);
 
-    private ArrayList<TRoomData>  m_allHotelRoomsDataList = new ArrayList<TRoomData>();
-    private boolean               m_autoNavigation        = false;
+    private ArrayList<THotelData> m_allHotelDataList = new ArrayList<THotelData>();
+    ArrayList<THotelData>         m_filteredHotels   = new ArrayList<>();
+
+    private boolean               m_autoNavigation   = false;
     private Browser               m_browser;
     private ProgressMonitor       m_monitor;
     private ParserWorker          m_parserWorker;
     private ProgressBar           m_progressBar;
     private Shell                 m_shell;
-    private boolean               m_showProgress          = false;
-    private TabbedTracerImpl      m_tabbedTracer          = new TabbedTracerImpl();
+    private boolean               m_showProgress     = false;
+    private TabbedTracerImpl      m_tabbedTracer     = new TabbedTracerImpl();
     private ToolItem              m_tltmExtractInfo;
     private ToolItem              m_tltmHome;
     private TabFolder             m_tabFolder;
@@ -99,7 +100,6 @@ public class BookingAppWnd {
     private TabItem               m_tbtmData;
     private TableViewer           m_tableViewer;
     private TabItem               m_tbtmSettings;
-    private Text                  m_txtNumReqRooms;
     private Text                  m_txtNonCancelableIncrement;
     private Text                  m_txtBreakfastCostPerDay;
 
@@ -107,11 +107,12 @@ public class BookingAppWnd {
     private ToolItem              m_tltmFiltered;
     private ToolItem              m_tltmNonCancelable;
     private ToolItem              m_tltmWithoutRating;
-    private Label                 m_lblNumReqRooms;
     private Label                 m_lblNonCcncelableIncrement;
     private Label                 m_lblFamilyBreakfastCost;
-    private Text                  m_txtMinRoomCapacity;
+    private Text                  m_txtMinRoomCapacities;
     private Label                 m_lblMinRoomCapacity;
+    private Text                  m_txtMaxTotalPrice;
+    private Label                 m_lblMaxTotalPrice;
 
     // ----------------------------------------------------------------------------------------------------
     /**
@@ -304,6 +305,10 @@ public class BookingAppWnd {
         tcolPrice.setWidth(60);
         tcolPrice.setText("Price");
 
+        TableColumn tcolTotalPrice = new TableColumn(table, SWT.CENTER);
+        tcolTotalPrice.setWidth(60);
+        tcolTotalPrice.setText("Totel Price");
+
         TableColumn tcolName = new TableColumn(table, SWT.NONE);
         tcolName.setWidth(200);
         tcolName.setText("Name");
@@ -320,10 +325,6 @@ public class BookingAppWnd {
         tcolStars.setWidth(50);
         tcolStars.setText("Stars");
 
-        TableColumn tcolAddress = new TableColumn(table, SWT.CENTER);
-        tcolAddress.setWidth(150);
-        tcolAddress.setText("Address");
-
         TableColumn tcolDistance = new TableColumn(table, SWT.CENTER);
         tcolDistance.setWidth(50);
         tcolDistance.setText("Dist.");
@@ -335,14 +336,6 @@ public class BookingAppWnd {
         TableColumn tcolBreakfast = new TableColumn(table, SWT.CENTER);
         tcolBreakfast.setWidth(50);
         tcolBreakfast.setText("Breakfast");
-
-        TableColumn tcolRoomType = new TableColumn(table, SWT.NONE);
-        tcolRoomType.setWidth(300);
-        tcolRoomType.setText("Room Type");
-
-        TableColumn tcolAvailability = new TableColumn(table, SWT.CENTER);
-        tcolAvailability.setWidth(70);
-        tcolAvailability.setText("Availability");
 
         Composite composite_3 = new Composite(composite_1, SWT.NONE);
         composite_3.setLayoutData(BorderLayout.NORTH);
@@ -437,38 +430,25 @@ public class BookingAppWnd {
         composite_2.setLayout(null);
 
         m_lblMinRoomCapacity = new Label(composite_2, SWT.NONE);
-        m_lblMinRoomCapacity.setBounds(10, 10, 111, 14);
+        m_lblMinRoomCapacity.setBounds(10, 10, 168, 14);
 
-        m_lblMinRoomCapacity.setText("Min Room Capacity:");
+        m_lblMinRoomCapacity.setText("Min Room Capacities (n,n,..):");
 
-        m_txtMinRoomCapacity = new Text(composite_2, SWT.BORDER);
-        m_txtMinRoomCapacity.setBounds(198, 10, 64, 19);
-        m_txtMinRoomCapacity.addModifyListener(new ModifyListener() {
+        m_txtMinRoomCapacities = new Text(composite_2, SWT.BORDER);
+        m_txtMinRoomCapacities.setBounds(198, 10, 250, 19);
+        m_txtMinRoomCapacities.addModifyListener(new ModifyListener() {
 
             public void modifyText(ModifyEvent e) {
                 _markSettingsAsModified(m_lblMinRoomCapacity);
             }
         });
 
-        m_lblNumReqRooms = new Label(composite_2, SWT.NONE);
-        m_lblNumReqRooms.setBounds(10, 35, 123, 14);
-        m_lblNumReqRooms.setText("Num required rooms: ");
-
-        m_txtNumReqRooms = new Text(composite_2, SWT.BORDER);
-        m_txtNumReqRooms.setBounds(198, 35, 64, 19);
-        m_txtNumReqRooms.addModifyListener(new ModifyListener() {
-
-            public void modifyText(ModifyEvent e) {
-                _markSettingsAsModified(m_lblNumReqRooms);
-            }
-        });
-
         m_lblNonCcncelableIncrement = new Label(composite_2, SWT.NONE);
-        m_lblNonCcncelableIncrement.setBounds(10, 63, 168, 14);
+        m_lblNonCcncelableIncrement.setBounds(10, 38, 168, 14);
         m_lblNonCcncelableIncrement.setText("Non cancelable increment (%): ");
 
         m_txtNonCancelableIncrement = new Text(composite_2, SWT.BORDER);
-        m_txtNonCancelableIncrement.setBounds(198, 60, 64, 19);
+        m_txtNonCancelableIncrement.setBounds(198, 35, 64, 19);
         m_txtNonCancelableIncrement.addModifyListener(new ModifyListener() {
 
             public void modifyText(ModifyEvent e) {
@@ -477,11 +457,11 @@ public class BookingAppWnd {
         });
 
         m_lblFamilyBreakfastCost = new Label(composite_2, SWT.NONE);
-        m_lblFamilyBreakfastCost.setBounds(10, 88, 175, 14);
+        m_lblFamilyBreakfastCost.setBounds(10, 63, 175, 14);
         m_lblFamilyBreakfastCost.setText("Family breakfast cost (per day): ");
 
         m_txtBreakfastCostPerDay = new Text(composite_2, SWT.BORDER);
-        m_txtBreakfastCostPerDay.setBounds(198, 85, 64, 19);
+        m_txtBreakfastCostPerDay.setBounds(198, 60, 64, 19);
         m_txtBreakfastCostPerDay.addModifyListener(new ModifyListener() {
 
             public void modifyText(ModifyEvent e) {
@@ -490,7 +470,7 @@ public class BookingAppWnd {
         });
 
         Button btnSetValues = new Button(composite_2, SWT.NONE);
-        btnSetValues.setBounds(185, 120, 87, 28);
+        btnSetValues.setBounds(198, 132, 87, 28);
         btnSetValues.addSelectionListener(new SelectionAdapter() {
 
             @Override
@@ -499,6 +479,20 @@ public class BookingAppWnd {
             }
         });
         btnSetValues.setText("Set Values");
+
+        m_lblMaxTotalPrice = new Label(composite_2, SWT.NONE);
+        m_lblMaxTotalPrice.setBounds(10, 86, 175, 14);
+        m_lblMaxTotalPrice.setText("Maximun Day Price (0 none):");
+
+        m_txtMaxTotalPrice = new Text(composite_2, SWT.BORDER);
+        m_txtMaxTotalPrice.setText("0");
+        m_txtMaxTotalPrice.setBounds(198, 83, 64, 19);
+        m_txtMaxTotalPrice.addModifyListener(new ModifyListener() {
+
+            public void modifyText(ModifyEvent e) {
+                _markSettingsAsModified(m_lblMaxTotalPrice);
+            }
+        });
 
         // ------------------------------------------------------------------------
         // ********** TabbedTracer ***********************************************
@@ -511,9 +505,9 @@ public class BookingAppWnd {
     private void _tableDoblecliked() {
 
         int rowIndex = m_tableViewer.getTable().getSelectionIndex();
-        TRoomData room = (TRoomData) m_tableViewer.getElementAt(rowIndex);
-        if (room != null && room.ownerHotel.dataLink != null) {
-            HotelDetailWnd.openNew(room.ownerHotel);
+        THotelData hotel = (THotelData) m_tableViewer.getElementAt(rowIndex);
+        if (hotel != null && hotel.dataLink != null) {
+            HotelDetailWnd.openNew(hotel);
         }
     }
 
@@ -530,7 +524,7 @@ public class BookingAppWnd {
         Tracer.reset();
 
         // Borra los datos previos de los hoteles
-        m_allHotelRoomsDataList.clear();
+        m_allHotelDataList.clear();
 
         // Inhabilita el botón temporalmente
         m_tltmExtractInfo.setEnabled(false);
@@ -549,7 +543,7 @@ public class BookingAppWnd {
         m_parserWorker.reset();
 
         // Borra los datos previos de los hoteles
-        m_allHotelRoomsDataList.clear();
+        m_allHotelDataList.clear();
 
         // Habilita el botón de extraccion
         m_tltmExtractInfo.setEnabled(true);
@@ -573,17 +567,17 @@ public class BookingAppWnd {
                 case PageEnded:
                     for (THotelData hotel : pws.hotelDataList) {
                         Tracer._debug(hotel.toString());
-                        m_allHotelRoomsDataList.addAll(hotel.rooms);
+                        m_allHotelDataList.add(hotel);
                     }
                     break;
 
                 case AllPagesEnded:
                     for (THotelData hotel : pws.hotelDataList) {
                         Tracer._debug(hotel.toString());
-                        m_allHotelRoomsDataList.addAll(hotel.rooms);
+                        m_allHotelDataList.add(hotel);
                     }
                     m_autoNavigation = false;
-                    _updateRankingInfo(true);
+                    _updateRankingInfoAndFilterHotels(true);
                     _showTableInfo(1);
                     m_tltmExtractInfo.setEnabled(true);
                     break;
@@ -607,13 +601,8 @@ public class BookingAppWnd {
     private void _loadHotelsDebuggingInfo() {
         try {
             String fileName = _getDebugtDataFile();
-            ArrayList<THotelData> hotels = THotelData.loadHotelsData(fileName);
-            ArrayList<TRoomData> hotelRoomsDataList = new ArrayList<TRoomData>();
-            for (THotelData hotel : hotels) {
-                hotelRoomsDataList.addAll(hotel.rooms);
-            }
-            m_allHotelRoomsDataList = hotelRoomsDataList;
-            _updateRankingInfo(false);
+            m_allHotelDataList = THotelData.loadHotelsData(fileName);
+            _updateRankingInfoAndFilterHotels(false);
             _showTableInfo(1);
         } catch (Exception ex) {
             Tracer._error("Error loading JSON debugging info", ex);
@@ -628,27 +617,31 @@ public class BookingAppWnd {
     }
 
     // ----------------------------------------------------------------------------------------------------
-    private void _updateRankingInfo(boolean saveDebuggingInfo) {
+    private void _updateRankingInfoAndFilterHotels(boolean saveDebuggingInfo) {
 
         // Guarda la informacion para depuracion
         try {
             if (saveDebuggingInfo) {
-                HashSet<THotelData> hotels = new HashSet<THotelData>();
-                for (TRoomData room : m_allHotelRoomsDataList) {
-                    hotels.add(room.ownerHotel);
-                }
                 String fileName = _getDebugtDataFile();
-                THotelData.saveHotelsData(fileName, new ArrayList<THotelData>(hotels));
+                THotelData.saveHotelsData(fileName, m_allHotelDataList);
             }
         } catch (Exception ex) {
             Tracer._error("Error saving JSON debugging info", ex);
         }
 
+        // Filtra los hoteles segun los settings
+        m_filteredHotels.clear();
+        for (THotelData hotel : m_allHotelDataList) {
+            THotelData hotel2 = HotelDataFilter.updatedAndFilter(hotel);
+            if (hotel2 != null)
+                m_filteredHotels.add(hotel2);
+        }
+
         // Antes de mostrar la informacion les asigna un ranking atendiendo a la formula creada
         try {
             FuzzyLogicRanking flr = new FuzzyLogicRanking();
-            for (TRoomData room : m_allHotelRoomsDataList) {
-                flr.adjustRanking(room);
+            for (THotelData hotel : m_filteredHotels) {
+                flr.adjustRanking(hotel);
             }
         } catch (Exception ex) {
             Tracer._error("Error loading FuzzyLogicRanking", ex);
@@ -664,36 +657,36 @@ public class BookingAppWnd {
         m_tltmNonCancelable.setSelection(filter == 2);
         m_tltmWithoutRating.setSelection(filter == 3);
 
-        ArrayList<TRoomData> hotelRoomsDataList = new ArrayList<TRoomData>();
-        if (m_allHotelRoomsDataList != null) {
-            for (TRoomData room : m_allHotelRoomsDataList) {
+        ArrayList<THotelData> hotelDataList = new ArrayList<THotelData>();
+        if (m_filteredHotels != null) {
+            for (THotelData hotel : m_filteredHotels) {
                 switch (filter) {
                     case 0:
-                        hotelRoomsDataList.add(room);
+                        hotelDataList.add(hotel);
                         break;
                     case 1:
-                        if (room.ownerHotel.avgRating > 0 && room.ownerHotel.votes > 0 && room.cancelable) {
-                            hotelRoomsDataList.add(room);
+                        if (hotel.avgRating > 0 && hotel.votes > 0 && hotel.cancelable) {
+                            hotelDataList.add(hotel);
                         }
                         break;
                     case 2:
-                        if (room.ownerHotel.avgRating > 0 && room.ownerHotel.votes > 0 && !room.cancelable) {
-                            hotelRoomsDataList.add(room);
+                        if (hotel.avgRating > 0 && hotel.votes > 0 && !hotel.cancelable) {
+                            hotelDataList.add(hotel);
                         }
                         break;
                     case 3:
-                        if (room.ownerHotel.avgRating == 0 || room.ownerHotel.votes <= 0) {
-                            hotelRoomsDataList.add(room);
+                        if (hotel.avgRating == 0 || hotel.votes <= 0) {
+                            hotelDataList.add(hotel);
                         }
                         break;
                 }
             }
         }
-        __showTableInfo(hotelRoomsDataList);
+        __showTableInfo(hotelDataList);
     }
 
     // ----------------------------------------------------------------------------------------------------
-    private void __showTableInfo(ArrayList<TRoomData> hotelRoomsDataList) {
+    private void __showTableInfo(ArrayList<THotelData> hotelDataList) {
 
         // Muestra la informacion
         Table table = m_tableViewer.getTable();
@@ -704,7 +697,7 @@ public class BookingAppWnd {
         m_tableViewer.setLabelProvider(new MyTableLabelProvider());
         m_tableViewer.setComparator(new MyViewerComparator());
 
-        m_tableViewer.setInput(hotelRoomsDataList);
+        m_tableViewer.setInput(hotelDataList);
 
         m_tabFolder.setSelection(1);
     }
@@ -744,12 +737,16 @@ public class BookingAppWnd {
 
         m_monitor = new ProgressMonitor();
         m_parserWorker = new ParserWorker(m_monitor);
-        m_txtMinRoomCapacity.setText("" + ParserSettings.minRoomCapacity);
-        m_txtNumReqRooms.setText("" + ParserSettings.numReqRooms);
-        m_txtNonCancelableIncrement.setText("" + (int) (100 * (ParserSettings.NonCancelableIncrement - 1)));
-        m_txtBreakfastCostPerDay.setText("" + (int) ParserSettings.FamilyBreakfastCostPerDay);
 
-        _updatePrefs();
+        ParserSettings.loadFromAppPrefs(s_prefs);
+
+        m_txtMinRoomCapacities.setText(ParserSettings.minRoomCapacities_to_str());
+        double value = 100 * ParserSettings.NonCancelableIncrement - 100;
+        m_txtNonCancelableIncrement.setText("" + (int) value);
+        m_txtBreakfastCostPerDay.setText("" + (int) ParserSettings.FamilyBreakfastCostPerDay);
+        m_txtMaxTotalPrice.setText("" + (int) ParserSettings.maxTotalPrice);
+
+        _markSettingsAsSaved();
     }
 
     // ----------------------------------------------------------------------------------------------------
@@ -767,25 +764,19 @@ public class BookingAppWnd {
     private void _updatePrefs() {
         try {
 
-            ParserSettings.minRoomCapacity = _parseUInt(m_txtMinRoomCapacity.getText(), 1, 9);
-            m_txtMinRoomCapacity.setText("" + ParserSettings.minRoomCapacity);
-            s_prefs.setPref("MinRoomCapacity", m_txtMinRoomCapacity.getText());
-
-            ParserSettings.numReqRooms = _parseUInt(m_txtNumReqRooms.getText(), 1, 9);
-            m_txtNumReqRooms.setText("" + ParserSettings.numReqRooms);
-            s_prefs.setPref("NumReqRooms", m_txtNumReqRooms.getText());
+            ParserSettings.str_to_minRoomCapacities(m_txtMinRoomCapacities.getText());
 
             int value = _parseUInt(m_txtNonCancelableIncrement.getText(), 20, 100);
             ParserSettings.NonCancelableIncrement = (100.0 + value) / 100.0;
-            m_txtNonCancelableIncrement.setText("" + value);
-            s_prefs.setPref("NonCancelableIncrement", m_txtNonCancelableIncrement.getText());
 
             ParserSettings.FamilyBreakfastCostPerDay = _parseUInt(m_txtBreakfastCostPerDay.getText(), 25, 200);
-            m_txtBreakfastCostPerDay.setText("" + (int) ParserSettings.FamilyBreakfastCostPerDay);
-            s_prefs.setPref("BreakfastCostPerDay", m_txtBreakfastCostPerDay.getText());
+            ParserSettings.maxTotalPrice = _parseUInt(m_txtMaxTotalPrice.getText(), 0, Integer.MAX_VALUE);
+
+            ParserSettings.saveToAppPrefs(s_prefs);
 
             s_prefs.save();
             _markSettingsAsSaved();
+
         } catch (Exception ex) {
             Tracer._error("Error saving preferences", ex);
         }
@@ -801,11 +792,11 @@ public class BookingAppWnd {
     private void _markSettingsAsSaved() {
         m_lblMinRoomCapacity.setFont(org.eclipse.wb.swt.SWTResourceManager.getFont("Lucida Grande", 11, SWT.NONE));
         m_lblMinRoomCapacity.setForeground(org.eclipse.wb.swt.SWTResourceManager.getColor(SWT.COLOR_WIDGET_FOREGROUND));
-        m_lblNumReqRooms.setFont(org.eclipse.wb.swt.SWTResourceManager.getFont("Lucida Grande", 11, SWT.NONE));
-        m_lblNumReqRooms.setForeground(org.eclipse.wb.swt.SWTResourceManager.getColor(SWT.COLOR_WIDGET_FOREGROUND));
         m_lblNonCcncelableIncrement.setFont(org.eclipse.wb.swt.SWTResourceManager.getFont("Lucida Grande", 11, SWT.NONE));
         m_lblNonCcncelableIncrement.setForeground(org.eclipse.wb.swt.SWTResourceManager.getColor(SWT.COLOR_WIDGET_FOREGROUND));
         m_lblFamilyBreakfastCost.setFont(org.eclipse.wb.swt.SWTResourceManager.getFont("Lucida Grande", 11, SWT.NONE));
         m_lblFamilyBreakfastCost.setForeground(org.eclipse.wb.swt.SWTResourceManager.getColor(SWT.COLOR_WIDGET_FOREGROUND));
+        m_lblMaxTotalPrice.setFont(org.eclipse.wb.swt.SWTResourceManager.getFont("Lucida Grande", 11, SWT.NONE));
+        m_lblMaxTotalPrice.setForeground(org.eclipse.wb.swt.SWTResourceManager.getColor(SWT.COLOR_WIDGET_FOREGROUND));
     }
 }

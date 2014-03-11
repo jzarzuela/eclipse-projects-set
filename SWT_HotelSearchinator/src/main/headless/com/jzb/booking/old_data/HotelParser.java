@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.jzb.booking.data;
+package com.jzb.booking.old_data;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -86,8 +86,8 @@ public class HotelParser extends BaseParser {
             hotelData.distance = _getXPathValueDouble(hotel, "Hotel Distance", ".//span[contains(@class, 'distfromdest')]", "0.0", null);
 
             // Estrellas del hotel
-            hotelData.stars = _getXPathValueInt(hotel, "Hotel Num. Estrellas", ".//span[contains(@class, 'use_sprites')]", "0", "title");
-
+            hotelData.stars = _getXPathValueInt(hotel, "Hotel Num. Estrellas", ".//span[contains(@class, 'stars')]", "0", "title");
+            
             // Habitaciones del hotel
             // Dejamos solo las habitaciones (tipos) necesarias para cubrir las necesidades (1,2,... Habitaciones)
             hotelData.rooms = _filterHotelRooms(roomParser.parseRooms(hotelData, hotel, minRoomCapacity, numDays), numReqRooms);

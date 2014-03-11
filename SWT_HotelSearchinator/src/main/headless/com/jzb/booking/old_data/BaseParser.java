@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.jzb.booking.data;
+package com.jzb.booking.old_data;
 
 import java.util.List;
 

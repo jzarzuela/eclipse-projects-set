@@ -8,7 +8,7 @@ import java.io.InputStream;
 import net.sourceforge.jFuzzyLogic.FIS;
 import net.sourceforge.jFuzzyLogic.rule.RuleBlock;
 
-import com.jzb.booking.data.TRoomData;
+import com.jzb.booking.data.THotelData;
 
 /**
  * @author jzarzuela
@@ -33,11 +33,10 @@ public class FuzzyLogicRanking {
     }
 
     // ----------------------------------------------------------------------------------------------------
-    public void adjustRanking(TRoomData room) throws Exception {
+    public void adjustRanking(THotelData hotel) throws Exception {
 
-        int price = (int) (room.calculatedPrice / room.ownerHotel.numDays);
-        double ranking = calcRanking(price, room.ownerHotel.avgRating);
-        room.ranking = (int) (2.0 * ranking);
+        double ranking = calcRanking(hotel.avgDayPrice, hotel.avgRating);
+        hotel.ranking = (int) (2.0 * ranking);
     }
 
     // ----------------------------------------------------------------------------------------------------

@@ -7,7 +7,9 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
 import com.jzb.booking.data.THotelData;
+
 import swing2swt.layout.BorderLayout;
+
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.ToolItem;
@@ -18,6 +20,8 @@ import org.eclipse.swt.browser.ProgressEvent;
 import org.eclipse.swt.browser.LocationAdapter;
 import org.eclipse.swt.browser.LocationEvent;
 import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Text;
 
 /**
  * @author jzarzuela
@@ -33,6 +37,8 @@ public class HotelDetailWnd {
     private ToolItem    m_tltmRefresh;
     private Browser     m_browser;
     private boolean     m_showProgress = false;
+    private Composite   m_composite;
+    private Text        m_text;
 
     // ----------------------------------------------------------------------------------------------------
     /**
@@ -58,7 +64,7 @@ public class HotelDetailWnd {
         m_shell.open();
         m_shell.layout();
         _setWndPosition();
-        
+
         while (!m_shell.isDisposed()) {
             if (!display.readAndDispatch()) {
                 display.sleep();
@@ -75,12 +81,6 @@ public class HotelDetailWnd {
         m_shell.setSize(450, 300);
         m_shell.setText("Hotel details: " + m_hotelData.name);
         m_shell.setLayout(new BorderLayout(0, 0));
-
-        ToolBar toolBar = new ToolBar(m_shell, SWT.FLAT | SWT.RIGHT);
-        toolBar.setLayoutData(BorderLayout.NORTH);
-
-        m_tltmRefresh = new ToolItem(toolBar, SWT.NONE);
-        m_tltmRefresh.setText("Refresh");
 
         m_progressBar = new ProgressBar(m_shell, SWT.NONE);
         m_progressBar.setLayoutData(BorderLayout.SOUTH);
@@ -112,8 +112,24 @@ public class HotelDetailWnd {
         });
         m_browser.setLayoutData(BorderLayout.CENTER);
         m_browser.setUrl(m_hotelData.dataLink);
+
+        m_composite = new Composite(m_shell, SWT.NONE);
+        m_composite.setLayout(new BorderLayout(0, 0));
+        m_composite.setLayoutData(BorderLayout.NORTH);
+
+        ToolBar toolBar = new ToolBar(m_composite, SWT.FLAT | SWT.RIGHT);
+        toolBar.setLayoutData(BorderLayout.NORTH);
+
+        m_tltmRefresh = new ToolItem(toolBar, SWT.NONE);
+        m_tltmRefresh.setText("Refresh");
+
+        m_text = new Text(m_composite, SWT.BORDER);
+        m_text.setEnabled(true);
+        m_text.setEditable(false);
+        m_text.setLayoutData(BorderLayout.CENTER);
+        m_text.setText(m_hotelData.dataLink);
     }
-    
+
     // ----------------------------------------------------------------------------------------------------
     private void _setWndPosition() {
         Rectangle r = Display.getDefault().getBounds();

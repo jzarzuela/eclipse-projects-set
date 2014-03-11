@@ -16,6 +16,6 @@ public class ParserTask {
     public String                jobID;
     public String                baseURL;
     public String                htmlText;
-    public ArrayList<THotelData> hotelDataList;
+    public ArrayList<THotelData> hotelDataList = new ArrayList<THotelData>();
 
 }

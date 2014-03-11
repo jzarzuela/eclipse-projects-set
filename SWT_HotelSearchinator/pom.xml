@@ -24,6 +24,19 @@
 
 	<dependencies>
 
+        <dependency>
+            <groupId>JZB-EXT-JARs</groupId>
+            <artifactId>ext.jar.httpclient</artifactId>
+            <version>0.3.3</version>
+        </dependency>
+
+		<dependency>
+		  <!-- jsoup HTML parser library @ http://jsoup.org/ -->
+		  <groupId>org.jsoup</groupId>
+		  <artifactId>jsoup</artifactId>
+		  <version>1.7.3</version>
+		</dependency>
+
 		<dependency>
 			<groupId>net.sourceforge.htmlunit</groupId>
 			<artifactId>htmlunit</artifactId>

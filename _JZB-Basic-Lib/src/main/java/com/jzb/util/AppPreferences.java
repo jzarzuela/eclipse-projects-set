@@ -124,9 +124,9 @@ public class AppPreferences {
         return str != null ? Long.parseLong(str) : 0;
     }
 
-    public long setPrefDouble(String name, double value) {
+    public double setPrefDouble(String name, double value) {
         String str = (String) m_prefs.setProperty(name, Double.toString(value));
-        return str != null ? Long.parseLong(str) : 0;
+        return str != null ? Double.parseDouble(str) : 0;
     }
     
     public File getPrefFile() {
