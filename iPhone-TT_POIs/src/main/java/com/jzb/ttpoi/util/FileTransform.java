@@ -101,6 +101,8 @@ public class FileTransform {
             Collections.sort(info.getAllPOIs(), comp);
         }
 
+        KMLFileWriter.saveFile(new File("/Users/jzarzuela/Desktop/nada.kml"), info);
+
         File ov2File = new File(ov2Folder, mapName + File.separator + shortMapName + "_ALL.ov2");
         ov2File.getParentFile().mkdirs();
         OV2FileWriter.saveFile(ov2File, info.getAllPOIs());
