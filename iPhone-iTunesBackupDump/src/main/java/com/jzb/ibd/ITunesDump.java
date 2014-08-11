@@ -131,7 +131,7 @@ public class ITunesDump {
      * @throws Exception
      *             if something fails during the execution
      */
-    public void doIt2(String[] args) throws Exception {
+    public void doIt(String[] args) throws Exception {
         
         File bbddFolder = new File("/Users/jzarzuela/Library/Application Support/MobileSync/Backup/");
         for (File f : bbddFolder.listFiles()) {
@@ -171,11 +171,13 @@ public class ITunesDump {
         }
     }
 
-    public void doIt(String[] args) throws Exception {
+    public void doIt2(String[] args) throws Exception {
 
         // iPad = 82def3f693ad6959d3ae4528d656e2aeb2809f58
+        // iPad Mini = 1ce8c1199e35c21ca8f9a6b4322fe614a5855210
         // iPhone = 2e1e42c63ba707a2ab1b9ffb95f9a1e7f38ecfc1
-        File bbddFile = new File("/Users/jzarzuela/Library/Application Support/MobileSync/Backup/5f19ba88515b02a37c066ccc74b0d064a1cef4cb//Manifest.mbdb");
+        // iPhone 5s = 9960d5f08dac562745742923c11c96120547b7e2
+        File bbddFile = new File("/Users/jzarzuela/Library/Application Support/MobileSync/Backup/9960d5f08dac562745742923c11c96120547b7e2//Manifest.mbdb");
         TreeMap<String, DomainDumpInfo> records = _readBackupInfo(bbddFile);
 
         // ******************************************
@@ -489,4 +491,7 @@ public class ITunesDump {
         long z = a0 + a1 + a2 + a3 + a4 + a5 + a6 + a7;
         return z;
     }
+    
+    
+    
 }

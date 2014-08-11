@@ -15,7 +15,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import com.jzb.ttpoi.data.TPOIData;
 import com.jzb.ttpoi.data.TPOIFileData;
+import com.jzb.ttpoi.data.TPOIPolylineData;
+import com.jzb.ttpoi.data.TPOIPolylineData.Coordinate;
 import com.jzb.ttpoi.wl.KMLFileLoader;
+import com.jzb.ttpoi.wl.OV2FileLoader;
 import com.jzb.util.DefaultHttpProxy;
 
 /**
@@ -81,21 +84,21 @@ public class OfflineMap {
         // OpenStreetMap: NSString *template = @"http://tile.openstreetmap.org/{z}/{x}/{y}.png";
         // Google Maps[22]: NSString *template = @"http://mt0.google.com/vt/x={x}&y={y}&z={z}";
 
-        String mapName = "TMP3";
-        //String mapName = "HT_Francia_2011";
-        //String mapName = "BT_Boston_2010_2013";
-        //String mapName = "HT_Holanda_2014";
+        // String mapName = "TMP3";
+        String mapName = "HT_Escocia_2014";
+        // String mapName = "BT_Boston_2010_2013";
+        // String mapName = "HT_Holanda_2014";
 
         System.out.printf("--------------------------------------------------------\n");
-        System.out.printf("Map name = %s\n",mapName);
+        System.out.printf("Map name = %s\n", mapName);
         System.out.printf("--------------------------------------------------------\n");
-        
+
         File offlineFolder = new File("/Users/jzarzuela/Downloads/_tmp_/pois/_offline_maps_/" + mapName + "/");
         File kmlFolder = new File("/Users/jzarzuela/Downloads/_tmp_/pois/_KMLs_");
         File kmlFile = new File(kmlFolder, mapName + ".kml");
 
         checkAlreadyDownloaded(offlineFolder);
-        System.out.printf("Already downloaded tiles: %d. Current total size = %,d\n", m_downloadedTiles.size(),  m_totalSize);
+        System.out.printf("Already downloaded tiles: %d. Current total size = %,d\n", m_downloadedTiles.size(), m_totalSize);
 
         TPOIFileData mapData = KMLFileLoader.loadFile(kmlFile);
 
@@ -108,8 +111,18 @@ public class OfflineMap {
             if (poi.Is_TT_Cat_POI())
                 continue;
 
-            downloadPoiTiles(poi, offlineFolder);
+            downloadLatLngTiles(poi.getLat(), poi.getLng(), offlineFolder);
 
+        }
+
+        for (TPOIPolylineData polyline : mapData.getAllPolylines()) {
+
+            for (int i = 0; i < polyline.getCoordinates().size() - 1; i++) {
+
+                Coordinate c1 = polyline.getCoordinates().get(i);
+                Coordinate c2 = polyline.getCoordinates().get(i + 1);
+                downloadLineTiles(c1, c2, offlineFolder);
+            }
         }
 
         System.out.println("--- Shutdown ---");
@@ -119,6 +132,51 @@ public class OfflineMap {
     }
 
     // ----------------------------------------------------------------------------------------------------
+    private void downloadLineTiles(Coordinate c1, Coordinate c2, File offlineFolder) throws Exception {
+
+        double sinLatitude1 = Math.sin(c1.lat * Math.PI / 180.0);
+        double x1 = ((c1.lng + 180.0) / 360.0);
+        double y1 = (0.5 - Math.log((1.0 + sinLatitude1) / (1.0 - sinLatitude1)) / (4.0 * Math.PI));
+
+        double sinLatitude2 = Math.sin(c2.lat * Math.PI / 180.0);
+        double x2 = ((c2.lng + 180.0) / 360.0);
+        double y2 = (0.5 - Math.log((1.0 + sinLatitude2) / (1.0 - sinLatitude2)) / (4.0 * Math.PI));
+
+        double b = (x1 == x2) ? 0 : (y1 - y2) / (x1 - x2);
+
+        for (int n = 0; n < 12; n++) {
+
+            int zoomLevel = 6 + n;
+            int aroundTiles = tilesForZoomLevel[n];
+
+            double XX1 = (double) (x1 * Math.pow(2, zoomLevel));
+            double YY1 = (double) (y1 * Math.pow(2, zoomLevel));
+            double XX2 = (double) (x2 * Math.pow(2, zoomLevel));
+            double YY2 = (double) (y2 * Math.pow(2, zoomLevel));
+            int DifX = x1 <= x2 ? +1 : -1;
+            int DifY = y1 <= y2 ? +1 : -1;
+
+            double a = (double) YY1 - b * (double) XX1;
+
+            for (double lx = 0; lx <= Math.abs(XX1 - XX2); lx++) {
+                double xx = XX1 + lx * DifX;
+                int yy1 = (int)Math.round(a + b * xx);
+                int yy2 = (int)Math.round(a + b * (xx + DifX));
+
+                for (double ly = 0; ly <= Math.abs(YY1 - YY2); ly++) {
+                    int yy =(int)Math.round(YY1 + ly * DifY);
+                    if ((DifY >= 0 && yy >= yy1 && yy <= yy2) || (DifY < 0 && yy >= yy2 && yy <= yy1)) {
+                        _downloadTileXYAround(zoomLevel, aroundTiles, (int)Math.round(xx), yy, offlineFolder);
+                    }
+                }
+            }
+
+        }
+
+    }
+
+    // ----------------------------------------------------------------------------------------------------
+
     private void checkAlreadyDownloaded(File folder) {
 
         if (folder.listFiles() == null)
@@ -142,10 +200,10 @@ public class OfflineMap {
 
     // ----------------------------------------------------------------------------------------------------
     // static final int tilesForZoomLevel[] = { 2, 3, 3, 4, 4, 5 };
-    //                                       6  7  8  9 10 11 12 13 14 15 16 17
+    // 6 7 8 9 10 11 12 13 14 15 16 17
     static final int tilesForZoomLevel[] = { 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 5, 5 };
 
-    private void downloadPoiTiles(TPOIData poi, File offlineFolder) throws Exception {
+    private void downloadLatLngTiles(double lat, double lng, File offlineFolder) throws Exception {
 
         for (int n = 0; n < 12; n++) {
 
@@ -153,52 +211,64 @@ public class OfflineMap {
             int aroundTiles = tilesForZoomLevel[n];
 
             // Calcula el tile base del punto
-            double sinLatitude = Math.sin(poi.getLat() * Math.PI / 180.0);
-            double pixelX = ((poi.getLng() + 180.0) / 360.0) * Math.pow(2, zoomLevel);
+            double sinLatitude = Math.sin(lat * Math.PI / 180.0);
+            double pixelX = ((lng + 180.0) / 360.0) * Math.pow(2, zoomLevel);
             double pixelY = (0.5 - Math.log((1.0 + sinLatitude) / (1.0 - sinLatitude)) / (4.0 * Math.PI)) * Math.pow(2, zoomLevel);
 
-            downloadPoiTiles(zoomLevel, aroundTiles, (int) pixelX, (int) pixelY, offlineFolder);
+            _downloadTileXYAround(zoomLevel, aroundTiles, (int) pixelX, (int) pixelY, offlineFolder);
 
         }
     }
 
     // ----------------------------------------------------------------------------------------------------
-    private void downloadPoiTiles(int zoomLevel, int aroundTiles, int poiTileX, int poiTileY, File offlineFolder) throws Exception {
+    private void _downloadTileXYAround(int zoomLevel, int aroundTiles, int poiTileX, int poiTileY, File offlineFolder) throws Exception {
 
-        for (int y = -aroundTiles; y < aroundTiles; y++) {
+        if (aroundTiles == 0) {
+            _downloadTileXY(zoomLevel, poiTileX, poiTileY, offlineFolder);
+        } else {
 
-            int tileY = poiTileY + y;
-            if (tileY < 0)
-                continue;
+            for (int y = -aroundTiles; y < aroundTiles; y++) {
 
-            for (int x = -aroundTiles; x < aroundTiles; x++) {
-
-                int tileX = poiTileX + x;
-                if (tileX < 0)
+                int tileY = poiTileY + y;
+                if (tileY < 0)
                     continue;
 
-                String tileKey = getTileKey(tileX, tileY);
+                for (int x = -aroundTiles; x < aroundTiles; x++) {
 
-                if (m_downloadedTiles.contains(tileKey)) {
-                    // System.out.println("tile already downloaded: " + tileKey);
-                    continue;
+                    int tileX = poiTileX + x;
+                    if (tileX < 0)
+                        continue;
+
+                    _downloadTileXY(zoomLevel, tileX, tileY, offlineFolder);
                 }
-
-                m_downloadedTiles.add(tileKey);
-
-                File tileFile = new File(offlineFolder, zoomLevel + "/" + geBucketStr(zoomLevel) + "/" + tileKey);
-
-                URL tileURL = new URL("http://otile" + (1 + m_serverIndex) + ".mqcdn.com/tiles/1.0.0/osm/" + zoomLevel + "/" + tileX + "/" + tileY + ".jpg");
-                // URL tileURL = new URL("http://mt" + m_serverIndex + ".google.com/vt/x=" + tileX + "&y=" + tileY + "&z=" + zoomLevel);
-                m_serverIndex = (m_serverIndex + 1) % 4;
-
-                tileFile.getParentFile().mkdirs();
-
-                m_numTasks = m_taskCount.incrementAndGet();
-                m_execSrvc.submit(new OfflineMapTask(this, tileFile, tileURL));
             }
+
         }
 
+    }
+
+    // ----------------------------------------------------------------------------------------------------
+    private void _downloadTileXY(int zoomLevel, int tileX, int tileY, File offlineFolder) throws Exception {
+
+        String tileKey = getTileKey(tileX, tileY);
+
+        if (m_downloadedTiles.contains(tileKey)) {
+            // System.out.println("tile already downloaded: " + tileKey);
+            return;
+        }
+
+        m_downloadedTiles.add(tileKey);
+
+        File tileFile = new File(offlineFolder, zoomLevel + "/" + geBucketStr(zoomLevel) + "/" + tileKey);
+
+        URL tileURL = new URL("http://otile" + (1 + m_serverIndex) + ".mqcdn.com/tiles/1.0.0/osm/" + zoomLevel + "/" + tileX + "/" + tileY + ".jpg");
+        // URL tileURL = new URL("http://mt" + m_serverIndex + ".google.com/vt/x=" + tileX + "&y=" + tileY + "&z=" + zoomLevel);
+        m_serverIndex = (m_serverIndex + 1) % 4;
+
+        tileFile.getParentFile().mkdirs();
+
+        m_numTasks = m_taskCount.incrementAndGet();
+        m_execSrvc.submit(new OfflineMapTask(this, tileFile, tileURL));
     }
 
     // ----------------------------------------------------------------------------------------------------

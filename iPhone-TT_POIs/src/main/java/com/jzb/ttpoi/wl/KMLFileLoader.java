@@ -22,6 +22,8 @@ import org.xml.sax.InputSource;
 
 import com.jzb.ttpoi.data.TPOIData;
 import com.jzb.ttpoi.data.TPOIFileData;
+import com.jzb.ttpoi.data.TPOIPolylineData;
+import com.jzb.ttpoi.data.TPOIPolylineData.Coordinate;
 
 /**
  * @author n63636
@@ -55,6 +57,12 @@ public class KMLFileLoader {
 
             Node node = nlist.item(n);
 
+            // Si no es un punto lo salta
+            val = xpath.evaluate("Point/coordinates/text()", node);
+            if (val == null || val.length() == 0)
+                continue;
+
+            
             TPOIData poi = new TPOIData();
 
             // ExtraInfo del punto
@@ -77,12 +85,8 @@ public class KMLFileLoader {
             val = ConversionUtil.getOV2Text(val);
             poi.setDesc(val);
 
-            // Coordenadas del punto. Puede no existir si es una Linea
-            // TODO: ¿Qué hacemos con las líneas? *****************************
+            // Coordenadas del punto.
             val = xpath.evaluate("Point/coordinates/text()", node);
-            if (val == null || val.length() == 0)
-                continue;
-
             parseCoordinates(val, poi);
 
             // Estilo del punto para la categoria
@@ -107,6 +111,39 @@ public class KMLFileLoader {
             } else {
                 fileData.addPOI(poi);
             }
+        }
+
+        // Lee todos los polylines
+        for (int n = 0; n < nlist.getLength(); n++) {
+
+            Node node = nlist.item(n);
+
+            // Si no es una polyline la salta
+            val = xpath.evaluate("LineString/coordinates/text()", node);
+            if (val == null || val.length() == 0)
+                continue;
+
+            TPOIPolylineData polyline = new TPOIPolylineData();
+
+            // Nombre del polyline
+            val = xpath.evaluate("name/text()", node);
+            val = ConversionUtil.getOV2Text(val);
+            polyline.setName(val);
+
+            // Descripcion del polyline
+            val = xpath.evaluate("description/text()", node);
+            val = ConversionUtil.getOV2Text(val);
+            polyline.setDesc(val);
+
+            // Coordenadas del polyline.
+            val = xpath.evaluate("LineString/coordinates/text()", node);
+            StringTokenizer tokenizer = new StringTokenizer(val, "\n");
+            while(tokenizer.hasMoreTokens()) {
+                String coordStr = tokenizer.nextToken();
+                parseCoordinates(coordStr, polyline);
+            }
+            
+            fileData.getAllPolylines().add(polyline);
         }
 
         fileData.translateCategories(styleCatMap);
@@ -150,4 +187,20 @@ public class KMLFileLoader {
         poi.setLat(Double.parseDouble(nstr));
     }
 
+    private static void parseCoordinates(String val, TPOIPolylineData polyline) throws Exception {
+        
+        val = val.trim();
+        Coordinate coordinate = new Coordinate();
+        
+        String nstr;
+        StringTokenizer st = new StringTokenizer(val, ",");
+        if(!st.hasMoreTokens()) return;
+        
+        nstr = st.nextToken();
+        coordinate.lng = Double.parseDouble(nstr);
+        nstr = st.nextToken();
+        coordinate.lat =Double.parseDouble(nstr);
+        
+        polyline.getCoordinates().add(coordinate);
+    }
 }

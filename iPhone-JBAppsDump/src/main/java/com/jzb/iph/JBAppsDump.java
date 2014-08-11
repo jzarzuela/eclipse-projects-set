@@ -6,8 +6,12 @@ package com.jzb.iph;
 import java.io.File;
 import java.io.PrintStream;
 import java.net.URL;
+import java.util.Date;
+import java.util.Enumeration;
 import java.util.Formatter;
 
+import org.apache.tools.zip.ZipEntry;
+import org.apache.tools.zip.ZipFile;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -15,6 +19,9 @@ import com.dd.plist.NSDictionary;
 import com.dd.plist.PropertyListParser;
 import com.jzb.futil.FileExtFilter;
 import com.jzb.futil.FileExtFilter.IncludeFolders;
+import com.jzb.ipa.bundle.BundleReader;
+import com.jzb.ipa.bundle.T_BundleData;
+import com.jzb.ipa.bundle.T_BundleData.LEGAL_TYPE;
 import com.jzb.util.Tracer;
 
 import HTTPClient.HTTPConnection;
@@ -29,6 +36,7 @@ public class JBAppsDump {
     private static final int SOCKET_TIMEOUT = 5000;
 
     private PrintStream      m_psOut;
+    private BundleReader     m_ipaReader    = new BundleReader();
 
     /**
      * Static Main starting method
@@ -66,7 +74,7 @@ public class JBAppsDump {
         m_psOut = new PrintStream(new File("/Users/jzarzuela/Desktop/ipasInfo.csv"));
         _printHeader();
 
-        File baseFolder = new File("/Users/jzarzuela/Documents/personal/iPhone");
+        File baseFolder = new File("/Users/jzarzuela/Documents/personal/iPhone/IPAs");
         _processIPAFolder(baseFolder);
 
         // File ipaFile = new File(baseFolder, "_games/_tN[Tap The Frog]_PK[com.mentals.tapthefroghd]_V[1.5.1]_OS[3.2]_D[2012-07-15].ipa");
@@ -164,15 +172,19 @@ public class JBAppsDump {
         BundleInfo bi;
 
         Tracer._debug("IPAFile = '%s'", ipaFile.getName());
-        NSDictionary dict = (NSDictionary) PropertyListParser.parse(ipaFile);
-        if (dict == null) {
+
+        T_BundleData ipaInfo = m_ipaReader.readInfo(ipaFile);
+        
+        if (ipaInfo == null) {
             bi = new BundleInfo(ipaFile);
         } else {
-            bi = new BundleInfo(ipaFile, dict);
+            bi = new BundleInfo(ipaFile, ipaInfo.dict);
         }
 
         _downloadExtraBundleInfo(bi);
 
         _printLine(bi);
     }
+    
+    
 }

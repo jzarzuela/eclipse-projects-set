@@ -75,10 +75,21 @@ public class Config {
             s_exts.add("." + st.nextToken().trim().toLowerCase());
         }
 
-        val = xpath.evaluate("/config/process/dstPath/text()", doc);
-        s_dstFolder = new File(val);
-        if (!s_dstFolder.exists()) {
-            throw new Exception("Error, destination folder doesn't exist: " + val);
+        s_dstFolder = null;
+        NodeList nlist2 = (NodeList) xpath.evaluate("/config/process/dstPath/text()", doc, XPathConstants.NODESET);
+        for (int n = 0; n < nlist2.getLength(); n++) {
+            Node node = nlist2.item(n);
+            val = node.getNodeValue();
+            s_dstFolder = new File(val);
+            if (!s_dstFolder.exists()) {
+                System.out.println("Warning, destination folder doesn't exist: " + val);
+                s_dstFolder = null;
+            } else {
+                break;
+            }
+        }
+        if(s_dstFolder==null) {
+            throw new Exception("Error, no valid destination folder exist");
         }
 
         Tracer.init(new File(Config.getDstFolder(), "_traces"));

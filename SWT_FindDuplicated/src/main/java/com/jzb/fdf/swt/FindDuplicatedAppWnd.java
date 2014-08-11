@@ -149,7 +149,7 @@ public class FindDuplicatedAppWnd {
         m_shell.setImage(SWTResourceManager.getImage(FindDuplicatedAppWnd.class, "/Doofenshmirtz-256.png"));
         m_shell.setSize(800, 400);
         m_shell.setMinimumSize(new Point(800, 400));
-        m_shell.setText("Booking Search-inator");
+        m_shell.setText("Duplicate Finder");
         m_shell.setLayout(new BorderLayout(0, 0));
 
         SashForm sashForm = new SashForm(m_shell, SWT.VERTICAL);

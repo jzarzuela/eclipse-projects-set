@@ -31,6 +31,9 @@ public class BundleReader {
 
     public T_BundleData readInfo(File afile) throws Exception {
 
+        NSDictionary iTunesMetadata_Dict = null;
+        NSDictionary data_Dict = null;
+
         T_BundleData data = new T_BundleData();
 
         boolean plistProcessed = false, imageProcessed = false, imdProcessed = false;
@@ -43,11 +46,11 @@ public class BundleReader {
 
             if (!imdProcessed && zentry.getName().endsWith("iTunesMetadata.plist")) {
                 byte buffer[] = _readBuffer((int) zentry.getSize(), zf.getInputStream(zentry));
-                NSDictionary dict2 = (NSDictionary) PropertyListParser.parse(buffer);
+                iTunesMetadata_Dict = (NSDictionary) PropertyListParser.parse(buffer);
 
                 // Es legal si existe una de los dos
-                String appleId1 = dict2.getStrValue("appleId");
-                String appleId2 = dict2.getStrCompoundValue("com.apple.iTunesStore.downloadInfo/accountInfo/AppleID");
+                String appleId1 = iTunesMetadata_Dict.getStrValue("appleId");
+                String appleId2 = iTunesMetadata_Dict.getStrCompoundValue("com.apple.iTunesStore.downloadInfo/accountInfo/AppleID");
                 if ((appleId1 != null && appleId1.toLowerCase().contains("jzarzuela")) || (appleId2 != null && appleId2.toLowerCase().contains("jzarzuela"))) {
                     data.isLegal = LEGAL_TYPE.LEGAL;
                 } else {
@@ -59,7 +62,7 @@ public class BundleReader {
 
             if (!plistProcessed && zentry.getName().endsWith(".app/Info.plist")) {
                 byte buffer[] = _readBuffer((int) zentry.getSize(), zf.getInputStream(zentry));
-                data.dict = (NSDictionary) PropertyListParser.parse(buffer);
+                data_Dict = (NSDictionary) PropertyListParser.parse(buffer);
                 data.fdate = m_sdf.format(new Date(zentry.getTime()));
                 plistProcessed = true;
             }
@@ -80,6 +83,14 @@ public class BundleReader {
         }
 
         zf.close();
+
+        if (iTunesMetadata_Dict != null) {
+            data.dict = iTunesMetadata_Dict;
+            if (data_Dict != null)
+                data.dict.putAll(data_Dict);
+        } else {
+            data.dict = data_Dict;
+        }
 
         return data;
     }

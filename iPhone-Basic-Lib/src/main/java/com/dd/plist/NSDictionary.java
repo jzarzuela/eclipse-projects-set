@@ -74,6 +74,11 @@ public class NSDictionary extends NSObject {
         return dict.get(key);
     }
 
+    public void putAll(NSDictionary other) {
+    
+        dict.putAll(other.dict);
+    }
+    
     /**
      * Puts a new key-value pair into this dictionary.
      * 

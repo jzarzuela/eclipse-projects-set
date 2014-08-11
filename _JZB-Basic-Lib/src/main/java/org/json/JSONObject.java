@@ -403,7 +403,8 @@ public class JSONObject {
         }
         Object object = opt(key);
         if (object == null) {
-            throw new JSONException("JSONObject[" + quote(key) + "] not found.");
+            //throw new JSONException("JSONObject[" + quote(key) + "] not found.");
+            return NULL;
         }
         return object;
     }

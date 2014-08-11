@@ -100,8 +100,10 @@ public class NameComposer {
                     sb.append(c);
                 }
             }
-            sb.insert(0, VERSION_PART, 0, VERSION_PART.length - sb.length());
-            cVer.append(sb);
+            if (VERSION_PART.length > sb.length()) {
+                sb.insert(0, VERSION_PART, 0, VERSION_PART.length - sb.length());
+                cVer.append(sb);
+            }
             cVer.append('#');
         }
 

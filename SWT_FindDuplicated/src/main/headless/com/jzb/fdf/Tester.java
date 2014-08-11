@@ -60,10 +60,10 @@ public class Tester {
      * @throws Exception
      *             if something fails during the execution
      */
-    public void doIt(String[] args) throws Exception {
+    public void doIt2(String[] args) throws Exception {
 
         FolderProcessor._init();
-        IModelSrvc.inst.init(false);
+        IModelSrvc.inst.init(true);
 
         Tracer._debug("***** Processing duplicated files *****");
         IModelSrvc.inst.processDuplicatedFiles();
@@ -86,7 +86,7 @@ public class Tester {
      * @throws Exception
      *             if something fails during the execution
      */
-    public void doIt2(String[] args) throws Exception {
+    public void doIt(String[] args) throws Exception {
 
         // File folder = new File("/Users/jzarzuela/Downloads/_tmp_/_extracted_IPAs_");
         // File folder = new File("/Users/jzarzuela/Downloads/_tmp_/_extracted_IPAs_/_iconos_varios_/ios-iphone-tab-bar-icons/PNG30x30-black");

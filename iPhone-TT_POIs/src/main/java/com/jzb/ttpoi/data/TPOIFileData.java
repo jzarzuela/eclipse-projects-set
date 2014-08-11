@@ -23,6 +23,10 @@ public class TPOIFileData {
      * 
      */
     private ArrayList<TPOIData>                  allPOIs          = new ArrayList<TPOIData>();
+    
+    private ArrayList<TPOIPolylineData>          allPolylines     = new ArrayList<>();
+    
+    
     /**
      * 
      */
@@ -85,6 +89,14 @@ public class TPOIFileData {
         return allPOIs;
     }
 
+    
+    /**
+     * @return the allPolylines
+     */
+    public ArrayList<TPOIPolylineData> getAllPolylines() {
+        return allPolylines;
+    }
+    
     /**
      * @return the allPOIs
      */
@@ -139,6 +151,15 @@ public class TPOIFileData {
         this.allPOIs = allPOIs;
     }
 
+    
+    /**
+     * @param allPolylines
+     *            the allPolylines to set
+     */
+    public void setAllPolylines(ArrayList<TPOIPolylineData> allPolylines) {
+        this.allPolylines = allPolylines;
+    }
+    
     /**
      * @param catPOIs
      *            the catPOIs to set
