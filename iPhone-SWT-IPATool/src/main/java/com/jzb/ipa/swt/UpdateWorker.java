@@ -56,12 +56,15 @@ public class UpdateWorker {
     private void _update(final File ExistingFolder, final File updateFolder, final File iTunesFolder) throws Exception {
 
         File backupFolder = new File(updateFolder, "_backup");
-        File newfFolder = new File(updateFolder, "_new");
+        File newFolder = new File(updateFolder, "_new");
+        File duplicatedFolder = new File(updateFolder, "_duplicated");
+        
         backupFolder.mkdirs();
-        newfFolder.mkdirs();
+        newFolder.mkdirs();
+        duplicatedFolder.mkdirs();
 
         IPAUpdater updater = new IPAUpdater();
-        updater.update(ExistingFolder, _getOrigingFolders(updateFolder, iTunesFolder), backupFolder, newfFolder);
+        updater.update(ExistingFolder, _getOrigingFolders(updateFolder, iTunesFolder), backupFolder, newFolder, duplicatedFolder);
     }
 
     private File[] _getOrigingFolders(File updateFolder, File iTunesFolder) {

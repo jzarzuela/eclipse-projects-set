@@ -4,6 +4,10 @@
 package com.jzb.ipa.upd;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,25 +38,32 @@ public class IPAUpdater {
         }
     }
 
-    private HashMap<String, TIPAInfo> m_existingIPAs = new HashMap<String, TIPAInfo>();
-    private IPARenamer                m_ipaRenamer   = new IPARenamer();
-    private HashMap<String, TIPAInfo> m_updateIPAs   = new HashMap<String, TIPAInfo>();
+    private HashMap<String, TIPAInfo> m_existingIPAs   = new HashMap<String, TIPAInfo>();
+    private ArrayList<TIPAInfo>       m_duplicatedIPAs = new ArrayList<TIPAInfo>();
 
-    public void update(File ExistingFolder, File updateFolders[], File backupFolder, File newfFolder) throws Exception {
+    private IPARenamer                m_ipaRenamer     = new IPARenamer();
+    private HashMap<String, TIPAInfo> m_updateIPAs     = new HashMap<String, TIPAInfo>();
+
+    public void update(File ExistingFolder, File updateFolders[], File backupFolder, File newFolder, File duplicatedFolder) throws Exception {
 
         Tracer._info("Reading info for already existing IPAs");
-        _readIPAsFromFolder(ExistingFolder, m_existingIPAs);
+        _readIPAsFromFolder(ExistingFolder, m_existingIPAs, m_duplicatedIPAs);
 
         Tracer._info("Reading info for new updated IPAs");
         for (File f : updateFolders) {
-            _readIPAsFromFolder(f, m_updateIPAs);
+            _readIPAsFromFolder(f, m_updateIPAs, m_duplicatedIPAs);
+        }
+        
+        if(m_duplicatedIPAs.size()>0) {
+            Tracer._error("There are duplicated IPA files. Moving them to folder: "+duplicatedFolder);
+            _moveDuplicatedFiles(duplicatedFolder);
         }
 
         Tracer._info("Checking for IPAs that have been updated");
         _checkForUpdates(backupFolder);
 
-        Tracer._info("Moving completely new IPAs to folder: " + newfFolder);
-        _moveNewFiles(newfFolder);
+        Tracer._info("Moving completely new IPAs to folder: " + newFolder);
+        _moveNewFiles(newFolder);
 
         Tracer._info("Cleaning JPEGs");
         _cleanJPEGs(updateFolders);
@@ -68,7 +79,7 @@ public class IPAUpdater {
                     _cleanJPEGs(new File[] { f });
                 } else {
                     String fname = f.getName();
-                    if (fname.toLowerCase().endsWith(".jpg") && fname.toLowerCase().contains("_pk[")) {
+                    if ((fname.toLowerCase().endsWith(".jpg") || fname.toLowerCase().endsWith(".png")) && fname.toLowerCase().contains("_pk[")) {
                         File ipaFile = new File(f.getParentFile(), fname.substring(0, fname.length() - 3) + "ipa");
                         if (!ipaFile.exists()) {
                             Tracer._info("Cleaning JPEG file: " + f);
@@ -79,6 +90,23 @@ public class IPAUpdater {
                     }
                 }
             }
+        }
+
+    }
+
+    private boolean _moveFileHelper(File org, File dst, String errorMsg) {
+
+        if (org == null || !org.exists()) {
+            Tracer._error("Trying to move from source file that does not exist: " + org);
+            return false;
+        }
+
+        try {
+            Files.move(Paths.get(org.getAbsolutePath()), Paths.get(dst.getAbsolutePath()), StandardCopyOption.REPLACE_EXISTING);
+            return true;
+        } catch (Throwable th) {
+            Tracer._error(errorMsg + dst, th);
+            return false;
         }
 
     }
@@ -98,29 +126,21 @@ public class IPAUpdater {
                     File newFile;
                     if (exIPA.ipaFile != null && exIPA.ipaFile.exists()) {
                         newFile = new File(backupFolder, exIPA.ipaFile.getName());
-                        if (!exIPA.ipaFile.renameTo(newFile)) {
-                            Tracer._error("Moving IPA file to backup folder: " + newFile);
-                        }
+                        _moveFileHelper(exIPA.ipaFile, newFile, "Moving IPA file to backup folder: ");
                     }
                     if (exIPA.imgFile != null && exIPA.imgFile.exists()) {
                         newFile = new File(backupFolder, exIPA.imgFile.getName());
-                        if (!exIPA.imgFile.renameTo(newFile)) {
-                            Tracer._error("Moving JPEG_IPA file to backup folder: " + newFile);
-                        }
+                        _moveFileHelper(exIPA.imgFile, newFile, "Moving JPEG_IPA file to backup folder: ");
                     }
 
                     Tracer._debug("Moving new files to existing folder");
                     if (upIPA.ipaFile != null && upIPA.ipaFile.exists()) {
                         newFile = new File(exIPA.ipaFile.getParentFile(), upIPA.ipaFile.getName());
-                        if (!upIPA.ipaFile.renameTo(newFile)) {
-                            Tracer._error("Moving new IPA file to existing folder: " + newFile);
-                        }
+                        _moveFileHelper(upIPA.ipaFile, newFile, "Moving new IPA file to existing folder: ");
                     }
                     if (upIPA.imgFile != null && upIPA.imgFile.exists()) {
                         newFile = new File(exIPA.ipaFile.getParentFile(), upIPA.imgFile.getName());
-                        if (!upIPA.imgFile.renameTo(newFile)) {
-                            Tracer._error("Moving new JPEG_IPA file to existing folder: " + newFile);
-                        }
+                        _moveFileHelper(upIPA.imgFile, newFile, "Moving new JPEG_IPA file to existing folder: ");
                     }
                 } else {
                     Tracer._info("Update IPA is older. It'll be descarted: " + upIPA.ipaFile);
@@ -128,21 +148,18 @@ public class IPAUpdater {
                     Tracer._debug("Moving update files to backup folder");
                     File newFile;
                     newFile = new File(backupFolder, upIPA.ipaFile.getName());
-                    if (!upIPA.ipaFile.renameTo(newFile)) {
-                        Tracer._error("Moving IPA file to backup folder: " + newFile);
-                    }
+                    _moveFileHelper(upIPA.ipaFile, newFile, "Moving IPA file to backup folder: ");
+
                     if (upIPA.imgFile != null) {
                         newFile = new File(backupFolder, upIPA.imgFile.getName());
-                        if (!upIPA.imgFile.renameTo(newFile)) {
-                            Tracer._error("Moving JPEG_IPA file to backup folder: " + newFile);
-                        }
+                        _moveFileHelper(upIPA.imgFile, newFile, "Moving JPEG_IPA file to backup folder: ");
                     }
                 }
             }
         }
     }
 
-    private void _moveNewFiles(File newfFolder) {
+    private void _moveNewFiles(File newFolder) {
 
         for (Map.Entry<String, TIPAInfo> entry : m_updateIPAs.entrySet()) {
 
@@ -161,23 +178,41 @@ public class IPAUpdater {
                     break;
 
             }
-            
+
             File newFile;
-            File newSubFolder = new File(newfFolder, legalFolder + upIPA.ipaFile.getName().substring(1, 2));
+            File newSubFolder = new File(newFolder, legalFolder + upIPA.ipaFile.getName().substring(1, 2));
             newSubFolder.mkdirs();
 
             newFile = new File(newSubFolder, upIPA.ipaFile.getName());
-            if (!upIPA.ipaFile.renameTo(newFile)) {
-                Tracer._error("Moving IPA file to folder: " + newFile);
-            }
+            _moveFileHelper(upIPA.ipaFile, newFile, "Moving IPA file to folder: ");
+
             if (upIPA.imgFile != null) {
                 newFile = new File(newSubFolder, upIPA.imgFile.getName());
-                if (!upIPA.imgFile.renameTo(newFile)) {
-                    Tracer._error("Moving JPEG_IPA file to folder: " + newFile);
-                }
+                _moveFileHelper(upIPA.imgFile, newFile, "Moving JPEG_IPA file to folder: ");
             }
         }
     }
+    
+    
+    private void _moveDuplicatedFiles(File duplicatedFolder) {
+
+        duplicatedFolder.mkdirs();
+
+        for (TIPAInfo upIPA : m_duplicatedIPAs) {
+
+            Tracer._debug("Moving duplicated IPA files to a single folder");
+
+            File newFile = new File(duplicatedFolder, upIPA.ipaFile.getName());
+            _moveFileHelper(upIPA.ipaFile, newFile, "Moving IPA file to folder: ");
+
+            if (upIPA.imgFile != null) {
+                newFile = new File(duplicatedFolder, upIPA.imgFile.getName());
+                _moveFileHelper(upIPA.imgFile, newFile, "Moving JPEG_IPA file to folder: ");
+            }
+        }
+    }
+
+    
 
     private TIPAInfo _readIPAInfo(File f) throws Exception {
 
@@ -208,13 +243,18 @@ public class IPAUpdater {
         return ii;
     }
 
-    private void _readIPAsFromFolder(File folder, HashMap<String, TIPAInfo> IPAs) throws Exception {
+    private void _readIPAsFromFolder(File folder, HashMap<String, TIPAInfo> IPAs, ArrayList<TIPAInfo> duplicatedIPAs) throws Exception {
+
+        if (folder.getName().equalsIgnoreCase("_duplicated")) {
+            Tracer._warn("Skipping '_duplicated' IPAs folder: " + folder);
+            return;
+        }
 
         Tracer._debug("Reading info for IPA files in: " + folder);
 
         for (File f : folder.listFiles()) {
             if (f.isDirectory()) {
-                _readIPAsFromFolder(f, IPAs);
+                _readIPAsFromFolder(f, IPAs, duplicatedIPAs);
             } else {
                 String fname = f.getName();
                 String lfname = fname.toLowerCase();
@@ -228,9 +268,12 @@ public class IPAUpdater {
                         if (ii.ver.compareTo(oo.ver) < 0) {
                             // Deja en la hashmap la version mas nueva
                             IPAs.put(oo.pkg, oo);
+                            duplicatedIPAs.add(ii);
+                        } else {
+                            duplicatedIPAs.add(oo);
                         }
                     }
-                } else if (lfname.endsWith(".jpg") && lfname.contains("_pk[")) {
+                } else if ((lfname.endsWith(".jpg") || lfname.endsWith(".png")) && lfname.contains("_pk[")) {
 
                     // Apuntamos el JPG como un IPA "fantasma" para poder recolocar el nuevo
                     // Si sólo queda el JPG en la carpeta

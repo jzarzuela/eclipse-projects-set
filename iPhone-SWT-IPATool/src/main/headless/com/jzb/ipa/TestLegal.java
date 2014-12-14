@@ -115,9 +115,15 @@ public class TestLegal {
                     Files.move(file, destIPAFile, LinkOption.NOFOLLOW_LINKS, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING);
                     System.out.println("Moved!");
 
+                    String imgExt = ".jpg";
                     Path jpgFile = Paths.get(file.toFile().getAbsolutePath().replace(".ipa", ".jpg"));
+                    if (!Files.exists(jpgFile)) {
+                        imgExt = ".png";
+                        jpgFile = Paths.get(file.toFile().getAbsolutePath().replace(".ipa", ".png"));
+                    }
+                    
                     if (Files.exists(jpgFile)) {
-                        String newJPGName = NameComposer.composeName(ipaInfo) + ".jpg";
+                        String newJPGName = NameComposer.composeName(ipaInfo) + imgExt;
                         Path destJPGFile = destFolder.resolve(newJPGName);
                         System.out.println("Moving JPG file: " + jpgFile);
                         Files.move(jpgFile, destJPGFile, LinkOption.NOFOLLOW_LINKS, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING);
@@ -132,7 +138,7 @@ public class TestLegal {
             }
 
             public FileVisitResult visitFileFailed(Path file, IOException exc) throws IOException {
-                if (file.toString().toLowerCase().endsWith(".jpg")) {
+                if (file.toString().toLowerCase().endsWith(".jpg") || file.toString().toLowerCase().endsWith(".png")) {
                     return FileVisitResult.CONTINUE;
                 } else {
                     throw exc;

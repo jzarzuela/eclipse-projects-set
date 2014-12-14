@@ -36,7 +36,7 @@ public class BundleReader {
 
         T_BundleData data = new T_BundleData();
 
-        boolean plistProcessed = false, imageProcessed = false, imdProcessed = false;
+        boolean plistProcessed = false, imageProcessed = false, idProcessed = false;
 
         ZipFile zf = new ZipFile(afile);
         Enumeration en = zf.getEntries();
@@ -44,7 +44,7 @@ public class BundleReader {
 
             ZipEntry zentry = (ZipEntry) en.nextElement();
 
-            if (!imdProcessed && zentry.getName().endsWith("iTunesMetadata.plist")) {
+            if (!idProcessed && zentry.getName().endsWith("iTunesMetadata.plist")) {
                 byte buffer[] = _readBuffer((int) zentry.getSize(), zf.getInputStream(zentry));
                 iTunesMetadata_Dict = (NSDictionary) PropertyListParser.parse(buffer);
 
@@ -57,7 +57,7 @@ public class BundleReader {
                     data.isLegal = LEGAL_TYPE.CRACKED;
                 }
 
-                imdProcessed = true;
+                idProcessed = true;
             }
 
             if (!plistProcessed && zentry.getName().endsWith(".app/Info.plist")) {
@@ -69,16 +69,32 @@ public class BundleReader {
 
             if (!imageProcessed && zentry.getName().endsWith("iTunesArtwork")) {
                 data.img = _readBuffer((int) zentry.getSize(), zf.getInputStream(zentry));
+                data.imgExt = ".jpg";
                 imageProcessed = true;
             }
+            
+            int imgPos = zentry.getName().indexOf("iTunesArtwork@2x.");
+            if (!imageProcessed && imgPos!=-1) {
+                data.img = _readBuffer((int) zentry.getSize(), zf.getInputStream(zentry));
+                data.imgExt = zentry.getName().substring(imgPos+16);
+                imageProcessed = true;
+            }
+            
+            imgPos = zentry.getName().indexOf("iTunesArtwork.");
+            if (!imageProcessed && imgPos!=-1) {
+                data.img = _readBuffer((int) zentry.getSize(), zf.getInputStream(zentry));
+                data.imgExt = zentry.getName().substring(imgPos+13);
+                //imageProcessed = true;
+            }
+            
 
-            if (plistProcessed && imageProcessed && imdProcessed) {
+            if (plistProcessed && imageProcessed && idProcessed) {
                 break;
             }
         }
 
         // Faltaba el archivo "iTunesMetadata.plist"
-        if (!imdProcessed) {
+        if (!idProcessed) {
             data.isLegal = LEGAL_TYPE.UNKNOWN;
         }
 

@@ -53,13 +53,14 @@ public class Tester {
         File updateFolder = new File("C:\\Users\\n63636\\Desktop\\Nueva carpeta");
         File ExistingFolder = new File("C:\\JZarzuela\\iPhone\\IPAs");
         File backupFolder = new File("C:\\Users\\n63636\\Desktop\\Nueva carpeta\\_backup");
-        File newfFolder = new File("C:\\Users\\n63636\\Desktop\\Nueva carpeta\\_newFiles");
+        File newFolder = new File("C:\\Users\\n63636\\Desktop\\Nueva carpeta\\_newFiles");
+        File duplicated = new File("C:\\Users\\n63636\\Desktop\\Nueva carpeta\\_duplicated");
 
         // IPARenamer renamer = new IPARenamer();
         // renamer.rename(folder,true);
 
         IPAUpdater updater = new IPAUpdater();
-        updater.update(ExistingFolder, new File[] { updateFolder }, backupFolder, newfFolder);
+        updater.update(ExistingFolder, new File[] { updateFolder }, backupFolder, newFolder,duplicated);
     }
 
     public void doIt(String[] args) throws Exception {

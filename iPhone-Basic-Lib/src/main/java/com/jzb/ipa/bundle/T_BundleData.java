@@ -27,6 +27,7 @@ public class T_BundleData {
     };
 
     public byte         img[];
+    public String       imgExt = ".jpg";
     public String       fdate;
     public NSDictionary dict;
     public LEGAL_TYPE   isLegal = LEGAL_TYPE.UNKNOWN;
