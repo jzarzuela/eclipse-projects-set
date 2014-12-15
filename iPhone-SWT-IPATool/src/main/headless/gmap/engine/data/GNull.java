@@ -1,7 +1,7 @@
 /**
  * 
  */
-package gmap.engine.parser;
+package gmap.engine.data;
 
 /**
  * @author jzarzuela

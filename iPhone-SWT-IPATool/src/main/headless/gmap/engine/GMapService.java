@@ -75,7 +75,7 @@ public class GMapService {
             String mapdataJsonStr = json_response.getString("mapdataJson");
             GMap map = GMapServiceParser.parseMapDataJson(mapdataJsonStr);
 
-            map.xsrfToken = json_response.getString("xsrfToken");
+            map.setXsrfToken(json_response.getString("xsrfToken"));
 
             return map;
 
@@ -85,52 +85,6 @@ public class GMapService {
             throw new GMapException("Error getting data for map ID: " + mapID, th);
         }
 
-    }
-
-    // ----------------------------------------------------------------------------------------------------
-    private void _saveMapData(String mapID, JSONObject json_response) {
-
-        File mapDataFile = new File(System.getProperty("user.home") + "/gmap/map_json_data/" + mapID + ".txt");
-        mapDataFile.getParentFile().mkdirs();
-
-        try (PrintWriter pw = new PrintWriter(mapDataFile)) {
-
-            pw.println(json_response.toString(2));
-
-        } catch (Throwable th) {
-            Tracer._warn("Error saving file with cached map json response", th);
-            mapDataFile.delete();
-        }
-    }
-
-    // ----------------------------------------------------------------------------------------------------
-    private JSONObject _readMapData(String mapID) {
-
-        File mapDataFile = new File(System.getProperty("user.home") + "/gmap/map_json_data/" + mapID + ".txt");
-        if (!mapDataFile.exists()) {
-            Tracer._warn("Cached map json data file doesn't exist: "+mapID);
-            return null;
-        }
-
-        try (BufferedReader br = new BufferedReader(new FileReader(mapDataFile))) {
-
-            StringBuilder sb = new StringBuilder();
-            for (;;) {
-                String line = br.readLine();
-                if (line == null)
-                    break;
-                sb.append(line);
-            }
-
-            JSONObject json_response = new JSONObject(sb.toString());
-            return json_response;
-
-        } catch (Throwable th) {
-            // Si algo pasa borra lo que tuviese
-            Tracer._warn("Error reading file with cached map json response", th);
-            mapDataFile.delete();
-            return null;
-        }
     }
 
     // ----------------------------------------------------------------------------------------------------
@@ -455,6 +409,52 @@ public class GMapService {
             return json_response.getJSONArray("docs");
         }
 
+    }
+
+    // ----------------------------------------------------------------------------------------------------
+    private JSONObject _readMapData(String mapID) {
+
+        File mapDataFile = new File(System.getProperty("user.home") + "/gmap/map_json_data/" + mapID + ".txt");
+        if (!mapDataFile.exists()) {
+            Tracer._warn("Cached map json data file doesn't exist: " + mapID);
+            return null;
+        }
+
+        try (BufferedReader br = new BufferedReader(new FileReader(mapDataFile))) {
+
+            StringBuilder sb = new StringBuilder();
+            for (;;) {
+                String line = br.readLine();
+                if (line == null)
+                    break;
+                sb.append(line);
+            }
+
+            JSONObject json_response = new JSONObject(sb.toString());
+            return json_response;
+
+        } catch (Throwable th) {
+            // Si algo pasa borra lo que tuviese
+            Tracer._warn("Error reading file with cached map json response", th);
+            mapDataFile.delete();
+            return null;
+        }
+    }
+
+    // ----------------------------------------------------------------------------------------------------
+    private void _saveMapData(String mapID, JSONObject json_response) {
+
+        File mapDataFile = new File(System.getProperty("user.home") + "/gmap/map_json_data/" + mapID + ".txt");
+        mapDataFile.getParentFile().mkdirs();
+
+        try (PrintWriter pw = new PrintWriter(mapDataFile)) {
+
+            pw.println(json_response.toString(2));
+
+        } catch (Throwable th) {
+            Tracer._warn("Error saving file with cached map json response", th);
+            mapDataFile.delete();
+        }
     }
 
     // ----------------------------------------------------------------------------------------------------

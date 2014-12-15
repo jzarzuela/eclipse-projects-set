@@ -11,7 +11,7 @@ import gmap.engine.GMapException;
  */
 public enum GPropertyType {
 
-    GPT_GEOMETRY("6"), GPT_GX_METADATA("7"), GPT_STRING("3"), GPT_DIRECTIONS("1");
+    GPT_DIRECTIONS("1"), GPT_GEOMETRY("6"), GPT_GX_METADATA("7"), GPT_STRING("3");
 
     private String m_strType;
 
@@ -32,6 +32,13 @@ public enum GPropertyType {
             default:
                 throw new GMapException("Unknow property type name: " + strType);
         }
+    }
+
+    /**
+     * @return the strType
+     */
+    public String getStrType() {
+        return m_strType;
     }
 
 }

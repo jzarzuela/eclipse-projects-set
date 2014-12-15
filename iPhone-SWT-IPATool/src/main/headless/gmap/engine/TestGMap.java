@@ -68,25 +68,21 @@ public class TestGMap {
         /*
          * Tracer._debug("----- User Map List --------------------------------------------"); for (UserMapData umd : mapList) { Tracer._debug(umd.toString()); } Tracer._debug("");
          */
-        
+
         GMap map2 = srvc.getMapData("zeLPXIl-X_4c.kAZUmasUiKNQ");
         System.out.println(map2);
 
-        /*
         for (UserMapData userMapData : mapList) {
             try {
                 Tracer._debug("");
                 Tracer._debug("Processing map: " + userMapData.getName() + " - id: " + userMapData.getId());
                 GMap map = _getMapDataWithThrottleCheck(srvc, userMapData.getId());
-                if (map.name != null)
-                    map.name.length();
+                if (map.getName() != null)
+                    map.getName().length();
             } catch (Throwable th) {
                 Tracer._error("** Error processing map: " + userMapData.getName() + " - Exc: " + th.getClass().toString() + " / " + th.getMessage());
             }
         }
-        */
-        
-        
 
     }
 

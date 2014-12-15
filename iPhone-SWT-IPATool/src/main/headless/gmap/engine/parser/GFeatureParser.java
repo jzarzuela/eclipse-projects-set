@@ -5,14 +5,17 @@ package gmap.engine.parser;
 
 import gmap.engine.GMapException;
 import gmap.engine.data.GFeature;
-import gmap.engine.data.GStyleBase;
+import gmap.engine.data.GFeature.EFeatureType;
+import gmap.engine.data.GGeoLine;
+import gmap.engine.data.GGeoPoint;
+import gmap.engine.data.GGeoPolygon;
+import gmap.engine.data.GGeometry;
+import gmap.engine.data.GLayer;
+import gmap.engine.data.GMap;
 import gmap.engine.data.GPropertyType;
-import gmap.engine.data.GTable;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Map;
+import java.util.HashMap;
 
 /**
  * @author jzarzuela
@@ -21,94 +24,85 @@ import java.util.Map;
 public class GFeatureParser extends BaseParser {
 
     // ----------------------------------------------------------------------------------------------------
-    public static void parseAllFeaturesInfoArray(ParserContext ctx, ArrayList<Object> allFeaturesInfoArray) throws GMapException {
+    public static void parseAllFeaturesInfoArray(GMap ownerMap, ArrayList<Object> allFeaturesInfoArray) throws GMapException {
 
         for (int n = 0; n < allFeaturesInfoArray.size(); n++) {
 
-            ArrayList<Object> featuresInfoArray_N = _getItemAsArray("allFeaturesInfoArray." + n, allFeaturesInfoArray, n);
+            ArrayList<Object> featuresInfoArray_N = _getItemAsArray("featureInfoArray_." + n, allFeaturesInfoArray, n);
 
-            String ownerTableID = _getItemAsString("featuresInfoArray.table_id." + n, featuresInfoArray_N, 0);
-            GTable ownerTable = ctx.removeUnlinkedOwnerAsset(ownerTableID);
+            GLayer ownerLayer = ownerMap.getLayerForTableID(_getItemAsString("feature.table_id." + n, featuresInfoArray_N, 0));
 
-            ArrayList<Object> allFeaturesValuesArray = _getItemAsArray("featuresInfoArray.allFeaturesValuesArray." + n, featuresInfoArray_N, 2);
-            _parseAllFeatureValuesInfoArray(ctx, ownerTable, n, allFeaturesValuesArray);
-            _sortFeaturesByX(ownerTable);
+            ArrayList<Object> allFeaturesValuesArray = _getItemAsArray("feature.allFeaturesValuesArray." + n, featuresInfoArray_N, 2);
+            for (int i = 0; i < allFeaturesValuesArray.size(); i++) {
 
-            // ----------------------------------------------------------------------------------------------------------------
-            // Validaciones sobre campos que no sabemos lo que son para detectar cambios
-            _checkItemNullValue("allFeaturesInfoArray.unknown.3", featuresInfoArray_N, 3);
-            _checkItemArraySize("allFeaturesInfoArray.unknown.4", 1, featuresInfoArray_N, 4);
-            _checkItemStringValue("allFeaturesInfoArray.unknown.5", "0", featuresInfoArray_N, 5);
-
-            _getItemAsArray("allFeaturesInfoArray.unknown.1", featuresInfoArray_N, 1);
-
-        }
-
-    }
-
-    // ----------------------------------------------------------------------------------------------------
-    private static void _parseAllFeatureValuesInfoArray(ParserContext ctx, GTable ownerTable, int n, ArrayList<Object> allFeaturesValuesArray) throws GMapException {
-
-        for (int i = 0; i < allFeaturesValuesArray.size(); i++) {
-            ArrayList<Object> featureValuesArray = _getItemAsArray("featuresInfoArray.allFeaturesValuesArray." + n + ".featureValuesArray" + i, allFeaturesValuesArray, i);
-            if (featureValuesArray != null) {
-                _parseFeatureValuesInfoArray(ctx, ownerTable, featureValuesArray);
+                ArrayList<Object> oneFeatureValuesArray = _getItemAsArray("feature.allFeaturesValuesArray." + n + ".featureValuesArray_" + i, allFeaturesValuesArray, i);
+                if (oneFeatureValuesArray != null) {
+                    _parseFeatureValuesInfoArray(ownerLayer, oneFeatureValuesArray);
+                }
             }
+
+            ownerLayer.sortFeaturesByOrder();
         }
-    }
-
-    // ----------------------------------------------------------------------------------------------------
-    private static void _parseFeatureValuesInfoArray(ParserContext ctx, GTable ownerTable, ArrayList<Object> featureValuesArray) throws GMapException {
-
-        String GID = _getItemAsString("feature.id", featureValuesArray, 0);
-        GFeature feature = new GFeature(ownerTable, GID);
-
-        ArrayList<Object> propsArray = _getItemAsArray("feature.propsArray", featureValuesArray, 11);
-        for (int n = 0; n < propsArray.size(); n++) {
-
-            ArrayList<Object> propInfoArray = _getItemAsArray("feature.propsArray." + n, propsArray, n);
-            _parsePropertyArray(feature, propInfoArray);
-        }
-
-        GStyleBase style = ctx.removeUnlinkedStyleForFeatureID(GID);
-        feature.style = style;
-        if (style == null) {
-            ArrayList<Object> geometryArray = (ArrayList) feature.properties.get("gme_geometry_");
-            Object obj = _getItemAsObject("featureGeometry", geometryArray, 0, 0);
-            if (obj instanceof GNull) {
-                feature.style = feature.ownerTable.ownerLayer.style.defStyleLine;
-            } else {
-                feature.style = feature.ownerTable.ownerLayer.style.defStyleIcon;
-            }
-        }
-
-        // ----------------------------------------------------------------------------------------------------------------
-        // Validaciones sobre campos que no sabemos lo que son para detectar cambios
-        _checkItemNullValue("feature.unknown.1", featureValuesArray, 1);
-        _checkItemNullValue("feature.unknown.2", featureValuesArray, 2);
-        _checkItemNullValue("feature.unknown.3", featureValuesArray, 3);
-        _checkItemNullValue("feature.unknown.4", featureValuesArray, 4);
-        _checkItemNullValue("feature.unknown.5", featureValuesArray, 5);
-        _checkItemNullValue("feature.unknown.6", featureValuesArray, 6);
-        _checkItemNullValue("feature.unknown.7", featureValuesArray, 7);
-        _checkItemNullValue("feature.unknown.8", featureValuesArray, 8);
-        _checkItemNullValue("feature.unknown.9", featureValuesArray, 9);
-        _checkItemNullValue("feature.unknown.10", featureValuesArray, 10);
 
     }
 
     // ----------------------------------------------------------------------------------------------------
-    private static void _parsePropertyArray(GFeature feature, ArrayList<Object> propInfoArray) throws GMapException {
+    private static GGeoPoint _parseCoordinates(ArrayList<Object> coordArray) throws GMapException {
 
-        String propName = _getItemAsString("feature.propInfoArray.name", propInfoArray, 0);
-        GPropertyType type = feature.ownerTable.schema.propertyDefs.get(propName);
-        if (type == null) {
-            throw new GMapException("No property definition found in schema for name: '" + propName + "'");
+        if (coordArray != null && coordArray.size() >= 2) {
+            double lng = _getItemAsDouble("feature.geometry.coord.lng", coordArray, 0);
+            double lat = _getItemAsDouble("feature.geometry.coord.lat", coordArray, 1);
+            return new GGeoPoint(lng, lat);
+        } else {
+            throw new GMapException("Error parsin GCoordinates: " + coordArray);
+        }
+    }
+
+    // ----------------------------------------------------------------------------------------------------
+    private static HashMap<String, Object> _parseFeaturePropertyInfoArray(GLayer ownerLayer, ArrayList<Object> featurePropertyArray) throws GMapException {
+
+        HashMap<String, Object> properties = new HashMap<String, Object>();
+
+        for (int n = 0; n < featurePropertyArray.size(); n++) {
+
+            ArrayList<Object> onePropInfoArray = _getItemAsArray("feature.propsArray_" + n, featurePropertyArray, n);
+
+            String propName = _getItemAsString("feature.propsArray_" + n + ".name", onePropInfoArray, 0);
+            GPropertyType type = ownerLayer.getTypeForPropertyName(propName);
+            Object propValue = _parseValue(type, onePropInfoArray);
+
+            properties.put(propName, propValue);
         }
 
-        Object propValue = _parseValue(type, propInfoArray);
+        return properties;
 
-        feature.properties.put(propName, propValue);
+    }
+
+    // ----------------------------------------------------------------------------------------------------
+    private static void _parseFeatureValuesInfoArray(GLayer ownerLayer, ArrayList<Object> featureValuesArray) throws GMapException {
+
+        String feature_id = _getItemAsString("feature.id", featureValuesArray, 0);
+
+        ArrayList<Object> propsInfoArray = _getItemAsArray("feature.propsArray_" + feature_id, featureValuesArray, 11);
+        HashMap<String, Object> properties = _parseFeaturePropertyInfoArray(ownerLayer, propsInfoArray);
+
+        Object geometryValue = properties.get("gme_geometry_");
+        if (geometryValue == null || !(geometryValue instanceof GGeometry)) {
+            throw new GMapException("Feature should have a 'gme_geometry_' property");
+        }
+
+        GFeature feature = null;
+        if (geometryValue instanceof GGeoPoint) {
+            feature = ownerLayer.addFeature(EFeatureType.GFPoint, feature_id);
+        } else if (geometryValue instanceof GGeoLine) {
+            feature = ownerLayer.addFeature(EFeatureType.GFLine, feature_id);
+        } else if (geometryValue instanceof GGeoPolygon) {
+            feature = ownerLayer.addFeature(EFeatureType.GFPolygon, feature_id);
+        } else {
+            throw new GMapException("Couldn't create feature for geometry: " + geometryValue);
+        }
+
+        feature.addAllProperties(properties);
     }
 
     // ----------------------------------------------------------------------------------------------------
@@ -140,12 +134,44 @@ public class GFeatureParser extends BaseParser {
 
     // ----------------------------------------------------------------------------------------------------
     private static Object _parseValueGeometry(ArrayList<Object> propInfoArray) throws GMapException {
-        Object objValue = _getItemAsArray("feature.propInfoArray.type.Geometry", propInfoArray, 6);
-        return objValue;
+
+        ArrayList<Object> geometryArray = _getItemAsArray("feature.propInfoArray.type.GeometryArray", propInfoArray, 6);
+
+        ArrayList<Object> valueArray;
+
+        valueArray = _getItemAsArray("feature.geometryArray.point", geometryArray, 0, 0);
+        if (valueArray != null) {
+            return _parseCoordinates(valueArray);
+        }
+
+        valueArray = _getItemAsArray("feature.geometryArray.line", geometryArray, 1, 0);
+        if (valueArray != null) {
+            GGeoLine geoLine = new GGeoLine();
+            valueArray = _getItemAsArray("feature.geometryArray.line2", valueArray, 0);
+            for (Object obj : valueArray) {
+                GGeoPoint geoPoint = _parseCoordinates((ArrayList<Object>) obj);
+                geoLine.addGeoPoint(geoPoint);
+            }
+            return geoLine;
+        }
+
+        valueArray = _getItemAsArray("feature.geometryArray.polygon", geometryArray, 2, 0);
+        if (valueArray != null) {
+            GGeoPolygon geoPolygon = new GGeoPolygon();
+            valueArray = _getItemAsArray("feature.geometryArray.polygon2", valueArray, 0, 0, 0);
+            for (Object obj : valueArray) {
+                GGeoPoint geoPoint = _parseCoordinates((ArrayList<Object>) obj);
+                geoPolygon.addGeoPoint(geoPoint);
+            }
+            return geoPolygon;
+        }
+
+        throw new GMapException("Couldn't parse geometry value: " + propInfoArray);
     }
 
     // ----------------------------------------------------------------------------------------------------
     private static Object _parseValueGxMetadata(ArrayList<Object> propInfoArray) throws GMapException {
+
         String strValue = _getItemAsString("feature.propInfoArray.type.GxMetadata", propInfoArray, 4);
         // System.out.println("--> _parseValueGxMetadata: " + propInfoArray);
         // como se parsea esto???
@@ -158,37 +184,4 @@ public class GFeatureParser extends BaseParser {
         return strValue;
     }
 
-    // ----------------------------------------------------------------------------------------------------
-    private static void _sortFeaturesByX(GTable ownerTable) {
-
-        if (ownerTable.features.size() == 0)
-            return;
-
-        ArrayList<Map.Entry<String, GFeature>> entries = new ArrayList<Map.Entry<String, GFeature>>(ownerTable.features.entrySet());
-
-        String feature_order = (String) entries.get(0).getValue().properties.get("feature_order");
-        if (feature_order == null || feature_order.length() == 0) {
-            return;
-        }
-
-        Collections.sort(entries, new Comparator<Map.Entry<String, GFeature>>() {
-
-            @Override
-            public int compare(Map.Entry<String, GFeature> a, Map.Entry<String, GFeature> b) {
-
-                String feature_order_a = (String) a.getValue().properties.get("feature_order");
-                String feature_order_b = (String) b.getValue().properties.get("feature_order");
-                if (feature_order_a == null)
-                    feature_order_a = "9999";
-                if (feature_order_b == null)
-                    feature_order_b = "9999";
-                return feature_order_a.compareTo(feature_order_b);
-            }
-        });
-
-        ownerTable.features.clear();
-        for (Map.Entry<String, GFeature> entry : entries) {
-            ownerTable.features.put(entry.getKey(), entry.getValue());
-        }
-    }
 }

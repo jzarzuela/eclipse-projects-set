@@ -10,24 +10,13 @@ import java.io.StringWriter;
  * @author jzarzuela
  *
  */
-public abstract class GAsset {
-
-    public String m_gid;
-
-    // ----------------------------------------------------------------------------------------------------
-    public GAsset(String gid) {
-        if (gid == null || gid.trim().length() == 0) {
-            throw new RuntimeException("Asset GID can't be null or empty");
-        }
-        m_gid = gid;
-    }
+public abstract class GGeometry {
 
     // ----------------------------------------------------------------------------------------------------
     /**
-     * @return the gid
+     * 
      */
-    public String getGID() {
-        return m_gid;
+    public GGeometry() {
     }
 
     // ----------------------------------------------------------------------------------------------------
@@ -36,11 +25,10 @@ public abstract class GAsset {
      */
     @Override
     public String toString() {
-
         StringWriter sw = new StringWriter();
         PrintWriter pw = new PrintWriter(sw);
         printValue(pw, "");
-        return sw.toString();
+        return sw.getBuffer().toString();
     }
 
     // ----------------------------------------------------------------------------------------------------

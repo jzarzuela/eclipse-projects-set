@@ -27,16 +27,18 @@ public class GStyleIcon extends GStyleBase {
         _init_icon_ids();
     }
 
-    public String              color;
-    public String              id;
-    public String              scale;
+    private String             m_color;
+    private String             m_iconID;
+    private String             m_scale;
 
-    public GStyleIcon(String id, String color, String scale) {
-        this.id = id;
-        this.color = color;
-        this.scale = scale;
+    // ----------------------------------------------------------------------------------------------------
+    public GStyleIcon(String iconID, String color, String scale) {
+        m_iconID = iconID;
+        m_color = color;
+        m_scale = scale;
     }
 
+    // ----------------------------------------------------------------------------------------------------
     public static void iconsHtml() throws GMapException {
 
         try (PrintWriter pw = new PrintWriter(new FileWriter("/Users/jzarzuela/Documents/Java/github-repos/eclipse-projects-set/iPhone-SWT-IPATool/src/main/headless/gmap/engine/data/icons.html"))) {
@@ -88,6 +90,7 @@ public class GStyleIcon extends GStyleBase {
 
     }
 
+    // ----------------------------------------------------------------------------------------------------
     private static String _getUrl(String iconID) {
 
         String text = s_iconIds.getProperty(iconID);
@@ -98,6 +101,7 @@ public class GStyleIcon extends GStyleBase {
         }
     }
 
+    // ----------------------------------------------------------------------------------------------------
     private static void _init_icon_ids() {
 
         try (InputStream is = GStyleIcon.class.getResourceAsStream("icon_ids.properties")) {
@@ -114,23 +118,80 @@ public class GStyleIcon extends GStyleBase {
 
     }
 
+    // ----------------------------------------------------------------------------------------------------
+    /**
+     * @return the color
+     */
+    public String getColor() {
+        return m_color;
+    }
+
+    // ----------------------------------------------------------------------------------------------------
+    /**
+     * @return the iconID
+     */
+    public String getIconID() {
+        return m_iconID;
+    }
+
+    
+    // ----------------------------------------------------------------------------------------------------
+    /**
+     * @return the scale
+     */
+    public String getScale() {
+        return m_scale;
+    }
+
+    
+    // ----------------------------------------------------------------------------------------------------
     public String getUrl() {
 
-        String text = s_iconIds.getProperty(id);
+        String text = s_iconIds.getProperty(m_iconID);
         if (text != null) {
-            return ICON_BASE_URL_1 + id + "-" + text + ".png";
+            return ICON_BASE_URL_1 + m_iconID + "-" + text + ".png";
         } else {
-            text = s_coloredIconIds.getProperty(id);
+            text = s_coloredIconIds.getProperty(m_iconID);
             if (text != null) {
-                return ICON_BASE_URL_1 + id + "-#" + color + "-" + text + ".png";
+                return ICON_BASE_URL_1 + m_iconID + "-#" + m_color + "-" + text + ".png";
             } else {
                 return "NO_ICON_URL";
             }
         }
     }
 
+    
+    // ----------------------------------------------------------------------------------------------------
+    /**
+     * @param color the color to set
+     */
+    public void setColor(String color) {
+        m_color = color;
+    }
+
+    
+    // ----------------------------------------------------------------------------------------------------
+    /**
+     * @param iconID the iconID to set
+     */
+    public void setIconID(String iconID) {
+        m_iconID = iconID;
+    }
+
+    
+    // ----------------------------------------------------------------------------------------------------
+    /**
+     * @param scale the scale to set
+     */
+    public void setScale(String scale) {
+        m_scale = scale;
+    }
+
+    
+    // ----------------------------------------------------------------------------------------------------
+    @Override
     protected void printValue(PrintWriter pw, String padding) {
-        pw.println(padding + "GStyleIcon { id:" + id + ", color:" + color + ", scale:" + scale + ", url: " + getUrl() + "}");
+        pw.print(padding + "GStyleIcon { iconID: " + m_iconID + ", color: #" + m_color + ", scale: " + m_scale + ", url: " + getUrl() + "}");
     }
 
 }

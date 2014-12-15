@@ -5,6 +5,7 @@ package gmap.engine.parser;
 
 import gmap.engine.GMapException;
 import gmap.engine.data.GMap;
+import gmap.engine.data.GNull;
 
 import java.io.File;
 import java.io.PrintWriter;
@@ -31,6 +32,39 @@ public class GMapServiceParser extends BaseParser {
         GMap map = __parseArrayInfo(rootContainer);
 
         return map;
+    }
+
+    // ----------------------------------------------------------------------------------------------------
+    private static GMap __parseArrayInfo(ArrayList<Object> rootContainer) throws GMapException {
+
+        // El array principal solo tiene un elemento con toda la informacion en forma de mas arrays
+        ArrayList<Object> container = _getItemAsArray("global.rootArray", rootContainer, 0);
+
+        //
+        // Parsea la informacion del mapa, que esta en el array con indice [0,0]
+        ArrayList<Object> mapInfoArray = _getItemAsArray("global.rootArray.mapInfoArray", container, 0);
+        GMap ownerMap = GMapParser.parseMapInfoArray(mapInfoArray);
+
+        //
+        // Parsea la informacion de las capas, que esta en el array con indice [0,0]
+        ArrayList<Object> allLayersInfoArray = _getItemAsArray("global.allLayersInfoArray", container, 1);
+        GLayerParser.parseAllLayersInfoArray(ownerMap, allLayersInfoArray);
+
+        //
+        // Parsea la informacion basica de los Tables [0,2]
+        ArrayList<Object> allTablesInfoArray = _getItemAsArray("global.allTablesInfoArray", container, 2);
+        GTableParser.parseAllTablesInfoArray(ownerMap, allTablesInfoArray);
+
+        //
+        // Parsea la informacion de los features de cada Table [0,4]
+        ArrayList<Object> allFeaturesInfoArray = _getItemAsArray("global.allFeaturesInfoArray", container, 4);
+        GFeatureParser.parseAllFeaturesInfoArray(ownerMap, allFeaturesInfoArray);
+
+        // Parsea la informacion de los styles de cada Capa [0,3]
+        ArrayList<Object> allStylesInfoArray = _getItemAsArray("global.allStylesInfoArray", container, 3);
+        GStyleParser.parseAllStylesInfoArray(ownerMap, allStylesInfoArray);
+
+        return ownerMap;
     }
 
     // ----------------------------------------------------------------------------------------------------
@@ -64,51 +98,6 @@ public class GMapServiceParser extends BaseParser {
             Tracer._warn("Error saving file with cached map json response", th);
             mapDataFile.delete();
         }
-    }
-
-    // ----------------------------------------------------------------------------------------------------
-    private static GMap __parseArrayInfo(ArrayList<Object> rootContainer) throws GMapException {
-
-        ParserContext ctx = new ParserContext();
-
-        // El array principal solo tiene un elemento con toda la informacion en forma de mas arrays
-        ArrayList<Object> container = _getItemAsArray("global.rootArray", rootContainer, 0);
-
-        //
-        // Parsea la informacion del mapa, que esta en el array con indice [0,0]
-        ArrayList<Object> mapInfoArray = _getItemAsArray("global.mapInfoArray", container, 0);
-        GMap ownerMap = GMapParser.parseMapInfoArray(ctx, mapInfoArray);
-
-        //
-        // Parsea la informacion de las capas, que esta en el array con indice [0,0]
-        ArrayList<Object> allLayersInfoArray = _getItemAsArray("global.allLayersInfoArray", container, 1);
-        GLayerParser.parseAllLayersInfoArray(ctx, allLayersInfoArray);
-
-        // Parsea la informacion de los styles de cada Capa [0,3]
-        ArrayList<Object> allStylesInfoArray = _getItemAsArray("global.allStylesInfoArray", container, 3);
-        GStyleParser.parseAllStylesInfoArray(ctx, allStylesInfoArray);
-
-        //
-        // Parsea la informacion basica de los Tables [0,2]
-        ArrayList<Object> allTablesInfoArray = _getItemAsArray("global.allTablesInfoArray", container, 2);
-        GTableParser.parseAllTablesInfoArray(ctx, allTablesInfoArray);
-
-        //
-        // Parsea la informacion de los features de cada Table [0,4]
-        ArrayList<Object> allFeaturesInfoArray = _getItemAsArray("global.allFeaturesInfoArray", container, 4);
-        GFeatureParser.parseAllFeaturesInfoArray(ctx, allFeaturesInfoArray);
-
-        //
-        // ----------------------------------------------------------------------------------------------------------------
-        // Validaciones sobre campos que no sabemos lo que son para detectar cambios
-        _checkItemStringValue("global.unknown.5", "1", container, 5);
-        _checkItemNullValue("global.unknown.6", container, 6);
-        _checkItemStringValue("global.unknown.8", "1", container, 8);
-        _checkItemStringValue("global.unknown.9", "0", container, 9);
-
-        _getItemAsString("global.unknown.7", container, 7); // '0' - '1' ???
-
-        return ownerMap;
     }
 
     // ----------------------------------------------------------------------------------------------------
@@ -215,7 +204,7 @@ public class GMapServiceParser extends BaseParser {
     }
 
     // ----------------------------------------------------------------------------------------------------
-    //@SuppressWarnings("unused")
+    // @SuppressWarnings("unused")
     private static String _prettyPrintArrays(ArrayList<Object> container) {
 
         StringBuilder sb = new StringBuilder();
