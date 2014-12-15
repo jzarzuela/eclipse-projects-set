@@ -7,6 +7,7 @@ import gmap.engine.GMapException;
 import gmap.engine.data.GGeometryLine;
 import gmap.engine.data.GGeometryPoint;
 import gmap.engine.data.GGeometryPolygon;
+import gmap.engine.data.GNull;
 import gmap.engine.data.GPropertyType;
 
 import java.util.ArrayList;
@@ -52,6 +53,13 @@ public class GPropertyTypeParser extends BaseParser {
 
     // ----------------------------------------------------------------------------------------------------
     private static Object _parseValueTypeDirections(ArrayList<Object> propInfoArray) throws GMapException {
+
+        // String s = propInfoArray.toString();
+        // if (!s.equals("[is_directions, <null>, 0, <null>, <null>, <null>, <null>, 0]")) {
+        // System.out.println("different GxMetadata Value!");
+        // }
+
+        // ¿De donde sacamos el valor y que es?
         Object objValue = _getItemAsArray("feature.propInfoArray.type.Directions", propInfoArray, 6);
         return objValue;
     }
@@ -59,15 +67,17 @@ public class GPropertyTypeParser extends BaseParser {
     // ----------------------------------------------------------------------------------------------------
     private static Object _parseValueTypeGeometry(ArrayList<Object> propInfoArray) throws GMapException {
 
-        ArrayList<Object> geometryArray = _getItemAsArray("feature.propInfoArray.type.GeometryArray", propInfoArray, 6);
-
         ArrayList<Object> valueArray;
 
+        ArrayList<Object> geometryArray = _getItemAsArray("feature.propInfoArray.type.GeometryArray", propInfoArray, 6);
+
+        // Si el PRIMER array no esta vacio es un PUNTO
         valueArray = _getItemAsArray("feature.geometryArray.point", geometryArray, 0, 0);
         if (valueArray != null) {
             return _parseValueCoordinates(valueArray);
         }
 
+        // Si el SEGUNDO array no esta vacio es una LINEA
         valueArray = _getItemAsArray("feature.geometryArray.line", geometryArray, 1, 0);
         if (valueArray != null) {
             GGeometryLine geoLine = new GGeometryLine();
@@ -79,6 +89,7 @@ public class GPropertyTypeParser extends BaseParser {
             return geoLine;
         }
 
+        // Si el TERCER array no esta vacio es un POLIGONO
         valueArray = _getItemAsArray("feature.geometryArray.polygon", geometryArray, 2, 0);
         if (valueArray != null) {
             GGeometryPolygon geoPolygon = new GGeometryPolygon();
@@ -90,20 +101,35 @@ public class GPropertyTypeParser extends BaseParser {
             return geoPolygon;
         }
 
+        // TENEMOS UN ERROR
         throw new GMapException("Couldn't parse geometry value: " + propInfoArray);
     }
 
     // ----------------------------------------------------------------------------------------------------
     private static Object _parseValueTypeGxMetadata(ArrayList<Object> propInfoArray) throws GMapException {
 
+        // String s = propInfoArray.toString();
+        // if(!s.equals("[gx_metadata, <null>, <null>, <null>, <null>, <null>, <null>, 0]")) {
+        // System.out.println("different GxMetadata Value!");
+        // }
+
+        // ¿De donde sacamos el valor y que es?
         String strValue = _getItemAsString("feature.propInfoArray.type.GxMetadata", propInfoArray, 4);
-        // System.out.println("--> _parseValueGxMetadata: " + propInfoArray);
-        // como se parsea esto???
         return strValue;
     }
 
     // ----------------------------------------------------------------------------------------------------
     private static Object _parseValueTypeString(ArrayList<Object> propInfoArray) throws GMapException {
+
+        // if (!GNull.GNULL.equals(propInfoArray.get(1)) //
+        // || !GNull.GNULL.equals(propInfoArray.get(2)) //
+        // || !GNull.GNULL.equals(propInfoArray.get(3)) //
+        // || !GNull.GNULL.equals(propInfoArray.get(5)) //
+        // || !GNull.GNULL.equals(propInfoArray.get(6)) //
+        // || !"0".equals(propInfoArray.get(7))) {
+        // System.out.println("ya");
+        // }
+
         String strValue = _getItemAsString("feature.propInfoArray.type.String", propInfoArray, 4);
         return strValue;
     }
