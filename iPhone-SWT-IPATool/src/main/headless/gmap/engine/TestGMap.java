@@ -3,9 +3,11 @@
  */
 package gmap.engine;
 
+import gmap.engine.data.GLayer;
 import gmap.engine.data.GMap;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import com.jzb.util.Tracer;
 
@@ -72,16 +74,25 @@ public class TestGMap {
         GMap map2 = srvc.getMapData("zeLPXIl-X_4c.kAZUmasUiKNQ");
         System.out.println(map2);
 
+        HashSet<String> allPropNames = new HashSet<String>();
         for (UserMapData userMapData : mapList) {
             try {
                 Tracer._debug("");
                 Tracer._debug("Processing map: " + userMapData.getName() + " - id: " + userMapData.getId());
                 GMap map = _getMapDataWithThrottleCheck(srvc, userMapData.getId());
-                if (map.getName() != null)
-                    map.getName().length();
+                if (map.getName() != null) {
+                    for (GLayer layer : map.getLayers()) {
+                        allPropNames.addAll(layer.getSchema().keySet());
+                    }
+                }
             } catch (Throwable th) {
                 Tracer._error("** Error processing map: " + userMapData.getName() + " - Exc: " + th.getClass().toString() + " / " + th.getMessage());
             }
+        }
+        
+        Tracer._debug("All property names:");
+        for(String propName:allPropNames) {
+            Tracer._debug("  "+propName);
         }
 
     }

@@ -15,6 +15,16 @@ import java.util.ArrayList;
  */
 public class GSchemaParser extends BaseParser {
 
+    // Reserved property names:
+    // -- feature_order
+    // -- gme_geometry_
+    // -- gx_image_links
+    // -- gx_metadata
+    // -- gx_metafeatureid
+    // -- gx_routeinfo
+    // -- is_directions
+    // -- place_ref
+
     // ----------------------------------------------------------------------------------------------------
     public static void parseSchemaInfoArray(GLayer layer, ArrayList<Object> schemaInfoArray) throws GMapException {
 

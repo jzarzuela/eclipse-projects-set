@@ -8,9 +8,9 @@ import gmap.engine.data.GFeature;
 import gmap.engine.data.GFeatureLine;
 import gmap.engine.data.GFeaturePoint;
 import gmap.engine.data.GFeaturePolygon;
+import gmap.engine.data.GLayer;
 import gmap.engine.data.GMap;
 import gmap.engine.data.GStyleIcon;
-import gmap.engine.data.GLayer;
 import gmap.engine.data.GStyleLine;
 import gmap.engine.data.GStylePolygon;
 

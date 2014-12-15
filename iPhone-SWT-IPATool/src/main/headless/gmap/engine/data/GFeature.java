@@ -4,7 +4,6 @@
 package gmap.engine.data;
 
 import gmap.engine.GMapException;
-import gmap.engine.data.GLayer;
 
 import java.io.PrintWriter;
 import java.util.HashMap;
