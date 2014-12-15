@@ -5,7 +5,6 @@ package gmap.engine.data;
 
 import gmap.engine.GMapException;
 import gmap.engine.data.GAsset;
-import gmap.engine.data.GFeature.EFeatureType;
 import gmap.engine.data.GPropertyType;
 
 import java.io.PrintWriter;
@@ -45,21 +44,17 @@ public class GLayer extends GAsset {
     }
 
     // ----------------------------------------------------------------------------------------------------
-    public GFeature addFeature(EFeatureType type, String feature_gid) throws GMapException {
+    public GFeature addFeature(String feature_gid, GGeometry geometry) throws GMapException {
 
         GFeature feature;
-        switch (type) {
-            case GFPoint:
-                feature = new GFeaturePoint(this, feature_gid);
-                break;
-            case GFLine:
-                feature = new GFeatureLine(this, feature_gid);
-                break;
-            case GFPolygon:
-                feature = new GFeaturePolygon(this, feature_gid);
-                break;
-            default:
-                throw new GMapException("Unknown feature type: " + type);
+        if (geometry instanceof GGeometryPoint) {
+            feature = new GFeaturePoint(this, feature_gid);
+        } else if (geometry instanceof GGeometryLine) {
+            feature = new GFeatureLine(this, feature_gid);
+        } else if (geometry instanceof GGeometryPolygon) {
+            feature = new GFeaturePolygon(this, feature_gid);
+        } else {
+            throw new GMapException("Unknown feature geometry: " + geometry);
         }
 
         m_features.add(feature);

@@ -10,19 +10,19 @@ import java.util.ArrayList;
  * @author jzarzuela
  *
  */
-public class GGeoLine extends GGeometry {
+public class GGeometryPolygon extends GGeometry {
 
-    private ArrayList<GGeoPoint> m_geoPoints = new ArrayList<GGeoPoint>();
+    private ArrayList<GGeometryPoint> m_geoPoints = new ArrayList<GGeometryPoint>();
 
     // ----------------------------------------------------------------------------------------------------
     /**
      * 
      */
-    public GGeoLine() {
+    public GGeometryPolygon() {
     }
 
     // ----------------------------------------------------------------------------------------------------
-    public void addGeoPoint(GGeoPoint geoPoint) {
+    public void addGeoPoint(GGeometryPoint geoPoint) {
         m_geoPoints.add(geoPoint);
     }
 
@@ -37,7 +37,7 @@ public class GGeoLine extends GGeometry {
             if (n > 0) {
                 pw.print(", ");
             }
-            GGeoPoint geoPoint = m_geoPoints.get(n);
+            GGeometryPoint geoPoint = m_geoPoints.get(n);
             geoPoint.printValue(pw, "");
         }
         pw.print("]");

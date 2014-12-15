@@ -16,7 +16,7 @@ import java.util.Properties;
  * @author jzarzuela
  *
  */
-public class GStyleIcon extends GStyleBase {
+public class GStyleIcon extends GStyle {
 
     public static final String ICON_BASE_URL_0  = "http://mt.googleapis.com/vt/icon/name=icons/onion/";
     public static final String ICON_BASE_URL_1  = "http://www.gstatic.com/mapspro/images/stock/";

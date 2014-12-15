@@ -25,7 +25,7 @@ public class GFeatureLine extends GFeature {
      */
     @Override
     public void setGeometry(GGeometry geometry) throws GMapException {
-        if (geometry instanceof GGeoLine) {
+        if (geometry instanceof GGeometryLine) {
             super._sub_setGeometry(geometry);
         } else {
             throw new GMapException("Geometry must be an GGeoLine instance: " + geometry);
@@ -38,7 +38,7 @@ public class GFeatureLine extends GFeature {
      *            the style to set
      */
     @Override
-    public void setStyle(GStyleBase style) throws GMapException {
+    public void setStyle(GStyle style) throws GMapException {
         if (style instanceof GStyleLine) {
             super._sub_setStyle(style);
         } else {
@@ -48,8 +48,8 @@ public class GFeatureLine extends GFeature {
 
     // ----------------------------------------------------------------------------------------------------
     @Override
-    protected EFeatureType _sub_featureType() {
-        return EFeatureType.GFLine;
+    protected String _sub_featureType() {
+        return "GFLine";
     }
 
     // ----------------------------------------------------------------------------------------------------

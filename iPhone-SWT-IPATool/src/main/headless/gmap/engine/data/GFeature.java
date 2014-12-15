@@ -15,13 +15,9 @@ import java.util.HashMap;
  */
 public abstract class GFeature extends GAsset {
 
-    public static enum EFeatureType {
-        GFLine, GFPoint, GFPolygon
-    }
-
     private GLayer                  m_ownerLayer;
     private HashMap<String, Object> m_properties = new HashMap<String, Object>();
-    private GStyleBase              m_style;
+    private GStyle              m_style;
 
     // ----------------------------------------------------------------------------------------------------
     public GFeature(GLayer ownerLayer, String feature_gid) {
@@ -68,13 +64,13 @@ public abstract class GFeature extends GAsset {
     /**
      * @return the style
      */
-    public GStyleBase getStyle() {
+    public GStyle getStyle() {
         return m_style;
     }
 
     public String getTitle() {
         String title = (String) m_properties.get(m_ownerLayer.getTitlePropName());
-        return title;
+        return title != null ? title : "";
     }
 
     // ----------------------------------------------------------------------------------------------------
@@ -85,10 +81,10 @@ public abstract class GFeature extends GAsset {
      * @param style
      *            the style to set
      */
-    public abstract void setStyle(GStyleBase style) throws GMapException;
+    public abstract void setStyle(GStyle style) throws GMapException;
 
     // ----------------------------------------------------------------------------------------------------
-    protected abstract EFeatureType _sub_featureType();
+    protected abstract String _sub_featureType();
 
     // ----------------------------------------------------------------------------------------------------
     protected abstract void _sub_printValue(PrintWriter pw, String padding);
@@ -99,7 +95,7 @@ public abstract class GFeature extends GAsset {
     }
 
     // ----------------------------------------------------------------------------------------------------
-    protected void _sub_setStyle(GStyleBase style) {
+    protected void _sub_setStyle(GStyle style) {
         m_style = style;
     }
 

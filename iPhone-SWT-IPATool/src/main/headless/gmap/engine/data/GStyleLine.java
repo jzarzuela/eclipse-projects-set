@@ -9,7 +9,7 @@ import java.io.PrintWriter;
  * @author jzarzuela
  *
  */
-public class GStyleLine extends GStyleBase {
+public class GStyleLine extends GStyle {
 
     private String m_alpha;
     private String m_color;

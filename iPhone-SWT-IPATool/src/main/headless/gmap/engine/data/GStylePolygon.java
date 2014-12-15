@@ -9,7 +9,7 @@ import java.io.PrintWriter;
  * @author jzarzuela
  *
  */
-public class GStylePolygon extends GStyleBase {
+public class GStylePolygon extends GStyle {
 
     private String m_borderColor;
     private String m_borderWidth;

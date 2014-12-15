@@ -6,9 +6,9 @@ package gmap.engine.parser;
 import gmap.engine.GMapException;
 import gmap.engine.data.GFeature;
 import gmap.engine.data.GFeature.EFeatureType;
-import gmap.engine.data.GGeoLine;
-import gmap.engine.data.GGeoPoint;
-import gmap.engine.data.GGeoPolygon;
+import gmap.engine.data.GGeometryLine;
+import gmap.engine.data.GGeometryPoint;
+import gmap.engine.data.GGeometryPolygon;
 import gmap.engine.data.GGeometry;
 import gmap.engine.data.GLayer;
 import gmap.engine.data.GMap;
@@ -47,12 +47,12 @@ public class GFeatureParser extends BaseParser {
     }
 
     // ----------------------------------------------------------------------------------------------------
-    private static GGeoPoint _parseCoordinates(ArrayList<Object> coordArray) throws GMapException {
+    private static GGeometryPoint _parseCoordinates(ArrayList<Object> coordArray) throws GMapException {
 
         if (coordArray != null && coordArray.size() >= 2) {
             double lng = _getItemAsDouble("feature.geometry.coord.lng", coordArray, 0);
             double lat = _getItemAsDouble("feature.geometry.coord.lat", coordArray, 1);
-            return new GGeoPoint(lng, lat);
+            return new GGeometryPoint(lng, lat);
         } else {
             throw new GMapException("Error parsin GCoordinates: " + coordArray);
         }
@@ -92,11 +92,11 @@ public class GFeatureParser extends BaseParser {
         }
 
         GFeature feature = null;
-        if (geometryValue instanceof GGeoPoint) {
+        if (geometryValue instanceof GGeometryPoint) {
             feature = ownerLayer.addFeature(EFeatureType.GFPoint, feature_id);
-        } else if (geometryValue instanceof GGeoLine) {
+        } else if (geometryValue instanceof GGeometryLine) {
             feature = ownerLayer.addFeature(EFeatureType.GFLine, feature_id);
-        } else if (geometryValue instanceof GGeoPolygon) {
+        } else if (geometryValue instanceof GGeometryPolygon) {
             feature = ownerLayer.addFeature(EFeatureType.GFPolygon, feature_id);
         } else {
             throw new GMapException("Couldn't create feature for geometry: " + geometryValue);
@@ -146,10 +146,10 @@ public class GFeatureParser extends BaseParser {
 
         valueArray = _getItemAsArray("feature.geometryArray.line", geometryArray, 1, 0);
         if (valueArray != null) {
-            GGeoLine geoLine = new GGeoLine();
+            GGeometryLine geoLine = new GGeometryLine();
             valueArray = _getItemAsArray("feature.geometryArray.line2", valueArray, 0);
             for (Object obj : valueArray) {
-                GGeoPoint geoPoint = _parseCoordinates((ArrayList<Object>) obj);
+                GGeometryPoint geoPoint = _parseCoordinates((ArrayList<Object>) obj);
                 geoLine.addGeoPoint(geoPoint);
             }
             return geoLine;
@@ -157,10 +157,10 @@ public class GFeatureParser extends BaseParser {
 
         valueArray = _getItemAsArray("feature.geometryArray.polygon", geometryArray, 2, 0);
         if (valueArray != null) {
-            GGeoPolygon geoPolygon = new GGeoPolygon();
+            GGeometryPolygon geoPolygon = new GGeometryPolygon();
             valueArray = _getItemAsArray("feature.geometryArray.polygon2", valueArray, 0, 0, 0);
             for (Object obj : valueArray) {
-                GGeoPoint geoPoint = _parseCoordinates((ArrayList<Object>) obj);
+                GGeometryPoint geoPoint = _parseCoordinates((ArrayList<Object>) obj);
                 geoPolygon.addGeoPoint(geoPoint);
             }
             return geoPolygon;

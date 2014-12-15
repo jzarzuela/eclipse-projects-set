@@ -25,7 +25,7 @@ public class GFeaturePoint extends GFeature {
      */
     @Override
     public void setGeometry(GGeometry geometry) throws GMapException {
-        if (geometry instanceof GGeoPoint) {
+        if (geometry instanceof GGeometryPoint) {
             super._sub_setGeometry(geometry);
         } else {
             throw new GMapException("Geometry must be an GGeoPoint instance: " + geometry);
@@ -38,7 +38,7 @@ public class GFeaturePoint extends GFeature {
      *            the style to set
      */
     @Override
-    public void setStyle(GStyleBase style) throws GMapException {
+    public void setStyle(GStyle style) throws GMapException {
         if (style instanceof GStyleIcon) {
             super._sub_setStyle(style);
         } else {
@@ -48,8 +48,8 @@ public class GFeaturePoint extends GFeature {
 
     // ----------------------------------------------------------------------------------------------------
     @Override
-    protected EFeatureType _sub_featureType() {
-        return EFeatureType.GFPoint;
+    protected String _sub_featureType() {
+        return "GFPoint";
     }
 
     // ----------------------------------------------------------------------------------------------------

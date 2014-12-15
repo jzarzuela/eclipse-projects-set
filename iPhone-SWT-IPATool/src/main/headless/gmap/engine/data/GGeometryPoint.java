@@ -9,7 +9,7 @@ import java.io.PrintWriter;
  * @author jzarzuela
  *
  */
-public class GGeoPoint extends GGeometry {
+public class GGeometryPoint extends GGeometry {
 
     private double m_lat;
     private double m_lon;
@@ -18,7 +18,7 @@ public class GGeoPoint extends GGeometry {
     /**
      * 
      */
-    public GGeoPoint(double lon, double lat) {
+    public GGeometryPoint(double lon, double lat) {
         m_lon = lon;
         m_lat = lat;
     }

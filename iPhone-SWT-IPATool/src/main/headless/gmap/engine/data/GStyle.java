@@ -10,13 +10,13 @@ import java.io.StringWriter;
  * @author jzarzuela
  *
  */
-public abstract class GStyleBase {
+public abstract class GStyle {
 
     // ----------------------------------------------------------------------------------------------------
     /**
      * 
      */
-    public GStyleBase() {
+    public GStyle() {
     }
 
     // ----------------------------------------------------------------------------------------------------
