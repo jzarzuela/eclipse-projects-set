@@ -16,6 +16,8 @@ import gmap.engine.data.GStylePolygon;
 
 import java.util.ArrayList;
 
+import com.jzb.util.Tracer;
+
 /**
  * @author jzarzuela
  *
@@ -57,33 +59,16 @@ public class GStyleParser extends BaseParser {
         String titlePropName = _getItemAsString("style.generic.titlePropName", styleValuesInfoArray, 1, 0, 5, 0, 0);
         ownerLayer.setTitlePropName(titlePropName);
 
+        ownerLayer.setDefStyleIcon(_parseStyleIcon(styleValuesInfoArray));
+        ownerLayer.setDefStyleLine(_parseStyleLine(styleValuesInfoArray));
+        ownerLayer.setDefStylePolygon(_parseStylePolygon(styleValuesInfoArray));
+
         for (GFeature feature : ownerLayer.getFeatures()) {
             if (feature.getStyle() == null) {
                 _parseStyle_FeatureInfoArray(feature, styleValuesInfoArray);
             }
         }
 
-    }
-
-    // ----------------------------------------------------------------------------------------------------
-    private static GStyleIcon _parseStyleIcon(ArrayList<Object> styleValuesInfoArray) throws GMapException {
-
-        // --- Extrae la informacion del icono
-        String icon_id = "999999"; // Marcador azul con punto es el icono por defecto
-        String icon_color = "0000FF";
-        String icon_scale = "1.0";
-
-        ArrayList<Object> iconArrayInfo = _getItemAsArray("feature.styleIcon.array", styleValuesInfoArray, 1, 0);
-        if (iconArrayInfo != null) {
-            icon_id = _getItemAsString("feature.styleIcon.array.icon_id", iconArrayInfo, 0);
-            if (_getItemAsObject("feature.styleIcon.array.colorAndStyle", iconArrayInfo, 3) instanceof ArrayList) {
-                icon_color = _getItemAsString("feature.styleIcon.array.colorAndStyle.color", iconArrayInfo, 3, 0);
-                icon_scale = _getItemAsString("feature.styleIcon.array.colorAndStyle.scale", iconArrayInfo, 3, 1);
-            }
-        }
-        GStyleIcon icon = new GStyleIcon(icon_id, icon_color, icon_scale);
-
-        return icon;
     }
 
     // ----------------------------------------------------------------------------------------------------
@@ -104,7 +89,11 @@ public class GStyleParser extends BaseParser {
             if (styleValuesArray.get(0) instanceof ArrayList) {
                 String feature_gid = _getItemAsString("featureStyleInfo.feature_gid", styleValuesArray, 0, 1, 2, 1, 0, 4);
                 GFeature feature = ownerLayer.getFeatureByID(feature_gid);
-                _parseStyle_FeatureInfoArray(feature, styleValuesArray);
+                if (feature != null) {
+                    _parseStyle_FeatureInfoArray(feature, styleValuesArray);
+                } else {
+                    Tracer._warn("No feature found for id: '" + feature_gid + "'");
+                }
             } else {
                 genericStyleValuesArray = styleValuesArray;
             }
@@ -115,26 +104,47 @@ public class GStyleParser extends BaseParser {
     }
 
     // ----------------------------------------------------------------------------------------------------
-    private static GStyleLine _parseStyleLine(ArrayList<Object> styleValuesInfoArray) throws GMapException {
+    private static GStyleIcon _parseStyleIcon(ArrayList<Object> styleInfoArray) throws GMapException {
 
-        String width = _getItemAsString("feature.styleLine.width", styleValuesInfoArray, 1, 1, 0);
-        String color = _getItemAsString("feature.styleLine.color", styleValuesInfoArray, 1, 1, 1, 0);
-        String alpha = _getItemAsString("feature.styleLine.alpha", styleValuesInfoArray, 1, 1, 1, 1);
+        // --- Extrae la informacion del icono
+        long icon_id = 999999; // Marcador azul con punto es el icono por defecto
+        String icon_color = "0000FF";
+        double icon_scale = 1.0;
 
-        GStyleLine styleLine = new GStyleLine(color, alpha, width);
+        ArrayList<Object> iconArrayInfo = _getItemAsArray("feature.styleIcon.array", styleInfoArray, 1, 0);
+        if (iconArrayInfo != null) {
+            icon_id = _getItemAsLongDef("feature.styleIcon.array.icon_id", icon_id, iconArrayInfo, 0);
+            if (_getItemAsObject("feature.styleIcon.array.colorAndStyle", iconArrayInfo, 3) instanceof ArrayList) {
+                icon_color = _getItemAsString("feature.styleIcon.array.colorAndStyle.color", iconArrayInfo, 3, 0);
+                icon_scale = _getItemAsDouble("feature.styleIcon.array.colorAndStyle.scale", iconArrayInfo, 3, 1);
+            }
+        }
+        GStyleIcon icon = new GStyleIcon((int) icon_id, icon_color, icon_scale);
+
+        return icon;
+    }
+
+    // ----------------------------------------------------------------------------------------------------
+    private static GStyleLine _parseStyleLine(ArrayList<Object> styleInfoArray) throws GMapException {
+
+        long width = _getItemAsLongDef("feature.styleLine.width", 3000L, styleInfoArray, 1, 1, 0);
+        String color = _getItemAsString("feature.styleLine.color", styleInfoArray, 1, 1, 1, 0);
+        double alpha = _getItemAsDoubleDef("feature.styleLine.alpha", 1.0, styleInfoArray, 1, 1, 1, 1);
+
+        GStyleLine styleLine = new GStyleLine(color, alpha, (int) width);
 
         return styleLine;
     }
 
     // ----------------------------------------------------------------------------------------------------
-    private static GStylePolygon _parseStylePolygon(ArrayList<Object> styleValuesInfoArray) throws GMapException {
+    private static GStylePolygon _parseStylePolygon(ArrayList<Object> styleInfoArray) throws GMapException {
 
-        String borderColor = _getItemAsString("feature.stylePolygon.borderColor", styleValuesInfoArray, 1, 2, 2, 0);
-        String borderWidth = _getItemAsString("feature.stylePolygon.borderWidth", styleValuesInfoArray, 1, 2, 1);
-        String fillColor = _getItemAsString("feature.stylePolygon.fillColor", styleValuesInfoArray, 1, 2, 0, 0);
-        String fillAlpha = _getItemAsString("feature.stylePolygon.fillAlpha", styleValuesInfoArray, 1, 2, 0, 1);
+        String borderColor = _getItemAsString("feature.stylePolygon.borderColor", styleInfoArray, 1, 2, 2, 0);
+        long borderWidth = _getItemAsLongDef("feature.stylePolygon.borderWidth", 3000L, styleInfoArray, 1, 2, 1);
+        String fillColor = _getItemAsString("feature.stylePolygon.fillColor", styleInfoArray, 1, 2, 0, 0);
+        double fillAlpha = _getItemAsDoubleDef("feature.stylePolygon.fillAlpha", 1.0, styleInfoArray, 1, 2, 0, 1);
 
-        GStylePolygon stylePolygon = new GStylePolygon(borderColor, borderWidth, fillColor, fillAlpha);
+        GStylePolygon stylePolygon = new GStylePolygon(borderColor, (int) borderWidth, fillColor, fillAlpha);
         return stylePolygon;
     }
 

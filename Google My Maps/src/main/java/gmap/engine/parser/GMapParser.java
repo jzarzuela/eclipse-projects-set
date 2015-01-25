@@ -21,8 +21,8 @@ public class GMapParser extends BaseParser {
 
         map.setName(_getItemAsStringDef("map.name", "", mapInfoArray, 1));
         map.setDesc(_getItemAsStringDef("map.desc", "", mapInfoArray, 2));
-        map.setCreationTime(_getItemAsLongDef("map.creationTime", 0, mapInfoArray, 5, 1));
-        map.setLastModifiedTime(_getItemAsLongDef("map.creationTime", 0, mapInfoArray, 5, 3));
+        map.setCreationTime(_getItemAsLongDef("map.creationTime", 0L, mapInfoArray, 5, 1));
+        map.setLastModifiedTime(_getItemAsLongDef("map.lastModifiedTime", 0L, mapInfoArray, 5, 3));
 
         return map;
     }

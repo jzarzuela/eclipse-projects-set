@@ -4,10 +4,11 @@
 package gmap.engine;
 
 import gmap.engine.data.GFeature;
+import gmap.engine.data.GLayer;
 import gmap.engine.data.GMap;
-import gmap.engine.data.GPropertyType;
 import gmap.engine.parser.GMapServiceParser;
-import gmap.engine.parser.GPropertyTypeParser;
+import gmap.engine.render.GFeatureRender;
+import gmap.engine.render.GLayerRender;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -17,7 +18,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
@@ -51,116 +51,19 @@ import com.jzb.util.Tracer;
  */
 public class GMapService {
 
+    public enum UseCache {
+        NO, YES
+    };
+
     private HashMap<String, Cookie> m_googleLoginCookies;
-    private boolean                 m_useCache;
+    private UseCache                m_useCache;
 
     // ----------------------------------------------------------------------------------------------------
     /**
      * 
      */
-    public GMapService(boolean useCache) {
+    public GMapService(UseCache useCache) {
         m_useCache = useCache;
-    }
-
-    // ----------------------------------------------------------------------------------------------------
-    public void deleteMapFeatures(GFeature... features) throws GMapException {
-
-        // Comprueba que haya algo que añadir
-        if (features == null || features.length == 0)
-            return;
-
-        try {
-
-            // Se debe estar logado para poder añadir un punto
-            _checkLoginCookies();
-
-            // Pide añadir la feature
-            _requestDeleteFeatures(m_googleLoginCookies, features);
-
-        } catch (GMapException ex) {
-            throw ex;
-        } catch (Throwable th) {
-            throw new GMapException("Error updating features: " + features, th);
-        }
-
-    }
-
-    // ----------------------------------------------------------------------------------------------------
-    private void _requestDeleteFeatures(HashMap<String, Cookie> googleLoginCookies, GFeature... features) throws Exception {
-
-        CloseableHttpClient httpClient = createHttpClient();
-        HttpClientContext ctx = createHttpContext();
-
-        URIBuilder builder = new URIBuilder("https://www.google.com/maps/d/save");
-        builder.setParameter("cid", "mp");
-        builder.setParameter("cv", "xxxxxxxxxxx.en.");
-        builder.setParameter("hl", "en");
-        builder.setParameter("_reqid", "73274");
-        builder.setParameter("rt", "j");
-        HttpPost request = new HttpPost(builder.build());
-
-        addDefaultHeaders(request);
-
-        addCookies(ctx, googleLoginCookies);
-
-        ArrayList<NameValuePair> nvps = new ArrayList<NameValuePair>();
-        nvps.add(new BasicNameValuePair("f.req", _generateDeleteMapFeaturesRequestText(features)));
-        nvps.add(new BasicNameValuePair("at", features[0].getOwnerLayer().getOwnerMap().getXsrfToken()));
-        request.setEntity(new UrlEncodedFormEntity(nvps, "UTF-8"));
-
-        CloseableHttpResponse response = httpClient.execute(request, ctx);
-
-        checkResponseStatusOK(response);
-
-    }
-    
-    // ----------------------------------------------------------------------------------------------------
-    private String _generateDeleteMapFeaturesRequestText(GFeature... features) throws GMapException {
-
-        String MAP_ID = features[0].getOwnerLayer().getOwnerMap().getGID();
-        String TABLE_ID = features[0].getOwnerLayer().getTableID();
-
-        StringBuilder sb = new StringBuilder();
-
-        sb.append("[\"").append(MAP_ID).append("\", null, ");
-        sb.append("[\"").append(TABLE_ID).append("\", [");
-
-        for (int n = 0; n < features.length; n++) {
-
-            if (n > 0) {
-                sb.append(',');
-            }
-
-            sb.append("\"").append(features[n].getGID()).append("\"");
-        }
-
-        sb.append("]]");
-        sb.append(", null, null, null, null, null, null, null, null, null, null, null, null, null, [[]]]");
-        
-        return sb.toString();
-    }
-    
-    // ----------------------------------------------------------------------------------------------------
-    public void updateMapFeatures(GFeature... features) throws GMapException {
-
-        // Comprueba que haya algo que añadir
-        if (features == null || features.length == 0)
-            return;
-
-        try {
-
-            // Se debe estar logado para poder añadir un punto
-            _checkLoginCookies();
-
-            // Pide añadir la feature
-            _requestAddAndUpdateFeatures(false, m_googleLoginCookies, features);
-
-        } catch (GMapException ex) {
-            throw ex;
-        } catch (Throwable th) {
-            throw new GMapException("Error updating features: " + features, th);
-        }
-
     }
 
     // ----------------------------------------------------------------------------------------------------
@@ -175,8 +78,10 @@ public class GMapService {
             // Se debe estar logado para poder añadir un punto
             _checkLoginCookies();
 
-            // Pide añadir la feature
-            _requestAddAndUpdateFeatures(true, m_googleLoginCookies, features);
+            // Pide borrar las features
+            String xsrfToken = features[0].getOwnerLayer().getOwnerMap().getXsrfToken();
+            String reqText = GFeatureRender.addMapFeaturesReqText(features);
+            _requestChangeFeatures(m_googleLoginCookies, xsrfToken, reqText);
 
         } catch (GMapException ex) {
             throw ex;
@@ -187,83 +92,53 @@ public class GMapService {
     }
 
     // ----------------------------------------------------------------------------------------------------
-    private void _requestAddAndUpdateFeatures(boolean isAddingFeature, HashMap<String, Cookie> googleLoginCookies, GFeature... features) throws Exception {
+    public void changeMapLayerStyle(GLayer layer) throws GMapException {
 
-        CloseableHttpClient httpClient = createHttpClient();
-        HttpClientContext ctx = createHttpContext();
+        // Comprueba que haya algo que añadir
+        if (layer == null)
+            return;
 
-        URIBuilder builder = new URIBuilder("https://www.google.com/maps/d/save");
-        builder.setParameter("cid", "mp");
-        builder.setParameter("cv", "xxxxxxxxxxx.en.");
-        builder.setParameter("hl", "en");
-        builder.setParameter("_reqid", "73274");
-        builder.setParameter("rt", "j");
-        HttpPost request = new HttpPost(builder.build());
+        try {
 
-        addDefaultHeaders(request);
+            // Se debe estar logado para poder añadir un punto
+            _checkLoginCookies();
 
-        addCookies(ctx, googleLoginCookies);
+            // Pide borrar las features
+            String xsrfToken = layer.getOwnerMap().getXsrfToken();
+            String reqText = GLayerRender.changeStyleReqText(layer);
+            _requestChangeFeatures(m_googleLoginCookies, xsrfToken, reqText);
 
-        ArrayList<NameValuePair> nvps = new ArrayList<NameValuePair>();
-        nvps.add(new BasicNameValuePair("f.req", _generateAddAndUpdateMapFeaturesRequestText(isAddingFeature, features)));
-        nvps.add(new BasicNameValuePair("at", features[0].getOwnerLayer().getOwnerMap().getXsrfToken()));
-        request.setEntity(new UrlEncodedFormEntity(nvps, "UTF-8"));
-
-        CloseableHttpResponse response = httpClient.execute(request, ctx);
-
-        checkResponseStatusOK(response);
+        } catch (GMapException ex) {
+            throw ex;
+        } catch (Throwable th) {
+            throw new GMapException("Error updating layer: " + layer, th);
+        }
 
     }
 
     // ----------------------------------------------------------------------------------------------------
-    private String _generateAddAndUpdateMapFeaturesRequestText(boolean isAddingFeature, GFeature... features) throws GMapException {
+    public void deleteMapFeatures(GFeature... features) throws GMapException {
 
-        String MAP_ID = features[0].getOwnerLayer().getOwnerMap().getGID();
-        String TABLE_ID = features[0].getOwnerLayer().getTableID();
+        // Comprueba que haya algo que añadir
+        if (features == null || features.length == 0)
+            return;
 
-        StringBuilder sb = new StringBuilder();
+        try {
 
-        sb.append("[\"").append(MAP_ID).append("\",");
+            // Se debe estar logado para poder añadir un punto
+            _checkLoginCookies();
 
-        // EN 'UPDATE' VAN AQUI. EN 'ADD' VAN AL FINAL CON LOS OTROS NULL
-        if (!isAddingFeature) {
-            sb.append("null,null,null,");
+            // Pide borrar las features
+            String xsrfToken = features[0].getOwnerLayer().getOwnerMap().getXsrfToken();
+            String reqText = GFeatureRender.deleteMapFeaturesReqText(features);
+            _requestChangeFeatures(m_googleLoginCookies, xsrfToken, reqText);
+
+        } catch (GMapException ex) {
+            throw ex;
+        } catch (Throwable th) {
+            throw new GMapException("Error deleting features: " + features, th);
         }
 
-        sb.append("[\"").append(TABLE_ID).append("\",[");
-
-        for (int n = 0; n < features.length; n++) {
-
-            if (n > 0) {
-                sb.append(',');
-            }
-
-            sb.append("[\"").append(features[n].getGID());
-            sb.append("\",null,null,null,null,null,null,null,null,null,null,[");
-
-            boolean isFirstProperty = true;
-            for (Map.Entry<String, GPropertyType> entry : features[n].getOwnerLayer().getSchema().entrySet()) {
-
-                if (!isFirstProperty) {
-                    sb.append(',');
-                }
-                isFirstProperty = false;
-
-                GPropertyTypeParser.renderPropertyValue(sb, entry.getKey(), entry.getValue(), features[n]);
-            }
-
-            sb.append("]]");
-        }
-
-        sb.append("]]");
-
-        if (isAddingFeature) {
-            sb.append(",null,null,null");
-        }
-
-        sb.append(",null,null,null,null,null,null,null,null,null,null,null,[[]]]");
-
-        return sb.toString();
     }
 
     // ----------------------------------------------------------------------------------------------------
@@ -364,6 +239,31 @@ public class GMapService {
 
         // Salir consiste en borrar TODAS las cookies
         m_googleLoginCookies = null;
+    }
+
+    // ----------------------------------------------------------------------------------------------------
+    public void updateMapFeatures(GFeature... features) throws GMapException {
+
+        // Comprueba que haya algo que añadir
+        if (features == null || features.length == 0)
+            return;
+
+        try {
+
+            // Se debe estar logado para poder añadir un punto
+            _checkLoginCookies();
+
+            // Pide actualizar las features
+            String xsrfToken = features[0].getOwnerLayer().getOwnerMap().getXsrfToken();
+            String reqText = GFeatureRender.updateMapFeaturesReqText(features);
+            _requestChangeFeatures(m_googleLoginCookies, xsrfToken, reqText);
+
+        } catch (GMapException ex) {
+            throw ex;
+        } catch (Throwable th) {
+            throw new GMapException("Error updating features: " + features, th);
+        }
+
     }
 
     // ----------------------------------------------------------------------------------------------------
@@ -624,7 +524,7 @@ public class GMapService {
     // ----------------------------------------------------------------------------------------------------
     private JSONObject _readMapData(String mapID) {
 
-        if (!m_useCache)
+        if (m_useCache == UseCache.NO)
             return null;
 
         File mapDataFile = new File(System.getProperty("user.home") + "/gmap/map_json_data/" + mapID + ".txt");
@@ -655,9 +555,40 @@ public class GMapService {
     }
 
     // ----------------------------------------------------------------------------------------------------
+    private void _requestChangeFeatures(HashMap<String, Cookie> googleLoginCookies, String xsrfToken, String reqText) throws Exception {
+
+        System.out.println(reqText);
+
+        CloseableHttpClient httpClient = createHttpClient();
+        HttpClientContext ctx = createHttpContext();
+
+        URIBuilder builder = new URIBuilder("https://www.google.com/maps/d/save");
+        builder.setParameter("cid", "mp");
+        builder.setParameter("cv", "xxxxxxxxxxx.en.");
+        builder.setParameter("hl", "en");
+        builder.setParameter("_reqid", "73274");
+        builder.setParameter("rt", "j");
+        HttpPost request = new HttpPost(builder.build());
+
+        addDefaultHeaders(request);
+
+        addCookies(ctx, googleLoginCookies);
+
+        ArrayList<NameValuePair> nvps = new ArrayList<NameValuePair>();
+        nvps.add(new BasicNameValuePair("f.req", reqText));
+        nvps.add(new BasicNameValuePair("at", xsrfToken));
+        request.setEntity(new UrlEncodedFormEntity(nvps, "UTF-8"));
+
+        CloseableHttpResponse response = httpClient.execute(request, ctx);
+
+        checkResponseStatusOK(response);
+
+    }
+
+    // ----------------------------------------------------------------------------------------------------
     private void _saveMapData(String mapID, JSONObject json_response) {
 
-        if (!m_useCache)
+        if (m_useCache == UseCache.NO)
             return;
 
         File mapDataFile = new File(System.getProperty("user.home") + "/gmap/map_json_data/" + mapID + ".txt");
@@ -730,9 +661,9 @@ public class GMapService {
     private CloseableHttpClient createHttpClient() {
 
         RequestConfig defaultRequestConfig = RequestConfig.custom() //
-                .setSocketTimeout(5000) //
-                .setConnectTimeout(5000) //
-                .setConnectionRequestTimeout(5000) //
+                .setSocketTimeout(10000) //
+                .setConnectTimeout(10000) //
+                .setConnectionRequestTimeout(10000) //
                 .setStaleConnectionCheckEnabled(true) //
                 .build();
 

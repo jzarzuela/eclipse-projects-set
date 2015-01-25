@@ -22,6 +22,15 @@ public abstract class GFeature extends GAsset {
     private GStyle                  m_style;
 
     // ----------------------------------------------------------------------------------------------------
+    public GFeature(GLayer ownerLayer, String feature_gid) {
+        super(feature_gid);
+        if (ownerLayer == null) {
+            throw new RuntimeException("Feature's owner layer can't be null");
+        }
+        m_ownerLayer = ownerLayer;
+    }
+
+    // ----------------------------------------------------------------------------------------------------
     public static synchronized String generateID() {
 
         s_idCounter++;
@@ -39,15 +48,6 @@ public abstract class GFeature extends GAsset {
     }
 
     // ----------------------------------------------------------------------------------------------------
-    public GFeature(GLayer ownerLayer, String feature_gid) {
-        super(feature_gid);
-        if (ownerLayer == null) {
-            throw new RuntimeException("Feature's owner layer can't be null");
-        }
-        m_ownerLayer = ownerLayer;
-    }
-
-    // ----------------------------------------------------------------------------------------------------
     public void addAllProperties(HashMap<String, Object> properties) {
         m_properties.putAll(properties);
     }
@@ -55,16 +55,6 @@ public abstract class GFeature extends GAsset {
     // ----------------------------------------------------------------------------------------------------
     public void addProperty(String propName, Object propValue) {
         m_properties.put(propName, propValue);
-    }
-
-    // ----------------------------------------------------------------------------------------------------
-    public void setProperty(String propName, Object propValue) throws GMapException {
-
-        if (m_ownerLayer.getSchema().get(propName) != null) {
-            m_properties.put(propName, propValue);
-        } else {
-            throw new GMapException("property '" + propName + "' doesn't exist in feature's layer schema: " + m_ownerLayer.getSchema());
-        }
     }
 
     // ----------------------------------------------------------------------------------------------------
@@ -104,6 +94,16 @@ public abstract class GFeature extends GAsset {
 
     // ----------------------------------------------------------------------------------------------------
     public abstract void setGeometry(GGeometry geometry) throws GMapException;
+
+    // ----------------------------------------------------------------------------------------------------
+    public void setProperty(String propName, Object propValue) throws GMapException {
+
+        if (m_ownerLayer.getSchema().get(propName) != null) {
+            m_properties.put(propName, propValue);
+        } else {
+            throw new GMapException("property '" + propName + "' doesn't exist in feature's layer schema: " + m_ownerLayer.getSchema());
+        }
+    }
 
     // ----------------------------------------------------------------------------------------------------
     /**

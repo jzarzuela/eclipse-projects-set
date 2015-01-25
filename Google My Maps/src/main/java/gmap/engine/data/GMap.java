@@ -65,6 +65,19 @@ public class GMap extends GAsset {
     }
 
     // ----------------------------------------------------------------------------------------------------
+    /**
+     * @return the layer with specified ID
+     */
+    public GLayer getLayerByID(String gid) {
+
+        for (GLayer layer : m_layers) {
+            if (layer.getGID().equals(gid))
+                return layer;
+        }
+        return null;
+    }
+
+    // ----------------------------------------------------------------------------------------------------
     public GLayer getLayerForStyleID(String style_gid) throws GMapException {
 
         for (GLayer layer : m_layers) {

@@ -5,6 +5,8 @@ package gmap.engine.data;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * @author jzarzuela
@@ -26,6 +28,11 @@ public class GGeometryLine extends GGeometry {
         m_geoPoints.add(geoPoint);
     }
 
+    // ----------------------------------------------------------------------------------------------------
+    public List<GGeometryPoint> getPoints() {
+        return Collections.unmodifiableList(m_geoPoints);
+    }
+    
     // ----------------------------------------------------------------------------------------------------
     /**
      * @see gmap.engine.data.GGeometry#printValue(java.io.PrintWriter, java.lang.String)

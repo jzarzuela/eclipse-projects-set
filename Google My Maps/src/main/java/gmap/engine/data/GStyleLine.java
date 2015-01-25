@@ -11,12 +11,12 @@ import java.io.PrintWriter;
  */
 public class GStyleLine extends GStyle {
 
-    private String m_alpha;
+    private double m_alpha;
     private String m_color;
-    private String m_width;
+    private int m_width;
 
     // ----------------------------------------------------------------------------------------------------
-    public GStyleLine(String color, String alpha, String width) {
+    public GStyleLine(String color, double alpha, int width) {
         m_color = color;
         m_alpha = alpha;
         m_width = width;
@@ -26,7 +26,7 @@ public class GStyleLine extends GStyle {
     /**
      * @return the alpha
      */
-    public String getAlpha() {
+    public double getAlpha() {
         return m_alpha;
     }
 
@@ -44,7 +44,7 @@ public class GStyleLine extends GStyle {
     /**
      * @return the width
      */
-    public String getWidth() {
+    public int getWidth() {
         return m_width;
     }
 
@@ -53,7 +53,7 @@ public class GStyleLine extends GStyle {
     /**
      * @param alpha the alpha to set
      */
-    public void setAlpha(String alpha) {
+    public void setAlpha(double alpha) {
         m_alpha = alpha;
     }
 
@@ -71,7 +71,7 @@ public class GStyleLine extends GStyle {
     /**
      * @param width the width to set
      */
-    public void setWidth(String width) {
+    public void setWidth(int width) {
         m_width = width;
     }
 

@@ -20,6 +20,20 @@ import com.jzb.util.Tracer;
 public class GMapServiceParser extends BaseParser {
 
     // ----------------------------------------------------------------------------------------------------
+    public static int _parseStrToArrays(String str, int index, ArrayList<Object> parentContainer) throws GMapException {
+        return _parseStrToArrays2(str, index, parentContainer, false);
+    }
+
+    // ----------------------------------------------------------------------------------------------------
+    // @SuppressWarnings("unused")
+    public static String _prettyPrintArrays(ArrayList<Object> container) {
+
+        StringBuilder sb = new StringBuilder();
+        _prettyPrintArrays2(sb, "", container);
+        return sb.toString();
+    }
+
+    // ----------------------------------------------------------------------------------------------------
     public static GMap parseMapDataJson(String mapdataJson) throws GMapException {
 
         // Pasa la cadena de texto a un conjunto de arrays de arrays y strings que el resto de parser entienden
@@ -68,6 +82,38 @@ public class GMapServiceParser extends BaseParser {
     }
 
     // ----------------------------------------------------------------------------------------------------
+    private static void _addValueToContainer(StringBuilder value, ArrayList<Object> container, boolean readingValue) throws GMapException {
+
+        String str = value.toString().trim();
+
+        if (str.length() > 0) {
+
+            if (str.charAt(0) == '"') {
+                container.add(str.substring(1, str.length() - 1));
+            } else if (str.equals("null")) {
+                container.add(GNull.GNULL);
+            } else if (Character.isDigit(str.charAt(0)) || str.charAt(0) == '-') {
+                if (str.indexOf('.') >= 0)
+                    container.add(Double.valueOf(str));
+                else
+                    container.add(Long.valueOf(str));
+            } else if (str.equals("true") || str.equals("false")) {
+                container.add(Boolean.parseBoolean(str));
+            } else {
+                throw new GMapException("Don't know how to parse read value: " + value);
+            }
+
+        } else {
+
+            if (readingValue) {
+                container.add(GNull.GNULL);
+            }
+
+        }
+
+    }
+
+    // ----------------------------------------------------------------------------------------------------
     private static void _dumpArrayMapData(String mapdataJson, ArrayList<Object> rootContainer) {
 
         String mapName = "unknownName";
@@ -101,17 +147,20 @@ public class GMapServiceParser extends BaseParser {
     }
 
     // ----------------------------------------------------------------------------------------------------
-    private static int _parseStrToArrays(String str, int index, ArrayList<Object> parentContainer) throws GMapException {
+    private static int _parseStrToArrays2(String str, int index, ArrayList<Object> parentContainer, boolean isNested) throws GMapException {
 
         StringBuilder value = new StringBuilder();
 
         int lastSlashCount = 0;
         boolean insideString = false;
-        boolean lastWasArray = false;
+        boolean readingValue = true;
 
         while (index < str.length()) {
 
             char c = str.charAt(index++);
+
+            //System.out.print(c);
+
             if (c == '\\') {
                 lastSlashCount++;
                 continue;
@@ -149,6 +198,7 @@ public class GMapServiceParser extends BaseParser {
 
             if (c == '\"') {
                 insideString = !insideString;
+                value.append('"');
                 continue;
             }
 
@@ -162,31 +212,19 @@ public class GMapServiceParser extends BaseParser {
 
                     case '[':
                         ArrayList<Object> container = new ArrayList<Object>();
-                        index = _parseStrToArrays(str, index, container);
+                        index = _parseStrToArrays2(str, index, container, true);
                         parentContainer.add(container);
-                        lastWasArray = true;
+                        readingValue = false;
                         break;
 
                     case ']':
-                        if (!lastWasArray) {
-                            if (value.length() == 0) {
-                                parentContainer.add(GNull.GNULL);
-                            } else {
-                                parentContainer.add(value.toString().trim());
-                            }
-                        }
+                        _addValueToContainer(value, parentContainer, readingValue);
                         return index;
 
                     case ',':
-                        if (!lastWasArray) {
-                            if (value.length() == 0) {
-                                parentContainer.add(GNull.GNULL);
-                            } else {
-                                parentContainer.add(value.toString().trim());
-                            }
-                        }
+                        _addValueToContainer(value, parentContainer, readingValue);
                         value.setLength(0);
-                        lastWasArray = false;
+                        readingValue = true;
                         break;
 
                     case '\n':
@@ -200,16 +238,10 @@ public class GMapServiceParser extends BaseParser {
 
         }
 
+        if (isNested)
+            throw new GMapException("Unbalanced brakets!");
+
         return index;
-    }
-
-    // ----------------------------------------------------------------------------------------------------
-    // @SuppressWarnings("unused")
-    private static String _prettyPrintArrays(ArrayList<Object> container) {
-
-        StringBuilder sb = new StringBuilder();
-        _prettyPrintArrays2(sb, "", container);
-        return sb.toString();
     }
 
     // ----------------------------------------------------------------------------------------------------
@@ -219,12 +251,18 @@ public class GMapServiceParser extends BaseParser {
         for (int n = 0; n < container.size(); n++) {
             Object obj = container.get(n);
             if (obj instanceof ArrayList) {
-                _prettyPrintArrays2(sb, padding + "  ", (ArrayList<Object>) obj);
+                _prettyPrintArrays2(sb, padding + "    ", (ArrayList<Object>) obj);
                 if (n < container.size() - 1) {
                     sb.append(", ");
                 }
             } else {
-                sb.append(obj.toString());
+
+                if (obj instanceof String) {
+                    sb.append('"').append(obj.toString()).append('"');
+                } else {
+                    sb.append(obj.toString());
+                }
+
                 if (n < container.size() - 1) {
                     sb.append(", ");
                 }

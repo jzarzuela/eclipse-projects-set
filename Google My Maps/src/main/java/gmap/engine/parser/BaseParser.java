@@ -28,37 +28,53 @@ public abstract class BaseParser {
     protected static Double _getItemAsDouble(String label, ArrayList<Object> rootContainer, int... indexes) throws GMapException {
 
         Object item = _getItemAsObject(label, rootContainer, indexes);
-        if (!(item instanceof String) && !(item instanceof GNull)) {
+        if (!(item instanceof Double) && !(item instanceof GNull)) {
             throw new GMapException("[" + label + "] - Item class is not an Double(str)" + item.getClass());
         }
 
         try {
-            return item != null ? Double.parseDouble((String) item) : null;
+            
+            if (item instanceof GNull)
+                return 0.0;
+            
+            return item != null ? (Double) item : null;
+            
         } catch (Throwable th) {
             throw new GMapException("[" + label + "] - Error parsing Double(str) value: " + item, th);
         }
     }
 
     // ----------------------------------------------------------------------------------------------------
+    protected static Double _getItemAsDoubleDef(String label, Double defValue, ArrayList<Object> rootContainer, int... indexes) throws GMapException {
+
+        Double value = _getItemAsDouble(label, rootContainer, indexes);
+        return value != null ? value : defValue;
+    }
+
+    // ----------------------------------------------------------------------------------------------------
     protected static Long _getItemAsLong(String label, ArrayList<Object> rootContainer, int... indexes) throws GMapException {
 
         Object item = _getItemAsObject(label, rootContainer, indexes);
-        if (!(item instanceof String) && !(item instanceof GNull)) {
+        if (!(item instanceof Long) && !(item instanceof GNull)) {
             throw new GMapException("[" + label + "] - Item class is not an Long(str)" + item.getClass());
         }
 
         try {
-            return item != null ? Long.parseLong((String) item) : null;
+            if (item instanceof GNull)
+                return 0L;
+            
+            return item != null ? (Long) item : null;
+            
         } catch (Throwable th) {
             throw new GMapException("[" + label + "] - Error parsing Long(str) value: " + item, th);
         }
     }
 
     // ----------------------------------------------------------------------------------------------------
-    protected static Long _getItemAsLongDef(String label, long defValue, ArrayList<Object> rootContainer, int... indexes) throws GMapException {
+    protected static Long _getItemAsLongDef(String label, Long defValue, ArrayList<Object> rootContainer, int... indexes) throws GMapException {
 
-        Long lng = _getItemAsLong(label, rootContainer, indexes);
-        return lng != null ? lng : defValue;
+        Long value = _getItemAsLong(label, rootContainer, indexes);
+        return value != null ? value : defValue;
     }
 
     // ----------------------------------------------------------------------------------------------------

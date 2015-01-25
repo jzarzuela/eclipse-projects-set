@@ -20,19 +20,21 @@ public class GStyleIcon extends GStyle {
 
     public static final String ICON_BASE_URL_0  = "http://mt.googleapis.com/vt/icon/name=icons/onion/";
     public static final String ICON_BASE_URL_1  = "http://www.gstatic.com/mapspro/images/stock/";
-    private static Properties  s_coloredIconIds = new Properties();
 
-    private static Properties  s_iconIds        = new Properties();
+    public static Properties  s_coloredIconIds = new Properties();
+    public static Properties  s_iconIds        = new Properties();
+    
     static {
         _init_icon_ids();
     }
 
     private String             m_color;
-    private String             m_iconID;
-    private String             m_scale;
+    private int                m_iconID;
+    private double             m_scale;
 
     // ----------------------------------------------------------------------------------------------------
-    public GStyleIcon(String iconID, String color, String scale) {
+    public GStyleIcon(int iconID, String color, double scale) {
+
         m_iconID = iconID;
         m_color = color;
         m_scale = scale;
@@ -72,7 +74,7 @@ public class GStyleIcon extends GStyle {
             for (String id : all_ids) {
                 pw.println("      <tr>");
                 pw.print("        <td>" + id + "</td><td>" + s_iconIds.getProperty(id.trim()) + "</td>");
-                String src = _getUrl(id.trim());
+                String src = getUrl(id.trim());
                 if (src != null) {
                     pw.println("<td><img src=\"" + src + "\"></td>");
                 } else {
@@ -91,7 +93,7 @@ public class GStyleIcon extends GStyle {
     }
 
     // ----------------------------------------------------------------------------------------------------
-    private static String _getUrl(String iconID) {
+    public static String getUrl(String iconID) {
 
         String text = s_iconIds.getProperty(iconID);
         if (text != null) {
@@ -130,64 +132,67 @@ public class GStyleIcon extends GStyle {
     /**
      * @return the iconID
      */
-    public String getIconID() {
+    public int getIconID() {
         return m_iconID;
     }
 
-    
     // ----------------------------------------------------------------------------------------------------
     /**
      * @return the scale
      */
-    public String getScale() {
+    public double getScale() {
         return m_scale;
     }
 
-    
     // ----------------------------------------------------------------------------------------------------
-    public String getUrl() {
+    public static String getUrl(int iconID, String color) {
 
-        String text = s_iconIds.getProperty(m_iconID);
+        String text = s_iconIds.getProperty("" + iconID);
         if (text != null) {
-            return ICON_BASE_URL_1 + m_iconID + "-" + text + ".png";
+            return ICON_BASE_URL_0 + iconID + "-" + text + ".png";
         } else {
-            text = s_coloredIconIds.getProperty(m_iconID);
+            text = s_coloredIconIds.getProperty("" + iconID);
             if (text != null) {
-                return ICON_BASE_URL_1 + m_iconID + "-#" + m_color + "-" + text + ".png";
+                return ICON_BASE_URL_0 + iconID + "-#" + color + "-" + text + ".png";
             } else {
                 return "NO_ICON_URL";
             }
         }
     }
 
+    // ----------------------------------------------------------------------------------------------------
+    public String getUrl() {
+
+        return GStyleIcon.getUrl(m_iconID, m_color);
+    }
     
     // ----------------------------------------------------------------------------------------------------
     /**
-     * @param color the color to set
+     * @param color
+     *            the color to set
      */
     public void setColor(String color) {
         m_color = color;
     }
 
-    
     // ----------------------------------------------------------------------------------------------------
     /**
-     * @param iconID the iconID to set
+     * @param iconID
+     *            the iconID to set
      */
-    public void setIconID(String iconID) {
+    public void setIconID(int iconID) {
         m_iconID = iconID;
     }
 
-    
     // ----------------------------------------------------------------------------------------------------
     /**
-     * @param scale the scale to set
+     * @param scale
+     *            the scale to set
      */
-    public void setScale(String scale) {
+    public void setScale(double scale) {
         m_scale = scale;
     }
 
-    
     // ----------------------------------------------------------------------------------------------------
     @Override
     protected void printValue(PrintWriter pw, String padding) {

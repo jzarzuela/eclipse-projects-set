@@ -4,7 +4,6 @@
 package gmap.engine.parser;
 
 import gmap.engine.GMapException;
-import gmap.engine.data.GFeature;
 import gmap.engine.data.GGeometryLine;
 import gmap.engine.data.GGeometryPoint;
 import gmap.engine.data.GGeometryPolygon;
@@ -17,76 +16,6 @@ import java.util.ArrayList;
  *
  */
 public class GPropertyTypeParser extends BaseParser {
-
-    // ----------------------------------------------------------------------------------------------------
-    private static void _renderValueTypeString(StringBuilder sb, Object value) throws GMapException {
-
-        sb.append(", null, null, null, \"" + value.toString() + "\", null, null, true");
-    }
-
-    // ----------------------------------------------------------------------------------------------------
-    private static void _renderValueTypeDirections(StringBuilder sb, Object value) throws GMapException {
-
-        // [is_directions, <null>, 0, <null>, <null>, <null>, <null>, 0]
-        sb.append(", null, 0, null, null, null, null, true");
-    }
-
-    // ----------------------------------------------------------------------------------------------------
-    private static void _renderValueTypeGeometry(StringBuilder sb, Object value) throws GMapException {
-
-        // sb.append("[\"gme_g \", null, null, null,  null, null, [[[41.3113276, -3.4494281]], [], []], true],");
-        sb.append(", null, null, null, null, null, ");
-        if (value instanceof GGeometryPoint) {
-            GGeometryPoint geoPoint = (GGeometryPoint) value;
-            sb.append("[[[" + geoPoint.getLon() + ", " + geoPoint.getLat() + "]], [], []]");
-        } else {
-            throw new GMapException("Can't render geometry type: " + value.getClass() + ", value = " + value);
-        }
-        sb.append(", true");
-
-    }
-
-    // ----------------------------------------------------------------------------------------------------
-    private static void _renderValueTypeGxMetadata(StringBuilder sb, Object value) throws GMapException {
-
-        // [gx_metadata, <null>, <null>, <null>, <null>, <null>, <null>, 0]
-        sb.append(", null, null, null, null, null, null, true");
-    }
-
-    // ----------------------------------------------------------------------------------------------------
-    public static void renderPropertyValue(StringBuilder sb, String propName, GPropertyType propType, GFeature feature) throws GMapException {
-
-        sb.append("[\"").append(propName).append("\"");
-
-        Object value = feature.getPropertyValue(propName);
-
-        if (value != null) {
-            switch (propType) {
-
-                case GPT_STRING:
-                    _renderValueTypeString(sb, value);
-                    break;
-
-                case GPT_DIRECTIONS:
-                    _renderValueTypeDirections(sb, value);
-                    break;
-
-                case GPT_GEOMETRY:
-                    _renderValueTypeGeometry(sb, value);
-                    break;
-
-                case GPT_GX_METADATA:
-                    _renderValueTypeGxMetadata(sb, value);
-                    break;
-
-                default:
-                    throw new GMapException("Don't know how to parse property of type: " + propType);
-            }
-        }
-
-        sb.append(']');
-
-    }
 
     // ----------------------------------------------------------------------------------------------------
     public static Object parsePropertyValueArray(GPropertyType type, ArrayList<Object> propertyValueArray) throws GMapException {
@@ -113,8 +42,8 @@ public class GPropertyTypeParser extends BaseParser {
     private static GGeometryPoint _parseValueCoordinates(ArrayList<Object> coordArray) throws GMapException {
 
         if (coordArray != null && coordArray.size() >= 2) {
-            double lng = _getItemAsDouble("feature.geometry.coord.lng", coordArray, 0);
-            double lat = _getItemAsDouble("feature.geometry.coord.lat", coordArray, 1);
+            double lng = _getItemAsDoubleDef("feature.geometry.coord.lng", 0.0, coordArray, 0);
+            double lat = _getItemAsDoubleDef("feature.geometry.coord.lat", 0.0, coordArray, 1);
             return new GGeometryPoint(lng, lat);
         } else {
             throw new GMapException("Error parsin GCoordinates: " + coordArray);

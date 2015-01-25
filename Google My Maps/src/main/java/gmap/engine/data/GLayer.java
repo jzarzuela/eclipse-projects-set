@@ -7,8 +7,10 @@ import gmap.engine.GMapException;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,16 +23,22 @@ import org.joda.time.DateTime;
  */
 public class GLayer extends GAsset {
 
+    private static String                        s_asrm[]          = { "gx_image_links", "place_ref", "gme_geometry_", "feature_order", "gx_metafeatureid", "gx_routeinfo", "gx_metadata" };
+    private static HashSet<String>               s_specialRowNames = new HashSet<String>(Arrays.asList(s_asrm));
+
     // RFC 3339 formatted date-time value (e.g. 1970-01-01T00:00:00Z)
     private DateTime                             m_creationTime;
-    private ArrayList<GFeature>                  m_features      = new ArrayList<GFeature>();
+    private GStyleIcon                           m_defStyleIcon    = new GStyleIcon(503, "DB4436", 1.0);
+    private GStyleLine                           m_defStyleLine    = new GStyleLine("DB4436", 1.0, 1200);
+    private GStylePolygon                        m_defStylePolygon = new GStylePolygon("DB4436", 1200, "DB4436", 1.0);
+    private ArrayList<GFeature>                  m_features        = new ArrayList<GFeature>();
     private DateTime                             m_lastModifiedTime;
     private String                               m_name;
     private GMap                                 m_ownerMap;
-    private LinkedHashMap<String, GPropertyType> m_schema        = new LinkedHashMap<String, GPropertyType>();
+    private LinkedHashMap<String, GPropertyType> m_schema          = new LinkedHashMap<String, GPropertyType>();
     private String                               m_styleID;
     private String                               m_tableID;
-    private String                               m_titlePropName = "";
+    private String                               m_titlePropName   = "";
 
     // ----------------------------------------------------------------------------------------------------
     protected GLayer(GMap ownerMap, String gid) {
@@ -75,15 +83,38 @@ public class GLayer extends GAsset {
     }
 
     // ----------------------------------------------------------------------------------------------------
-    public GFeature getFeatureByID(String feature_gid) throws GMapException {
+    /**
+     * @return the defStyleIcon
+     */
+    public GStyleIcon getDefStyleIcon() {
+        return m_defStyleIcon;
+    }
+
+    // ----------------------------------------------------------------------------------------------------
+    /**
+     * @return the defStyleLine
+     */
+    public GStyleLine getDefStyleLine() {
+        return m_defStyleLine;
+    }
+
+    // ----------------------------------------------------------------------------------------------------
+    /**
+     * @return the defStylePolygon
+     */
+    public GStylePolygon getDefStylePolygon() {
+        return m_defStylePolygon;
+    }
+
+    // ----------------------------------------------------------------------------------------------------
+    public GFeature getFeatureByID(String feature_gid) {
 
         for (GFeature feature : m_features) {
             if (feature_gid != null && feature_gid.equals(feature.getGID())) {
                 return feature;
             }
         }
-
-        throw new GMapException("No feature found for id: '" + feature_gid + "'");
+        return null;
     }
 
     // ----------------------------------------------------------------------------------------------------
@@ -124,6 +155,27 @@ public class GLayer extends GAsset {
      */
     public Map<String, GPropertyType> getSchema() {
         return Collections.unmodifiableMap(m_schema);
+    }
+
+    // ----------------------------------------------------------------------------------------------------
+    public String[] getSchemaAttributeRows() {
+
+        ArrayList<String> rows = new ArrayList<String>();
+
+        // rows.add(m_titlePropName);
+
+        for (String propName : m_schema.keySet()) {
+
+            if (propName.equals(m_titlePropName))
+                continue;
+
+            if (s_specialRowNames.contains(propName))
+                continue;
+
+            rows.add(propName);
+        }
+
+        return rows.toArray(new String[0]);
     }
 
     // ----------------------------------------------------------------------------------------------------
@@ -177,6 +229,33 @@ public class GLayer extends GAsset {
      */
     public void setCreationTime(long creationTime) {
         m_creationTime = new DateTime(creationTime);
+    }
+
+    // ----------------------------------------------------------------------------------------------------
+    /**
+     * @param defStyleIcon
+     *            the defStyleIcon to set
+     */
+    public void setDefStyleIcon(GStyleIcon defStyleIcon) {
+        m_defStyleIcon = defStyleIcon;
+    }
+
+    // ----------------------------------------------------------------------------------------------------
+    /**
+     * @param defStyleLine
+     *            the defStyleLine to set
+     */
+    public void setDefStyleLine(GStyleLine defStyleLine) {
+        m_defStyleLine = defStyleLine;
+    }
+
+    // ----------------------------------------------------------------------------------------------------
+    /**
+     * @param defStylePolygon
+     *            the defStylePolygon to set
+     */
+    public void setDefStylePolygon(GStylePolygon defStylePolygon) {
+        m_defStylePolygon = defStylePolygon;
     }
 
     // ----------------------------------------------------------------------------------------------------
@@ -269,6 +348,9 @@ public class GLayer extends GAsset {
         pw.println(padding + "  tableID: '" + m_tableID + "'");
         pw.println(padding + "  styleID: '" + m_styleID + "'");
         pw.println(padding + "  titlePropName: '" + m_titlePropName + "'");
+        pw.println(padding + "  defStyleIcon: " + m_defStyleIcon);
+        pw.println(padding + "  defStyleLine: " + m_defStyleLine);
+        pw.println(padding + "  defStylePolygon: " + m_defStylePolygon);
 
         pw.println(padding + "  schema {");
         for (Map.Entry<String, GPropertyType> entry : m_schema.entrySet()) {

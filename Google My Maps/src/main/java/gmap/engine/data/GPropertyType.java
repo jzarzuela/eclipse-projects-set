@@ -19,18 +19,18 @@ public enum GPropertyType {
         m_strType = strType;
     }
 
-    public static GPropertyType forTypeName(String strType) throws GMapException {
-        switch (strType) {
-            case "1":
+    public static GPropertyType forTypeName(int type) throws GMapException {
+        switch (type) {
+            case 1:
                 return GPT_DIRECTIONS;
-            case "3":
+            case 3:
                 return GPT_STRING;
-            case "6":
+            case 6:
                 return GPT_GEOMETRY;
-            case "7":
+            case 7:
                 return GPT_GX_METADATA;
             default:
-                throw new GMapException("Unknow property type name: " + strType);
+                throw new GMapException("Unknow property type name: " + type);
         }
     }
 

@@ -5,6 +5,8 @@ package gmap.engine.data;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * @author jzarzuela
@@ -24,6 +26,11 @@ public class GGeometryPolygon extends GGeometry {
     // ----------------------------------------------------------------------------------------------------
     public void addGeoPoint(GGeometryPoint geoPoint) {
         m_geoPoints.add(geoPoint);
+    }
+
+    // ----------------------------------------------------------------------------------------------------
+    public List<GGeometryPoint> getPoints() {
+        return Collections.unmodifiableList(m_geoPoints);
     }
 
     // ----------------------------------------------------------------------------------------------------

@@ -31,9 +31,9 @@ public class GSchemaParser extends BaseParser {
         for (int n = 0; n < schemaInfoArray.size(); n++) {
 
             String propName = _getItemAsString("table.schema.name." + n, schemaInfoArray, n, 0);
-            String propType = _getItemAsString("table.schema.type." + n, schemaInfoArray, n, 1);
+            long propType = _getItemAsLongDef("table.schema.type." + n, null, schemaInfoArray, n, 1);
 
-            layer.addPropertyToSchema(propName, GPropertyType.forTypeName(propType));
+            layer.addPropertyToSchema(propName, GPropertyType.forTypeName((int) propType));
         }
 
     }
